@@ -317,5 +317,90 @@
     main > section:first-child div:hover > img {
       transform: none;
     }
+
+    .editorial-marquee-track {
+      animation: none !important;
+    }
+  }
+
+  /* Smooth infinite editorial marquee ticker */
+  @keyframes editorialMarquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .editorial-marquee {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .editorial-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: editorialMarquee 32s linear infinite;
+  }
+
+  .editorial-marquee:hover .editorial-marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Top hairline reading progress indicator */
+  #scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    z-index: 60;
+    transform-origin: left center;
+    transform: scaleX(0);
+    background: linear-gradient(
+      90deg,
+      var(--color-forest-teal) 0%,
+      var(--color-powder-blue) 28%,
+      var(--color-candy-pink) 56%,
+      var(--color-magenta-bloom) 80%,
+      var(--color-signal-yellow) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Floating comfort controls (Back to top + Quick WA) */
+  #floating-controls[data-visible='true'] {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Subtle editorial interactive row hover */
+  .editorial-row {
+    transition:
+      background-color 280ms var(--ease-editorial),
+      padding-left 320ms var(--ease-editorial);
+  }
+
+  @media (min-width: 768px) {
+    .editorial-row:hover {
+      background-color: color-mix(in srgb, var(--color-ink-black) 2.5%, transparent);
+    }
+  }
+
+  /* Chromatic spectrum hairline divider */
+  .chromatic-hairline {
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      var(--color-forest-teal) 0%,
+      var(--color-mint-wash) 20%,
+      var(--color-powder-blue) 40%,
+      var(--color-candy-pink) 60%,
+      var(--color-signal-yellow) 80%,
+      var(--color-magenta-bloom) 100%
+    );
   }
 }

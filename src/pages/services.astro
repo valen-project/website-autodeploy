@@ -7,6 +7,7 @@ import { SITE_INFO, getWhatsAppUrl, withBase } from '../data/site';
 
 interface ServiceDetail {
   id: string;
+  shortLabel: string;
   indexNumber: string;
   category: string;
   title: string;
@@ -24,11 +25,13 @@ interface WorkflowStep {
   description: string;
   badge?: string;
   badgeVariant?: 'default' | 'accent';
+  nodeClass: string;
 }
 
 const SERVICES: ServiceDetail[] = [
   {
     id: 'blueprint',
+    shortLabel: '01 Blueprint',
     indexNumber: '01',
     category: 'Strategi',
     title: 'Perencanaan Konsep & Digital Business Blueprint',
@@ -47,6 +50,7 @@ const SERVICES: ServiceDetail[] = [
   },
   {
     id: 'desain-kreatif',
+    shortLabel: '02 Desain 2D & 3D',
     indexNumber: '02',
     category: 'Kreatif & Branding',
     title: 'Desain Kreatif (2D & 3D)',
@@ -59,12 +63,13 @@ const SERVICES: ServiceDetail[] = [
     ],
     benefit:
       'Memperkuat identitas merek agar produk berkualitas tampil lebih kredibel dan mudah dikenali pasar.',
-    surface: 'cream',
+    surface: 'candy-pink',
     waMessage:
       'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan Desain Kreatif (2D & 3D) untuk usaha/instansi kami.',
   },
   {
     id: 'website-landing-page',
+    shortLabel: '03 Website & Landing Page',
     indexNumber: '03',
     category: 'Teknologi Web',
     title: 'Pengembangan Website & Landing Page',
@@ -77,12 +82,13 @@ const SERVICES: ServiceDetail[] = [
     ],
     benefit:
       'Mendukung kredibilitas usaha di hadapan pelanggan maupun mitra sekaligus memperkuat konversi pemasaran.',
-    surface: 'cream',
+    surface: 'powder-blue',
     waMessage:
       'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan Pengembangan Website & Landing Page untuk usaha/instansi kami.',
   },
   {
     id: 'digital-marketing',
+    shortLabel: '04 Digital Marketing',
     indexNumber: '04',
     category: 'Pemasaran',
     title: 'Digital Marketing & Digital Advertising',
@@ -95,12 +101,13 @@ const SERVICES: ServiceDetail[] = [
     ],
     benefit:
       'Memperluas jangkauan pasar secara terukur dan membantu usaha memenangkan persaingan di era digital.',
-    surface: 'powder-blue',
+    surface: 'navy',
     waMessage:
       'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan Digital Marketing & Digital Advertising (termasuk META Ads) untuk usaha/instansi kami.',
   },
   {
     id: 'optimasi-konten-ai',
+    shortLabel: '05 Konten AI',
     indexNumber: '05',
     category: 'Kecerdasan Buatan',
     title: 'Optimasi Konten Berbasis AI',
@@ -113,12 +120,13 @@ const SERVICES: ServiceDetail[] = [
     ],
     benefit:
       'Membantu bisnis memproduksi dan mengoptimalkan konten secara lebih cepat, efektif, dan efisien.',
-    surface: 'mint',
+    surface: 'magenta',
     waMessage:
       'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan Optimasi Konten Berbasis AI untuk usaha/instansi kami.',
   },
   {
     id: 'pelatihan-pendampingan',
+    shortLabel: '06 Pelatihan Digital',
     indexNumber: '06',
     category: 'Pemberdayaan',
     title: 'Pelatihan & Pendampingan Digital',
@@ -131,7 +139,7 @@ const SERVICES: ServiceDetail[] = [
     ],
     benefit:
       'Mendorong kemandirian klien dalam mengoperasikan teknologi serta mengelola aset dan proses digitalnya.',
-    surface: 'cream',
+    surface: 'mint',
     waMessage:
       'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan Pelatihan & Pendampingan Digital untuk usaha/instansi kami.',
   },
@@ -146,6 +154,7 @@ const WORKFLOW_STEPS: WorkflowStep[] = [
       'Setiap kerja sama dimulai dengan konsultasi awal yang terbuka mengenai syarat dan ketentuan (Terms & Conditions) sekaligus pemetaan kondisi, prioritas, serta kebutuhan usaha sesuai skala dan anggaran klien.',
     badge: 'Terms & Conditions',
     badgeVariant: 'default',
+    nodeClass: 'bg-forest-teal text-bone-white',
   },
   {
     number: '02',
@@ -155,6 +164,7 @@ const WORKFLOW_STEPS: WorkflowStep[] = [
       'AutoDeploy menyusun Digital Business Blueprint sebagai dasar perencanaan solusi agar arah pengerjaan kreatif, teknologi, maupun pemasaran tepat sasaran dan selaras dengan tujuan usaha klien.',
     badge: 'Blueprint',
     badgeVariant: 'default',
+    nodeClass: 'bg-powder-blue text-ink-black',
   },
   {
     number: '03',
@@ -164,6 +174,7 @@ const WORKFLOW_STEPS: WorkflowStep[] = [
       'Seluruh ruang lingkup layanan dan kesepakatan kerja sama diikat secara resmi melalui perjanjian kontrak atau Memorandum of Understanding (MoU) yang jelas demi menjaga kepastian bagi kedua belah pihak.',
     badge: 'Kontrak / MoU',
     badgeVariant: 'default',
+    nodeClass: 'bg-candy-pink text-ink-black',
   },
   {
     number: '04',
@@ -173,6 +184,7 @@ const WORKFLOW_STEPS: WorkflowStep[] = [
       'Pelaksanaan proyek disertai transfer pengetahuan dan penyerahan panduan penggunaan pada setiap hasil pekerjaan agar klien mampu memahami, mengoperasikan, dan mengelola aset digitalnya secara mandiri.',
     badge: 'Panduan Penggunaan',
     badgeVariant: 'default',
+    nodeClass: 'bg-mint-wash text-ink-black',
   },
   {
     number: '05',
@@ -182,6 +194,7 @@ const WORKFLOW_STEPS: WorkflowStep[] = [
       'AutoDeploy memegang komitmen garansi perbaikan tanpa biaya tambahan apabila terjadi kesalahan dari pihak AutoDeploy, sebagai bentuk tanggung jawab penuh terhadap kualitas hasil pekerjaan.',
     badge: 'Garansi Kualitas',
     badgeVariant: 'accent',
+    nodeClass: 'bg-signal-yellow text-ink-black',
   },
 ];
 
@@ -295,7 +308,25 @@ const waBlueprintUrl = getWhatsAppUrl(
         </p>
       </div>
 
-      <!-- 2-Column Editorial Card Grid (Max 1 Chromatic Surface Per Row) -->
+      <!-- Quick-Jump Comfort Pill Bar -->
+      <nav
+        aria-label="Navigasi cepat bidang layanan"
+        class="mb-10 flex flex-wrap items-center gap-2 pb-6 border-b border-ash/60"
+      >
+        <span class="type-eyebrow text-graphite mr-2">Lompat ke Layanan:</span>
+        {
+          SERVICES.map((service) => (
+            <a
+              href={`#${service.id}`}
+              class="rounded-[1440px] border border-ash px-3.5 py-2 text-[12px] leading-[1.2] font-normal uppercase tracking-normal text-ink-black transition-all duration-250 hover:bg-ink-black hover:text-bone-white hover:border-ink-black"
+            >
+              {service.shortLabel}
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- 2-Column Editorial Card Grid (Full Chromatic Token Spectrum) -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
         {
           SERVICES.map((service) => {
@@ -318,39 +349,42 @@ const waBlueprintUrl = getWhatsAppUrl(
             const bulletClass = isDarkSurface ? 'bg-bone-white/70' : 'bg-ink-black/70';
 
             return (
-              <ServiceCard
-                indexNumber={service.indexNumber}
-                category={service.category}
-                title={service.title}
-                description={service.description}
-                surface={service.surface}
-                href={getWhatsAppUrl(service.waMessage)}
-                linkLabel="Konsultasi Layanan Ini via WhatsApp"
-              >
-                <div class:list={['pt-5 mt-1 border-t flex flex-col gap-5', dividerClass]}>
-                  <div class="flex flex-col gap-2.5">
-                    <p class:list={['type-eyebrow', subLabelClass]}>Cakupan Solusi</p>
-                    <ul class="flex flex-col gap-2">
-                      {service.scopeItems.map((item) => (
-                        <li class:list={['flex items-start gap-3 text-[14px] leading-[1.5]', listTextClass]}>
-                          <span
-                            aria-hidden="true"
-                            class:list={['w-1.5 h-1.5 mt-2 shrink-0 rounded-none', bulletClass]}
-                          />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              <div id={service.id} class="scroll-mt-24 flex">
+                <ServiceCard
+                  indexNumber={service.indexNumber}
+                  category={service.category}
+                  title={service.title}
+                  description={service.description}
+                  surface={service.surface}
+                  href={getWhatsAppUrl(service.waMessage)}
+                  linkLabel="Konsultasi Layanan Ini via WhatsApp"
+                  class="w-full"
+                >
+                  <div class:list={['pt-5 mt-1 border-t flex flex-col gap-5', dividerClass]}>
+                    <div class="flex flex-col gap-2.5">
+                      <p class:list={['type-eyebrow', subLabelClass]}>Cakupan Solusi</p>
+                      <ul class="flex flex-col gap-2">
+                        {service.scopeItems.map((item) => (
+                          <li class:list={['flex items-start gap-3 text-[14px] leading-[1.5]', listTextClass]}>
+                            <span
+                              aria-hidden="true"
+                              class:list={['w-1.5 h-1.5 mt-2 shrink-0 rounded-none', bulletClass]}
+                            />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                  <div class:list={['pt-4 border-t flex flex-col gap-1.5', dividerClass]}>
-                    <p class:list={['type-eyebrow', subLabelClass]}>Manfaat bagi Klien</p>
-                    <p class:list={['text-[14px] leading-[1.55]', listTextClass]}>
-                      {service.benefit}
-                    </p>
+                    <div class:list={['pt-4 border-t flex flex-col gap-1.5', dividerClass]}>
+                      <p class:list={['type-eyebrow', subLabelClass]}>Manfaat bagi Klien</p>
+                      <p class:list={['text-[14px] leading-[1.55]', listTextClass]}>
+                        {service.benefit}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </ServiceCard>
+                </ServiceCard>
+              </div>
             );
           })
         }
@@ -378,13 +412,20 @@ const waBlueprintUrl = getWhatsAppUrl(
         </div>
       </div>
 
-      <!-- Numbered Editorial Workflow List (01 - 05) -->
-      <ol class="border-t border-ash divide-y divide-ash">
+      <!-- Numbered Editorial Workflow List (01 - 05 with Chromatic Step Nodes) -->
+      <ol class="border-y border-ash divide-y divide-ash">
         {
           WORKFLOW_STEPS.map((step) => (
-            <li class="py-8 md:py-10 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start">
-              <div class="lg:col-span-2 flex items-baseline lg:flex-col gap-3 lg:gap-1.5">
-                <span class="type-heading-sm font-light text-ink-black">{step.number}</span>
+            <li class="editorial-row py-8 md:py-10 px-2 md:px-4 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start">
+              <div class="lg:col-span-2 flex items-center lg:flex-col lg:items-start gap-3">
+                <span
+                  class:list={[
+                    'w-10 h-10 rounded-none flex items-center justify-center text-[14px] font-normal tracking-normal shrink-0',
+                    step.nodeClass,
+                  ]}
+                >
+                  {step.number}
+                </span>
                 <span class="type-eyebrow text-graphite">{step.stageLabel}</span>
               </div>
 

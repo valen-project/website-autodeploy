@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_INFO, withBase } from '../data/site';
+import { SITE_INFO, getWhatsAppUrl, withBase } from '../data/site';
 
 export interface Props {
   title?: string;
@@ -30,6 +30,9 @@ const resolvedOgDescription = ogDescription ?? description;
 const ogImageWithBase = withBase(ogImage);
 const resolvedOgImage = Astro.site ? new URL(ogImageWithBase, Astro.site).href : ogImageWithBase;
 const canonicalUrl = Astro.site ? new URL(currentPath, Astro.site).href : undefined;
+const floatingWaUrl = getWhatsAppUrl(
+  'Halo AutoDeploy, saya ingin berkonsultasi mengenai kebutuhan solusi bisnis digital.'
+);
 ---
 
 <!doctype html>
@@ -77,13 +80,74 @@ const canonicalUrl = Astro.site ? new URL(currentPath, Astro.site).href : undefi
     </script>
   </head>
   <body class="bg-bone-white text-ink-black font-sans antialiased min-h-screen flex flex-col">
+    <!-- Top Chromatic Hairline Scroll Progress Bar -->
+    <div id="scroll-progress-bar" aria-hidden="true"></div>
+
     <Navbar currentPath={currentPath} />
     <main class="flex-1 w-full">
       <slot />
     </main>
     <Footer />
 
+    <!-- Floating Comfort Controls (Appear smoothly on scroll) -->
+    <div
+      id="floating-controls"
+      data-visible="false"
+      class="fixed bottom-5 right-4 md:bottom-7 md:right-7 z-30 flex items-center gap-2 opacity-0 translate-y-3 pointer-events-none transition-[opacity,transform] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]"
+    >
+      <a
+        href={floatingWaUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Konsultasi cepat melalui WhatsApp resmi AutoDeploy"
+        class="inline-flex items-center gap-2 rounded-[1440px] bg-forest-teal text-bone-white px-4 py-2.5 text-[13px] leading-[1.2] font-normal tracking-[-0.018em] border border-bone-white/25 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-navy-ink hover:-translate-y-0.5 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-black"
+      >
+        <span class="w-2 h-2 rounded-[1440px] bg-mint-wash" aria-hidden="true"></span>
+        <span>WhatsApp</span>
+      </a>
+      <button
+        id="back-to-top-btn"
+        type="button"
+        aria-label="Kembali ke atas halaman"
+        class="inline-flex items-center justify-center w-10 h-10 rounded-[1440px] bg-ink-black text-bone-white border border-bone-white/20 cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-charcoal-scale hover:-translate-y-0.5 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-black"
+      >
+        <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" class="w-4 h-4">
+          <path
+            d="M8 12.5V3.5M8 3.5L4 7.5M8 3.5L12 7.5"
+            stroke="currentColor"
+            stroke-width="1.25"
+            stroke-linecap="square"
+          />
+        </svg>
+      </button>
+    </div>
+
     <script>
+      // Scroll progress bar & floating comfort controls
+      const progressBar = document.getElementById('scroll-progress-bar');
+      const floatingControls = document.getElementById('floating-controls');
+      const backToTopBtn = document.getElementById('back-to-top-btn');
+
+      const updateScrollUI = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? Math.min(Math.max(scrollTop / docHeight, 0), 1) : 0;
+        if (progressBar) {
+          progressBar.style.transform = `scaleX(${progress})`;
+        }
+        if (floatingControls) {
+          floatingControls.setAttribute('data-visible', scrollTop > 360 ? 'true' : 'false');
+        }
+      };
+
+      updateScrollUI();
+      window.addEventListener('scroll', updateScrollUI, { passive: true });
+      window.addEventListener('resize', updateScrollUI, { passive: true });
+
+      backToTopBtn?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!prefersReduced) {
         const revealTargets: HTMLElement[] = [];

@@ -18,6 +18,8 @@ interface PartnerSegment {
   name: string;
   scope: string;
   description: string;
+  dotColor: string;
+  hoverBorder: string;
 }
 
 interface GovernanceItem {
@@ -74,7 +76,7 @@ const institutionalPillars: PillarItem[] = [
     title: 'Kerja Sama Terukur & Berbasis MoU',
     description:
       'Didukung jaringan Headquarters Anomia Project dan PT. Anomia Digital Industry dengan alur konsultasi transparan, pemetaan kebutuhan, serta perjanjian kontrak atau MoU yang jelas.',
-    surface: 'cream',
+    surface: 'candy-pink',
   },
 ];
 
@@ -85,6 +87,8 @@ const institutionalSegments: PartnerSegment[] = [
     scope: 'Program Pemberdayaan & Pelatihan',
     description:
       'Sinergi program pendampingan UMKM daerah, literasi pemasaran digital, serta pemanfaatan teknologi modern bagi pelaku usaha konvensional.',
+    dotColor: 'bg-forest-teal',
+    hoverBorder: 'hover:border-forest-teal',
   },
   {
     index: '02',
@@ -92,6 +96,8 @@ const institutionalSegments: PartnerSegment[] = [
     scope: 'Pengembangan Mitra Binaan',
     description:
       'Kolaborasi penguatan daya saing usaha binaan melalui penyusunan Digital Business Blueprint, identitas merek, dan pelatihan digital terarah.',
+    dotColor: 'bg-navy-ink',
+    hoverBorder: 'hover:border-navy-ink',
   },
   {
     index: '03',
@@ -99,6 +105,8 @@ const institutionalSegments: PartnerSegment[] = [
     scope: 'Solusi Bisnis & Kemitraan Strategis',
     description:
       'Kerja sama operasional digital terpadu maupun inisiatif kolaboratif untuk memperluas jangkauan pemasaran dan pemberdayaan ekosistem usaha.',
+    dotColor: 'bg-magenta-bloom',
+    hoverBorder: 'hover:border-magenta-bloom',
   },
   {
     index: '04',
@@ -106,6 +114,8 @@ const institutionalSegments: PartnerSegment[] = [
     scope: 'Ekosistem Akademik & Talenta',
     description:
       'Ruang sinergi pengembangan keterampilan digital generasi muda, pelatihan praktis, serta pertukaran pengetahuan di bidang bisnis digital dan kreatif.',
+    dotColor: 'bg-powder-blue',
+    hoverBorder: 'hover:border-navy-ink',
   },
   {
     index: '05',
@@ -113,6 +123,8 @@ const institutionalSegments: PartnerSegment[] = [
     scope: 'Kurikulum & Pendampingan Teknis',
     description:
       'Kolaborasi penyelenggaraan pelatihan pemasaran digital dan optimasi konten berbasis AI yang dilengkapi pedoman penggunaan praktis.',
+    dotColor: 'bg-mint-wash',
+    hoverBorder: 'hover:border-forest-teal',
   },
   {
     index: '06',
@@ -120,6 +132,8 @@ const institutionalSegments: PartnerSegment[] = [
     scope: 'Aktivasi Visual & Promosi Digital',
     description:
       'Dukungan solusi kreatif 2D & 3D, halaman informasi digital, serta strategi kampanye pemasaran untuk mendukung penyelenggaraan kegiatan.',
+    dotColor: 'bg-signal-yellow',
+    hoverBorder: 'hover:border-ink-black',
   },
 ];
 
@@ -171,7 +185,7 @@ const talentEcosystem: TalentRole[] = [
     title: 'Tenaga Kreatif',
     description:
       'Kolaborasi bagi talenta desain grafis 2D, desain 3D, dokumentasi visual, dan pengembangan identitas merek (branding) dalam proyek bisnis digital yang terarah.',
-    surface: 'cream',
+    surface: 'candy-pink',
     href: withBase('/contact'),
     linkLabel: 'Gabung Jaringan Kreatif',
   },
@@ -301,9 +315,17 @@ const talentEcosystem: TalentRole[] = [
       <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
         {
           institutionalSegments.map((segment) => (
-            <div class="border-t border-ash/70 pt-5 flex flex-col gap-3">
+            <div
+              class:list={[
+                'border-t-2 border-ash/70 pt-5 flex flex-col gap-3 transition-colors duration-300',
+                segment.hoverBorder,
+              ]}
+            >
               <div class="flex items-center justify-between gap-3">
-                <span class="type-eyebrow text-graphite">{segment.index}</span>
+                <span class="inline-flex items-center gap-2 type-eyebrow text-graphite">
+                  <span aria-hidden="true" class:list={['w-2 h-2 rounded-[1440px]', segment.dotColor]} />
+                  <span>{segment.index}</span>
+                </span>
                 <span class="type-eyebrow text-graphite">{segment.scope}</span>
               </div>
               <h4 class="type-subheading font-light text-ink-black">{segment.name}</h4>
@@ -332,7 +354,7 @@ const talentEcosystem: TalentRole[] = [
         <div class="lg:col-span-8 divide-y divide-ash/70 border-y border-ash/70">
           {
             governanceSteps.map((item) => (
-              <div class="py-6 grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-6 items-baseline">
+              <div class="editorial-row py-6 px-2 md:px-4 grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-6 items-baseline">
                 <span class="sm:col-span-2 type-eyebrow text-graphite">{item.step}</span>
                 <div class="sm:col-span-10 flex flex-col gap-2">
                   <h4 class="type-subheading font-light text-ink-black">{item.title}</h4>

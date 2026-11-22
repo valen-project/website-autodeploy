@@ -18,6 +18,9 @@ interface CoreValue {
   indexNumber: string;
   title: string;
   description: string;
+  accentBg: string;
+  accentBar: string;
+  iconPath: string;
 }
 
 interface ClientSegment {
@@ -86,25 +89,44 @@ const coreValues: CoreValue[] = [
     title: 'One-Stop Digital Solution',
     description:
       'Mengintegrasikan berbagai kebutuhan digitalisasi bisnis dalam satu layanan terpadu sehingga klien bekerja lebih efisien tanpa perlu mencari banyak penyedia jasa.',
+    accentBg: 'bg-mint-wash/40',
+    accentBar: 'border-t-2 border-forest-teal',
+    iconPath: 'M3 8h10M8 3v10M4.5 4.5h7v7h-7z',
   },
   {
     indexNumber: '02',
     title: 'Digital Business Blueprint',
     description:
       'Mengawali setiap proyek dengan pemetaan kebutuhan bisnis agar solusi yang dirancang tepat sasaran dan selaras dengan tujuan usaha klien.',
+    accentBg: 'bg-powder-blue/35',
+    accentBar: 'border-t-2 border-navy-ink',
+    iconPath: 'M2.5 3.5h11v9h-11zM5.5 6.5h5M5.5 9.5h3',
   },
   {
     indexNumber: '03',
     title: 'Pemberdayaan & Kemandirian',
     description:
       'Menyertakan transfer pengetahuan melalui panduan penggunaan dan pelatihan praktis dalam setiap layanan.',
+    accentBg: 'bg-candy-pink/35',
+    accentBar: 'border-t-2 border-magenta-bloom',
+    iconPath: 'M8 2.5l5.5 3-5.5 3-5.5-3 5.5-3zM4 7.5v3.5c0 1.2 1.8 2 4 2s4-.8 4-2V7.5',
   },
   {
     indexNumber: '04',
     title: 'Transparansi & Garansi Kualitas',
     description:
       'Menjalankan kerja sama berdasarkan alur konsultasi dan kontrak (MoU) yang jelas, disertai komitmen perbaikan tanpa biaya tambahan apabila terjadi kesalahan dari pihak AutoDeploy.',
+    accentBg: 'bg-signal-yellow/25',
+    accentBar: 'border-t-2 border-ink-black',
+    iconPath: 'M8 2L3 4.2v3.6c0 3.1 2.1 5.6 5 6.2 2.9-.6 5-3.1 5-6.2V4.2L8 2zM6 8.2l1.4 1.4 2.8-2.8',
   },
+];
+
+const marqueeColors = [
+  'bg-signal-yellow',
+  'bg-mint-wash',
+  'bg-candy-pink',
+  'bg-powder-blue',
 ];
 
 const clientSegments: ClientSegment[] = [
@@ -174,6 +196,27 @@ const clientSegments: ClientSegment[] = [
         <p class="type-heading-sm font-light text-bone-white max-w-2xl">
           Menggabungkan kekuatan industri kreatif digital dan pemasaran modern dalam satu ekosistem layanan.
         </p>
+      </div>
+    </div>
+    <!-- Kinetic Full-Bleed Editorial Ticker Band -->
+    <div
+      class="w-full bg-navy-ink text-bone-white py-4 border-y border-ink-black editorial-marquee"
+      aria-label="Segmen klien dan layanan AutoDeploy"
+    >
+      <div class="editorial-marquee-track">
+        {[0, 1].map(() => (
+          <div class="flex items-center gap-8 pr-8 shrink-0">
+            {clientSegments.map((seg, i) => (
+              <span class="inline-flex items-center gap-3 type-eyebrow text-bone-white/90 whitespace-nowrap">
+                <span
+                  aria-hidden="true"
+                  class:list={['w-2 h-2 rounded-[1440px]', marqueeColors[i % marqueeColors.length]]}
+                />
+                <span>{seg.label}</span>
+              </span>
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -268,20 +311,41 @@ const clientSegments: ClientSegment[] = [
       Empat pilar kerja sama yang terarah, transparan, dan memberdayakan.
     </h2>
 
-    <div class="mt-12 md:mt-16 border-y border-ash divide-y divide-ash">
+    <div class="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
       {
         coreValues.map((value) => (
-          <article class="py-8 md:py-10 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start">
-            <div class="md:col-span-1">
-              <span class="type-eyebrow text-graphite">{value.indexNumber}</span>
+          <article
+            class:list={[
+              'rounded-none shadow-none p-7 md:p-9 flex flex-col justify-between gap-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1',
+              value.accentBg,
+              value.accentBar,
+            ]}
+          >
+            <div class="flex items-center justify-between gap-4">
+              <span class="type-eyebrow text-ink-black/70">{value.indexNumber} // PILAR UTAMA</span>
+              <span class="w-9 h-9 rounded-[1440px] border border-ink-black/25 bg-bone-white/75 flex items-center justify-center shrink-0">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  class="w-4 h-4 text-ink-black"
+                >
+                  <path
+                    d={value.iconPath}
+                    stroke="currentColor"
+                    stroke-width="1.15"
+                    stroke-linecap="square"
+                    stroke-linejoin="miter"
+                  />
+                </svg>
+              </span>
             </div>
-            <div class="md:col-span-4">
+
+            <div class="flex flex-col gap-3">
               <h3 class="type-heading-sm font-light text-ink-black">
                 {value.title}
               </h3>
-            </div>
-            <div class="md:col-span-7">
-              <p class="text-[16px] leading-[1.55] text-graphite max-w-2xl">
+              <p class="text-[15px] md:text-[16px] leading-[1.55] text-ink-black/80">
                 {value.description}
               </p>
             </div>

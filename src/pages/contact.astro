@@ -112,19 +112,29 @@ const serviceOptions = [
             </div>
 
             <!-- Telepon / WhatsApp -->
-            <div class="py-6 md:py-8 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6">
+            <div class="editorial-row py-6 md:py-8 px-1 sm:px-2 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6">
               <dt class="sm:col-span-4 type-eyebrow text-graphite pt-1">
                 Telepon / WhatsApp
               </dt>
               <dd class="sm:col-span-8 flex flex-col gap-2">
-                <a
-                  href={directWhatsAppUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="type-heading-sm font-light text-ink-black hover:underline underline-offset-4 w-fit focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink-black"
-                >
-                  {SITE_INFO.phoneDisplay} <span aria-hidden="true">↗</span>
-                </a>
+                <div class="flex flex-wrap items-center gap-3">
+                  <a
+                    href={directWhatsAppUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="editorial-link type-heading-sm font-light text-ink-black w-fit focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink-black"
+                  >
+                    {SITE_INFO.phoneDisplay} <span aria-hidden="true">↗</span>
+                  </a>
+                  <button
+                    type="button"
+                    data-copy-value={SITE_INFO.phoneDisplay}
+                    aria-label="Salin nomor WhatsApp AutoDeploy"
+                    class="copy-trigger rounded-[1440px] border border-ash px-3 py-1 text-[11px] uppercase tracking-normal text-graphite transition-colors duration-200 hover:border-ink-black hover:text-ink-black cursor-pointer"
+                  >
+                    Salin
+                  </button>
+                </div>
                 <span class="text-[14px] leading-[1.43] text-graphite">
                   Klik nomor untuk memulai percakapan langsung melalui WhatsApp resmi.
                 </span>
@@ -132,17 +142,27 @@ const serviceOptions = [
             </div>
 
             <!-- Email Resmi -->
-            <div class="py-6 md:py-8 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6">
+            <div class="editorial-row py-6 md:py-8 px-1 sm:px-2 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6">
               <dt class="sm:col-span-4 type-eyebrow text-graphite pt-1">
                 Email Resmi
               </dt>
               <dd class="sm:col-span-8 flex flex-col gap-2">
-                <a
-                  href={`mailto:${SITE_INFO.email}`}
-                  class="type-subheading md:text-[24px] font-light text-ink-black hover:underline underline-offset-4 break-all w-fit focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink-black"
-                >
-                  {SITE_INFO.email}
-                </a>
+                <div class="flex flex-wrap items-center gap-3">
+                  <a
+                    href={`mailto:${SITE_INFO.email}`}
+                    class="editorial-link type-subheading md:text-[24px] font-light text-ink-black break-all w-fit focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink-black"
+                  >
+                    {SITE_INFO.email}
+                  </a>
+                  <button
+                    type="button"
+                    data-copy-value={SITE_INFO.email}
+                    aria-label="Salin alamat email resmi AutoDeploy"
+                    class="copy-trigger rounded-[1440px] border border-ash px-3 py-1 text-[11px] uppercase tracking-normal text-graphite transition-colors duration-200 hover:border-ink-black hover:text-ink-black cursor-pointer"
+                  >
+                    Salin
+                  </button>
+                </div>
                 <span class="text-[14px] leading-[1.43] text-graphite">
                   Untuk korespondensi resmi, pengajuan proposal kemitraan, dan dokumen kerja sama.
                 </span>
@@ -150,14 +170,22 @@ const serviceOptions = [
             </div>
 
             <!-- Alamat Kantor -->
-            <div class="py-6 md:py-8 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6">
+            <div class="editorial-row py-6 md:py-8 px-1 sm:px-2 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6">
               <dt class="sm:col-span-4 type-eyebrow text-graphite pt-1">
                 Alamat Kantor
               </dt>
-              <dd class="sm:col-span-8">
+              <dd class="sm:col-span-8 flex flex-col gap-3">
                 <address class="not-italic type-subheading font-light text-ink-black leading-[1.45]">
                   {SITE_INFO.address}
                 </address>
+                <button
+                  type="button"
+                  data-copy-value={SITE_INFO.address}
+                  aria-label="Salin alamat kantor AutoDeploy"
+                  class="copy-trigger w-fit rounded-[1440px] border border-ash px-3 py-1 text-[11px] uppercase tracking-normal text-graphite transition-colors duration-200 hover:border-ink-black hover:text-ink-black cursor-pointer"
+                >
+                  Salin Alamat
+                </button>
               </dd>
             </div>
           </dl>
@@ -232,15 +260,28 @@ const serviceOptions = [
             melalui WhatsApp resmi AutoDeploy ({SITE_INFO.phoneDisplay}).
           </p>
 
-          <div class="mt-2 pt-6 border-t border-ash/60 max-w-md">
-            <p class="type-eyebrow text-graphite mb-2">
-              STANDAR KONSULTASI AWAL
-            </p>
-            <p class="text-[14px] leading-[1.5] text-graphite">
-              Setiap kerja sama diawali dengan konsultasi transparan mengenai
-              kebutuhan bisnis, syarat dan ketentuan (Terms &amp; Conditions),
-              hingga penyusunan perjanjian kerja sama (MoU) yang jelas.
-            </p>
+          <div class="mt-2 flex flex-col gap-4 max-w-md">
+            <div class="bg-mint-wash/45 border-t-2 border-forest-teal rounded-none p-5 md:p-6">
+              <p class="type-eyebrow text-forest-teal mb-2">
+                STANDAR KONSULTASI AWAL
+              </p>
+              <p class="text-[14px] leading-[1.55] text-ink-black/85">
+                Setiap kerja sama diawali dengan konsultasi transparan mengenai
+                kebutuhan bisnis, syarat dan ketentuan (Terms &amp; Conditions),
+                hingga penyusunan perjanjian kerja sama (MoU) yang jelas.
+              </p>
+            </div>
+
+            <div class="bg-candy-pink/35 border-t-2 border-magenta-bloom rounded-none p-5 md:p-6">
+              <p class="type-eyebrow text-magenta-bloom mb-2">
+                GARANSI &amp; PANDUAN PENGGUNAAN
+              </p>
+              <p class="text-[14px] leading-[1.55] text-ink-black/85">
+                Setiap hasil pekerjaan dilengkapi panduan penggunaan agar Anda
+                dapat mengelola aset digital secara mandiri, disertai garansi
+                perbaikan tanpa biaya tambahan atas kesalahan pihak AutoDeploy.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -515,5 +556,28 @@ const serviceOptions = [
     confirmationBox?.classList.remove('hidden');
 
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  });
+
+  // One-click Copy to Clipboard comfort buttons
+  document.querySelectorAll<HTMLButtonElement>('.copy-trigger').forEach((btn) => {
+    const defaultLabel = btn.textContent?.trim() || 'Salin';
+    btn.addEventListener('click', async () => {
+      const value = btn.dataset.copyValue;
+      if (!value) return;
+      try {
+        await navigator.clipboard.writeText(value);
+        btn.textContent = 'Tersalin ✓';
+        btn.classList.add('bg-signal-yellow', 'border-ink-black', 'text-ink-black');
+        window.setTimeout(() => {
+          btn.textContent = defaultLabel;
+          btn.classList.remove('bg-signal-yellow', 'border-ink-black', 'text-ink-black');
+        }, 1800);
+      } catch {
+        btn.textContent = 'Gagal salin';
+        window.setTimeout(() => {
+          btn.textContent = defaultLabel;
+        }, 1800);
+      }
+    });
   });
 </script>

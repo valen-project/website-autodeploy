@@ -8,14 +8,19 @@ interface MissionItem {
   number: string;
   title: string;
   description: string;
+  accentBg: string;
+  accentBorder: string;
+  numColor: string;
 }
 
 interface LeaderItem {
   number: string;
   code: string;
+  initials: string;
   role: string;
   name: string;
   focus: string;
+  monogramClass: string;
 }
 
 const missions: MissionItem[] = [
@@ -24,24 +29,36 @@ const missions: MissionItem[] = [
     title: 'Solusi Digital Praktis & Terjangkau',
     description:
       'Menyediakan solusi digital yang praktis, terarah, dan terjangkau sesuai dengan kondisi, prioritas, serta anggaran masing-masing pelaku usaha.',
+    accentBg: 'bg-mint-wash/35',
+    accentBorder: 'border-t-2 border-forest-teal',
+    numColor: 'text-forest-teal',
   },
   {
     number: '02',
     title: 'Perluasan Akses Teknologi & Kreativitas',
     description:
       'Membuka akses yang lebih luas terhadap pemanfaatan teknologi modern, kreativitas, dan pengetahuan bisnis digital bagi pelaku usaha di berbagai daerah.',
+    accentBg: 'bg-powder-blue/35',
+    accentBorder: 'border-t-2 border-navy-ink',
+    numColor: 'text-navy-ink',
   },
   {
     number: '03',
     title: 'Pendampingan & Kemandirian Klien',
     description:
       'Memberikan pendampingan, pelatihan, dan panduan penggunaan teknologi agar klien mampu mengelola aset dan proses digitalnya secara mandiri.',
+    accentBg: 'bg-candy-pink/35',
+    accentBorder: 'border-t-2 border-magenta-bloom',
+    numColor: 'text-magenta-bloom',
   },
   {
     number: '04',
     title: 'Pemberdayaan Generasi Muda',
     description:
       'Memberdayakan generasi muda melalui penciptaan peluang kerja, ruang kolaborasi, dan pengembangan keterampilan di bidang kreatif, teknologi, serta pemasaran digital.',
+    accentBg: 'bg-signal-yellow/25',
+    accentBorder: 'border-t-2 border-ink-black',
+    numColor: 'text-ink-black',
   },
 ];
 
@@ -49,42 +66,52 @@ const leadershipTeam: LeaderItem[] = [
   {
     number: '01',
     code: 'CEO',
+    initials: 'AH',
     role: 'Chief Executive Officer (CEO)',
     name: 'Affan Abdul Hanan',
     focus:
       'Memimpin arah visi strategis perusahaan, pengembangan kemitraan bisnis, serta menjembatani kolaborasi dengan UMKM, korporasi, dan instansi.',
+    monogramClass: 'bg-navy-ink text-bone-white',
   },
   {
     number: '02',
     code: 'CTO',
+    initials: 'VF',
     role: 'Chief Technical Officer (CTO)',
     name: 'Valentino Freiazeva',
     focus:
       'Bertanggung jawab atas arsitektur teknologi, pengembangan website dan landing page, serta integrasi sistem berbasis kecerdasan buatan (AI).',
+    monogramClass: 'bg-forest-teal text-bone-white',
   },
   {
     number: '03',
     code: 'CCO',
+    initials: 'SR',
     role: 'Chief Creative Officer (CCO)',
     name: 'Safira Brillianty Permata Ranny',
     focus:
       'Mengelola arah kreatif, identitas visual merek (branding), produksi desain grafis 2D & 3D, serta kualitas aset kampanye digital.',
+    monogramClass: 'bg-magenta-bloom text-bone-white',
   },
   {
     number: '04',
     code: 'CFO',
+    initials: 'NS',
     role: 'Chief Finance Officer (CFO)',
     name: 'Nandhifa Lunandita Syahira',
     focus:
       'Mengatur perencanaan keuangan, penyusunan struktur anggaran layanan yang terjangkau bagi klien, serta pengelolaan arus kas perusahaan.',
+    monogramClass: 'bg-powder-blue text-ink-black',
   },
   {
     number: '05',
     code: 'HR',
+    initials: 'MR',
     role: 'Human Resource (HR)',
     name: 'Muhammad Saad Riyanto',
     focus:
       'Mengelola pengembangan talenta internal, rekrutmen kolaborator muda, serta koordinasi program pendampingan dan pelatihan klien.',
+    monogramClass: 'bg-mint-wash text-ink-black',
   },
 ];
 
@@ -293,21 +320,30 @@ const waConsultUrl = getWhatsAppUrl(
           </p>
         </div>
 
-        <ol class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+        <ol class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           {
             missions.map((mission) => (
-              <li class="py-8 md:py-10 border-b border-ash flex flex-col gap-4">
-                <div class="flex items-baseline gap-4">
-                  <span class="type-eyebrow text-forest-teal shrink-0">
-                    {mission.number}
+              <li
+                class:list={[
+                  'p-7 md:p-9 rounded-none flex flex-col justify-between gap-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1',
+                  mission.accentBg,
+                  mission.accentBorder,
+                ]}
+              >
+                <div class="flex items-center justify-between gap-4">
+                  <span class:list={['type-eyebrow', mission.numColor]}>
+                    MISI {mission.number}
                   </span>
-                  <h4 class="type-subheading font-light text-ink-black">
+                  <span class="w-2.5 h-2.5 rounded-[1440px] bg-ink-black/25" aria-hidden="true" />
+                </div>
+                <div class="flex flex-col gap-3">
+                  <h4 class="type-heading-sm font-light text-ink-black">
                     {mission.title}
                   </h4>
+                  <p class="text-[15px] md:text-[16px] leading-[1.55] text-ink-black/80">
+                    {mission.description}
+                  </p>
                 </div>
-                <p class="text-[15px] md:text-[16px] leading-[1.55] text-graphite md:pl-8">
-                  {mission.description}
-                </p>
               </li>
             ))
           }
@@ -336,19 +372,27 @@ const waConsultUrl = getWhatsAppUrl(
         </p>
       </div>
 
-      <!-- Editorial Roster Table / List (5 Leaders, No Fabricated Photos or Bios) -->
-      <ol class="border-t border-ash divide-y divide-ash">
+      <!-- Editorial Roster Table / List (5 Leaders, Chromatic Initial Monograms) -->
+      <ol class="border-y border-ash divide-y divide-ash">
         {
           leadershipTeam.map((leader) => (
-            <li class="py-8 md:py-10 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-baseline">
-              <div class="md:col-span-1 flex items-center justify-between md:block">
-                <span class="type-eyebrow text-graphite">{leader.number}</span>
+            <li class="editorial-row py-8 md:py-9 px-2 md:px-4 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center">
+              <div class="md:col-span-1 flex items-center justify-between md:justify-start gap-3">
+                <span
+                  aria-hidden="true"
+                  class:list={[
+                    'w-11 h-11 rounded-none flex items-center justify-center text-[13px] font-normal tracking-wider shrink-0',
+                    leader.monogramClass,
+                  ]}
+                >
+                  {leader.initials}
+                </span>
                 <span class="md:hidden">
                   <CategoryBadge label={leader.code} variant="default" />
                 </span>
               </div>
 
-              <div class="md:col-span-4 flex flex-col gap-1.5">
+              <div class="md:col-span-4 flex flex-col gap-1">
                 <h3 class="text-[24px] md:text-[28px] leading-[1.2] tracking-[-0.02em] font-light text-ink-black">
                   {leader.name}
                 </h3>
@@ -361,7 +405,7 @@ const waConsultUrl = getWhatsAppUrl(
                 <CategoryBadge label={leader.code} variant="default" />
               </div>
 
-              <p class="md:col-span-5 text-[15px] md:text-[16px] leading-[1.55] text-ink-black">
+              <p class="md:col-span-5 text-[15px] md:text-[16px] leading-[1.55] text-ink-black/85">
                 {leader.focus}
               </p>
             </li>
