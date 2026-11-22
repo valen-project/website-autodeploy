@@ -70,6 +70,13 @@
 
   /* Shadows */
   --shadow-subtle: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px;
+
+  /* Motion */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@view-transition {
+  navigation: auto;
 }
 
 @layer base {
@@ -184,6 +191,131 @@
     .editorial-px {
       padding-left: var(--spacing-32);
       padding-right: var(--spacing-32);
+    }
+  }
+
+  /* Smooth editorial underline sweep on text links */
+  .editorial-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .editorial-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 360ms var(--ease-editorial);
+  }
+
+  .editorial-link:hover::after,
+  .editorial-link:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+
+  /* Header scrolled glass separation on Bone White */
+  #site-header[data-scrolled='true'] {
+    background-color: color-mix(in srgb, var(--color-bone-white) 92%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom-color: color-mix(in srgb, var(--color-ash) 45%, transparent);
+  }
+
+  /* Staggered Nav Drawer item motion */
+  .nav-drawer-item {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 480ms var(--ease-editorial),
+      transform 560ms var(--ease-editorial);
+  }
+
+  #nav-menu-drawer[data-open='true'] .nav-drawer-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Subtle editorial photographic motion inside sharp overflow-hidden frames */
+  main figure img,
+  main > section:first-child img {
+    transition: transform 900ms var(--ease-editorial);
+    will-change: transform;
+  }
+
+  main figure:hover img,
+  main > section:first-child div:hover > img {
+    transform: scale(1.025);
+  }
+
+  /* Gentle above-the-fold hero entrance */
+  @keyframes editorialFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  main > section:first-child h1 {
+    animation: editorialFadeUp 760ms var(--ease-editorial) both;
+  }
+
+  main > section:first-child p,
+  main > section:first-child .flex {
+    animation: editorialFadeUp 760ms var(--ease-editorial) 90ms both;
+  }
+
+  /* Progressive scroll-reveal for below-the-fold sections & cards */
+  html.js-reveal [data-reveal] {
+    transition:
+      opacity 720ms var(--ease-editorial),
+      transform 760ms var(--ease-editorial),
+      border-color 300ms var(--ease-editorial);
+  }
+
+  html.js-reveal [data-reveal]:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  /* Respect user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    main > section:first-child h1,
+    main > section:first-child p,
+    main > section:first-child .flex {
+      animation: none;
+    }
+
+    html.js-reveal [data-reveal],
+    .nav-drawer-item {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    main figure img,
+    main > section:first-child img {
+      transition: none;
+    }
+
+    main figure:hover img,
+    main > section:first-child div:hover > img {
+      transform: none;
     }
   }
 }

@@ -46,7 +46,9 @@ const computedRel = target === '_blank' ? (rel ?? 'noopener noreferrer') : rel;
 const baseClasses = [
   'inline-flex items-center justify-center gap-2',
   'rounded-[1440px] font-normal tracking-[-0.018em]',
-  'shadow-none transition-colors duration-200 cursor-pointer select-none',
+  'shadow-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
+  'hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]',
+  'cursor-pointer select-none',
   'focus-visible:outline-2 focus-visible:outline-offset-2',
   variantClasses[variant],
   sizeClasses[size],

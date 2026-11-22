@@ -68,6 +68,13 @@ const canonicalUrl = Astro.site ? new URL(currentPath, Astro.site).href : undefi
       href="https://api.fontshare.com/v2/css?f[]=switzer@300,400&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Progressive scroll-reveal opt-in before first paint -->
+    <script is:inline>
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js-reveal');
+      }
+    </script>
   </head>
   <body class="bg-bone-white text-ink-black font-sans antialiased min-h-screen flex flex-col">
     <Navbar currentPath={currentPath} />
@@ -75,5 +82,70 @@ const canonicalUrl = Astro.site ? new URL(currentPath, Astro.site).href : undefi
       <slot />
     </main>
     <Footer />
+
+    <script>
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced) {
+        const revealTargets: HTMLElement[] = [];
+
+        document.querySelectorAll<HTMLElement>('main > section:not(:first-child)').forEach((sec) => {
+          sec.setAttribute('data-reveal', '');
+          revealTargets.push(sec);
+        });
+
+        document.querySelectorAll<HTMLElement>('main .grid').forEach((grid) => {
+          const cards = grid.querySelectorAll<HTMLElement>(':scope > article');
+          cards.forEach((card, index) => {
+            card.setAttribute('data-reveal', '');
+            card.style.transitionDelay = `${Math.min(index * 70, 280)}ms`;
+            revealTargets.push(card);
+          });
+        });
+
+        const footer = document.querySelector<HTMLElement>('footer');
+        if (footer) {
+          footer.setAttribute('data-reveal', '');
+          revealTargets.push(footer);
+        }
+
+        const markVisible = (el: HTMLElement) => {
+          el.classList.add('is-visible');
+          if (el.style.transitionDelay) {
+            window.setTimeout(() => {
+              el.style.transitionDelay = '';
+            }, 900);
+          }
+        };
+
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  markVisible(entry.target as HTMLElement);
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.05, rootMargin: '0px 0px -4% 0px' }
+          );
+
+          revealTargets.forEach((el) => observer.observe(el));
+
+          // Safety fallback: immediately show anything already near viewport
+          requestAnimationFrame(() => {
+            revealTargets.forEach((el) => {
+              const rect = el.getBoundingClientRect();
+              if (rect.top < window.innerHeight * 0.96) {
+                markVisible(el);
+                observer.unobserve(el);
+              }
+            });
+          });
+        } else {
+          revealTargets.forEach((el) => markVisible(el));
+        }
+      }
+    </script>
   </body>
 </html>

@@ -19,7 +19,11 @@ const waConsultUrl = getWhatsAppUrl(
 );
 ---
 
-<header class="w-full bg-bone-white sticky top-0 z-40">
+<header
+  id="site-header"
+  data-scrolled="false"
+  class="w-full bg-bone-white sticky top-0 z-40 border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-300"
+>
   <div class="editorial-px py-4 flex items-center justify-between gap-4">
     <!-- Header Lockup: Circular Logo + Two-line Eyebrow -->
     <a
@@ -28,7 +32,7 @@ const waConsultUrl = getWhatsAppUrl(
       aria-label="AutoDeploy — Kembali ke Beranda"
     >
       <span
-        class="w-9 h-9 rounded-[1440px] border border-ink-black/15 bg-bone-white flex items-center justify-center shrink-0 overflow-hidden transition-colors duration-200 group-hover:border-ink-black"
+        class="w-9 h-9 rounded-[1440px] border border-ink-black/15 bg-bone-white flex items-center justify-center shrink-0 overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-ink-black group-hover:scale-105"
       >
         <img
           src={SITE_INFO.logoPath}
@@ -64,11 +68,12 @@ const waConsultUrl = getWhatsAppUrl(
 <!-- Full-Screen Editorial Navigation Drawer -->
 <div
   id="nav-menu-drawer"
+  data-open="false"
   role="dialog"
   aria-modal="true"
   aria-label="Navigasi utama AutoDeploy"
   aria-hidden="true"
-  class="fixed inset-0 z-50 bg-navy-ink text-bone-white flex flex-col justify-between invisible opacity-0 pointer-events-none transition-[opacity,visibility] duration-200 overflow-y-auto"
+  class="fixed inset-0 z-50 bg-navy-ink text-bone-white flex flex-col justify-between invisible opacity-0 pointer-events-none transition-[opacity,visibility] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-y-auto"
 >
   <!-- Drawer Top Chrome -->
   <div class="editorial-px py-4 flex items-center justify-between gap-4 border-b border-bone-white/15">
@@ -110,19 +115,22 @@ const waConsultUrl = getWhatsAppUrl(
     <p class="type-eyebrow text-bone-white/55 mb-6">Navigasi Halaman</p>
     <ul class="divide-y divide-bone-white/15 border-y border-bone-white/15">
       {
-        NAV_ITEMS.map((item) => {
+        NAV_ITEMS.map((item, idx) => {
           const active = isActive(item.href, currentPath);
           return (
-            <li>
+            <li
+              class="nav-drawer-item"
+              style={`transition-delay: ${60 + idx * 55}ms;`}
+            >
               <a
                 href={item.href}
                 aria-current={active ? 'page' : undefined}
                 class:list={[
-                  'group flex items-baseline justify-between gap-4 py-4 md:py-6 transition-colors duration-200',
+                  'group flex items-baseline justify-between gap-4 py-4 md:py-6 transition-colors duration-300',
                   active ? 'text-signal-yellow' : 'text-bone-white hover:text-mint-wash',
                 ]}
               >
-                <span class="flex items-baseline gap-4 md:gap-8">
+                <span class="flex items-baseline gap-4 md:gap-8 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2">
                   <span class="type-eyebrow text-bone-white/50 shrink-0">{item.number}</span>
                   <span class="type-heading font-light">{item.label}</span>
                 </span>
@@ -134,7 +142,7 @@ const waConsultUrl = getWhatsAppUrl(
                   )}
                   <span
                     aria-hidden="true"
-                    class="text-[20px] md:text-[28px] font-light transition-transform duration-200 group-hover:translate-x-1"
+                    class="text-[20px] md:text-[28px] font-light transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 group-hover:-translate-y-1"
                   >
                     ↗
                   </span>
@@ -172,14 +180,24 @@ const waConsultUrl = getWhatsAppUrl(
 </div>
 
 <script>
+  const siteHeader = document.getElementById('site-header');
   const openBtn = document.getElementById('nav-menu-open');
   const closeBtn = document.getElementById('nav-menu-close');
   const drawer = document.getElementById('nav-menu-drawer');
+
+  function updateHeaderState() {
+    if (!siteHeader) return;
+    siteHeader.setAttribute('data-scrolled', window.scrollY > 20 ? 'true' : 'false');
+  }
+
+  updateHeaderState();
+  window.addEventListener('scroll', updateHeaderState, { passive: true });
 
   function openDrawer() {
     if (!drawer || !openBtn) return;
     drawer.classList.remove('invisible', 'opacity-0', 'pointer-events-none');
     drawer.classList.add('visible', 'opacity-100', 'pointer-events-auto');
+    drawer.setAttribute('data-open', 'true');
     drawer.setAttribute('aria-hidden', 'false');
     openBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
@@ -188,6 +206,7 @@ const waConsultUrl = getWhatsAppUrl(
 
   function closeDrawer() {
     if (!drawer || !openBtn) return;
+    drawer.setAttribute('data-open', 'false');
     drawer.classList.add('invisible', 'opacity-0', 'pointer-events-none');
     drawer.classList.remove('visible', 'opacity-100', 'pointer-events-auto');
     drawer.setAttribute('aria-hidden', 'true');

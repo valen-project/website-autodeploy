@@ -85,7 +85,7 @@ const surfaceConfig: Record<
     badgeVariant: 'default',
   },
   cream: {
-    wrapper: 'bg-bone-white text-ink-black border border-ash',
+    wrapper: 'bg-bone-white text-ink-black border border-ash hover:border-ink-black',
     mutedText: 'text-graphite',
     indexText: 'text-graphite',
     divider: 'border-ash/60',
@@ -100,6 +100,7 @@ const isExternalHref = Boolean(href && /^https?:\/\//i.test(href));
 <article
   class:list={[
     'rounded-none shadow-none p-6 md:p-8 flex flex-col justify-between gap-6',
+    'transition-[transform,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1',
     style.wrapper,
     className,
   ]}
@@ -132,12 +133,12 @@ const isExternalHref = Boolean(href && /^https?:\/\//i.test(href));
           href={href}
           target={isExternalHref ? '_blank' : undefined}
           rel={isExternalHref ? 'noopener noreferrer' : undefined}
-          class="group inline-flex items-center gap-2 text-[14px] leading-[1.43] font-normal uppercase tracking-normal hover:underline underline-offset-4"
+          class="group editorial-link inline-flex items-center gap-2 text-[14px] leading-[1.43] font-normal uppercase tracking-normal"
         >
           <span>{linkLabel}</span>
           <span
             aria-hidden="true"
-            class="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            class="inline-block transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 group-hover:-translate-y-1"
           >
             ↗
           </span>
