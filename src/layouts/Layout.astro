@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_INFO } from '../data/site';
+import { SITE_INFO, withBase } from '../data/site';
 
 export interface Props {
   title?: string;
@@ -27,7 +27,8 @@ const {
 const currentPath = Astro.url.pathname;
 const resolvedOgTitle = ogTitle ?? title;
 const resolvedOgDescription = ogDescription ?? description;
-const resolvedOgImage = Astro.site ? new URL(ogImage, Astro.site).href : ogImage;
+const ogImageWithBase = withBase(ogImage);
+const resolvedOgImage = Astro.site ? new URL(ogImageWithBase, Astro.site).href : ogImageWithBase;
 const canonicalUrl = Astro.site ? new URL(currentPath, Astro.site).href : undefined;
 ---
 

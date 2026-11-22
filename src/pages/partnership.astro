@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import PillButton from '../components/ui/PillButton.astro';
 import ServiceCard, { type ServiceCardSurface } from '../components/ui/ServiceCard.astro';
 import CategoryBadge from '../components/ui/CategoryBadge.astro';
-import { SITE_INFO, getWhatsAppUrl } from '../data/site';
+import { SITE_INFO, getWhatsAppUrl, withBase } from '../data/site';
 
 interface PillarItem {
   indexNumber: string;
@@ -152,7 +152,7 @@ const talentEcosystem: TalentRole[] = [
     description:
       'Ruang kolaborasi produksi konten digital, narasi kampanye pemasaran, serta eksplorasi optimasi konten berbasis kecerdasan buatan (AI) untuk mendorong jangkauan pelaku usaha.',
     surface: 'mint',
-    href: '/contact',
+    href: withBase('/contact'),
     linkLabel: 'Diskusikan Kolaborasi Kreator',
   },
   {
@@ -162,7 +162,7 @@ const talentEcosystem: TalentRole[] = [
     description:
       'Kemitraan langsung bersama komunitas pelaku usaha untuk menghadirkan pendampingan praktis, pelatihan pemasaran digital, dan perluasan akses teknologi ke berbagai daerah.',
     surface: 'cream',
-    href: '/contact',
+    href: withBase('/contact'),
     linkLabel: 'Sinergi Bersama Komunitas',
   },
   {
@@ -172,7 +172,7 @@ const talentEcosystem: TalentRole[] = [
     description:
       'Kolaborasi bagi talenta desain grafis 2D, desain 3D, dokumentasi visual, dan pengembangan identitas merek (branding) dalam proyek bisnis digital yang terarah.',
     surface: 'cream',
-    href: '/contact',
+    href: withBase('/contact'),
     linkLabel: 'Gabung Jaringan Kreatif',
   },
   {
@@ -182,7 +182,7 @@ const talentEcosystem: TalentRole[] = [
     description:
       'Ruang kontribusi bagi pengembang situs web, landing page, dan integrasi sistem berbasis AI dalam membangun solusi digital praktis yang berdampak bagi mitra usaha.',
     surface: 'teal',
-    href: '/contact',
+    href: withBase('/contact'),
     linkLabel: 'Kolaborasi Pengembang Teknologi',
   },
 ];
@@ -224,7 +224,7 @@ const talentEcosystem: TalentRole[] = [
   <section class="w-full pb-8 md:pb-12" aria-label="Visual ekosistem kolaborasi AutoDeploy">
     <figure class="relative w-full overflow-hidden rounded-none shadow-none bg-navy-ink">
       <img
-        src="/assets/IMG_3103.jpeg"
+        src={withBase('/assets/IMG_3103.jpeg')}
         alt="Suasana diskusi kolaboratif tim AutoDeploy dalam membangun ekosistem kemitraan digital"
         class="w-full h-[52vh] min-h-[360px] max-h-[680px] object-cover object-[50%_78%] rounded-none block"
         loading="eager"
@@ -477,7 +477,7 @@ const talentEcosystem: TalentRole[] = [
         </div>
 
         <div class="flex flex-wrap items-center gap-3">
-          <PillButton href="/contact" variant="outline" size="sm">
+          <PillButton href={withBase('/contact')} variant="outline" size="sm">
             Buka Halaman Kontak ↗
           </PillButton>
           <PillButton href={mailtoPartnershipUrl} variant="primary" size="sm">

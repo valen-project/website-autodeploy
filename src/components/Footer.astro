@@ -1,5 +1,5 @@
 ---
-import { NAV_ITEMS, SITE_INFO, getWhatsAppUrl } from '../data/site';
+import { NAV_ITEMS, SITE_INFO, getWhatsAppUrl, withBase } from '../data/site';
 
 const waUrl = getWhatsAppUrl(
   'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan solusi bisnis digital.'
@@ -10,7 +10,7 @@ const waUrl = getWhatsAppUrl(
   <div class="editorial-px py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
     <!-- Column 1: Brand Identity & Corporate Umbrella -->
     <div class="md:col-span-4 flex flex-col gap-4">
-      <a href="/" class="inline-flex items-center gap-3 w-fit">
+      <a href={withBase('/')} class="inline-flex items-center gap-3 w-fit">
         <span class="w-9 h-9 rounded-[1440px] border border-ink-black/15 bg-bone-white flex items-center justify-center shrink-0 overflow-hidden">
           <img
             src={SITE_INFO.logoPath}

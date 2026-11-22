@@ -4,6 +4,13 @@ export interface NavItem {
   href: string;
 }
 
+export function withBase(path: string): string {
+  if (!path || /^(https?:|mailto:|tel:|#)/i.test(path)) return path;
+  const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return `${base}${cleanPath}` || '/';
+}
+
 export const SITE_INFO = {
   brandName: 'AutoDeploy',
   tagline: 'Providing Business Solution in the Society 5.0 Era',
@@ -18,15 +25,15 @@ export const SITE_INFO = {
   phoneDisplay: '085642550886',
   whatsappNumber: '6285642550886',
   email: 'affanhanan10@gmail.com',
-  logoPath: '/assets/logo.png',
+  logoPath: withBase('/assets/logo.png'),
 } as const;
 
 export const NAV_ITEMS: NavItem[] = [
-  { number: '01', label: 'Beranda', href: '/' },
-  { number: '02', label: 'Tentang Kami', href: '/about' },
-  { number: '03', label: 'Layanan', href: '/services' },
-  { number: '04', label: 'Kemitraan & Kolaborasi', href: '/partnership' },
-  { number: '05', label: 'Kontak', href: '/contact' },
+  { number: '01', label: 'Beranda', href: withBase('/') },
+  { number: '02', label: 'Tentang Kami', href: withBase('/about') },
+  { number: '03', label: 'Layanan', href: withBase('/services') },
+  { number: '04', label: 'Kemitraan & Kolaborasi', href: withBase('/partnership') },
+  { number: '05', label: 'Kontak', href: withBase('/contact') },
 ];
 
 export function getWhatsAppUrl(message?: string): string {

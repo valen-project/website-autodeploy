@@ -4,7 +4,7 @@ import PillButton from '../components/ui/PillButton.astro';
 import ServiceCard from '../components/ui/ServiceCard.astro';
 import type { ServiceCardSurface } from '../components/ui/ServiceCard.astro';
 import CategoryBadge from '../components/ui/CategoryBadge.astro';
-import { SITE_INFO, getWhatsAppUrl } from '../data/site';
+import { SITE_INFO, getWhatsAppUrl, withBase } from '../data/site';
 
 interface ServiceSummary {
   indexNumber: string;
@@ -146,7 +146,7 @@ const clientSegments: ClientSegment[] = [
           <PillButton href={waConsultUrl} target="_blank" variant="primary">
             Konsultasi Sekarang ↗
           </PillButton>
-          <PillButton href="/services" variant="outline">
+          <PillButton href={withBase('/services')} variant="outline">
             Jelajahi Layanan
           </PillButton>
         </div>
@@ -156,7 +156,7 @@ const clientSegments: ClientSegment[] = [
     <!-- Full-Bleed Editorial Hero Image Band -->
     <div class="w-full relative overflow-hidden rounded-none shadow-none bg-navy-ink h-[460px] sm:h-[540px] lg:h-[640px]">
       <img
-        src="/assets/IMG_1824.jpeg"
+        src={withBase('/assets/IMG_1824.jpeg')}
         alt="Dokumentasi kolaborasi tim AutoDeploy bersama perangkat kerja dalam merancang solusi bisnis digital"
         class="w-full h-full object-cover object-[50%_48%] rounded-none"
         loading="eager"
@@ -210,7 +210,7 @@ const clientSegments: ClientSegment[] = [
           <p class="type-eyebrow text-graphite">
             {SITE_INFO.headquarters} • {SITE_INFO.parentCompany}
           </p>
-          <PillButton href="/about" variant="outline" size="sm">
+          <PillButton href={withBase('/about')} variant="outline" size="sm">
             Kenali AutoDeploy ↗
           </PillButton>
         </div>
@@ -231,7 +231,7 @@ const clientSegments: ClientSegment[] = [
       </div>
 
       <div class="shrink-0">
-        <PillButton href="/services" variant="outline">
+        <PillButton href={withBase('/services')} variant="outline">
           Lihat Detail Layanan ↗
         </PillButton>
       </div>
@@ -250,7 +250,7 @@ const clientSegments: ClientSegment[] = [
             surface={service.surface}
             title={service.title}
             description={service.description}
-            href="/services"
+            href={withBase('/services')}
             linkLabel="Detail Layanan"
           />
         ))
@@ -308,7 +308,7 @@ const clientSegments: ClientSegment[] = [
         </p>
 
         <div class="mt-8">
-          <PillButton href="/partnership" variant="outline">
+          <PillButton href={withBase('/partnership')} variant="outline">
             Pelajari Kemitraan &amp; Kolaborasi ↗
           </PillButton>
         </div>
@@ -375,7 +375,7 @@ const clientSegments: ClientSegment[] = [
           Konsultasi via WhatsApp ↗
         </PillButton>
         <a
-          href="/contact"
+          href={withBase('/contact')}
           class="inline-flex items-center justify-center gap-2 rounded-[1440px] px-6 py-3 text-[16px] leading-[1.4] font-normal tracking-[-0.018em] border border-bone-white/40 text-bone-white shadow-none transition-colors duration-200 hover:border-bone-white hover:bg-bone-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bone-white"
         >
           Halaman Kontak &amp; Formulir
