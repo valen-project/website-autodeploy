@@ -1,6 +1,4 @@
 ---
-import CategoryBadge from './CategoryBadge.astro';
-
 export type ServiceCardSurface =
   | 'teal'
   | 'powder-blue'
@@ -32,64 +30,93 @@ const {
   class: className = '',
 } = Astro.props;
 
+/*
+ * Symbol Catalog Studio Tile Aesthetic:
+ * Cards sit as crisp Warm Ivory (#fffdf6) studio tiles on the Buttercream (#fcf7df) canvas
+ * with tiny Slate-Blue or Vermilion micro-tags at top-left (matching Symbol's catalog grid),
+ * plus an optional featured Vermilion or Deep Espresso editorial tile for focal contrast.
+ */
 const surfaceConfig: Record<
   ServiceCardSurface,
   {
     wrapper: string;
+    titleClass: string;
     mutedText: string;
     indexText: string;
+    tagClass: string;
     divider: string;
-    badgeVariant: 'default' | 'inverted';
+    linkClass: string;
   }
 > = {
   teal: {
-    wrapper: 'bg-forest-teal text-bone-white',
-    mutedText: 'text-bone-white/85',
-    indexText: 'text-bone-white/60',
-    divider: 'border-bone-white/25',
-    badgeVariant: 'inverted',
+    wrapper:
+      'bg-ivory-tile text-ink-black border border-ash/60 border-t-2 border-t-vermilion hover:border-vermilion/60',
+    titleClass: 'text-terracotta',
+    mutedText: 'text-graphite',
+    indexText: 'text-vermilion',
+    tagClass: 'text-vermilion bg-terracotta-wash/70',
+    divider: 'border-ash/50',
+    linkClass: 'text-vermilion',
   },
   'powder-blue': {
-    wrapper: 'bg-powder-blue text-ink-black',
-    mutedText: 'text-ink-black/80',
-    indexText: 'text-ink-black/55',
-    divider: 'border-ink-black/20',
-    badgeVariant: 'default',
+    wrapper:
+      'bg-ivory-tile text-ink-black border border-ash/60 border-t-2 border-t-slate-tag hover:border-slate-tag/70',
+    titleClass: 'text-ink-black',
+    mutedText: 'text-graphite',
+    indexText: 'text-slate-tag',
+    tagClass: 'text-slate-tag bg-slate-wash',
+    divider: 'border-ash/50',
+    linkClass: 'text-terracotta',
   },
   mint: {
-    wrapper: 'bg-mint-wash text-ink-black',
-    mutedText: 'text-ink-black/80',
-    indexText: 'text-ink-black/55',
-    divider: 'border-ink-black/20',
-    badgeVariant: 'default',
+    wrapper:
+      'bg-ivory-tile text-ink-black border border-ash/60 border-t-2 border-t-ochre-gold hover:border-ochre-gold',
+    titleClass: 'text-ink-black',
+    mutedText: 'text-graphite',
+    indexText: 'text-terracotta',
+    tagClass: 'text-ink-black bg-ochre-wash',
+    divider: 'border-ash/50',
+    linkClass: 'text-terracotta',
   },
   navy: {
-    wrapper: 'bg-navy-ink text-bone-white',
-    mutedText: 'text-bone-white/85',
-    indexText: 'text-bone-white/60',
+    wrapper:
+      'bg-vermilion text-bone-white border border-vermilion',
+    titleClass: 'text-bone-white',
+    mutedText: 'text-bone-white/90',
+    indexText: 'text-bone-white/80',
+    tagClass: 'text-vermilion bg-bone-white',
     divider: 'border-bone-white/25',
-    badgeVariant: 'inverted',
+    linkClass: 'text-bone-white',
   },
   magenta: {
-    wrapper: 'bg-magenta-bloom text-bone-white',
+    wrapper:
+      'bg-ink-black text-bone-white border border-ink-black',
+    titleClass: 'text-bone-white',
     mutedText: 'text-bone-white/85',
-    indexText: 'text-bone-white/60',
-    divider: 'border-bone-white/25',
-    badgeVariant: 'inverted',
+    indexText: 'text-ochre-gold',
+    tagClass: 'text-ink-black bg-sand-warm',
+    divider: 'border-bone-white/20',
+    linkClass: 'text-sand-warm',
   },
   'candy-pink': {
-    wrapper: 'bg-candy-pink text-ink-black',
-    mutedText: 'text-ink-black/80',
-    indexText: 'text-ink-black/55',
-    divider: 'border-ink-black/20',
-    badgeVariant: 'default',
+    wrapper:
+      'bg-ivory-tile text-ink-black border border-ash/60 border-t-2 border-t-terracotta hover:border-terracotta/70',
+    titleClass: 'text-terracotta',
+    mutedText: 'text-graphite',
+    indexText: 'text-terracotta',
+    tagClass: 'text-terracotta bg-terracotta-wash/80',
+    divider: 'border-ash/50',
+    linkClass: 'text-vermilion',
   },
   cream: {
-    wrapper: 'bg-bone-white text-ink-black border border-ash hover:border-ink-black',
+    wrapper:
+      'bg-ivory-tile text-ink-black border border-ash/60 hover:border-terracotta/60',
+    titleClass: 'text-ink-black',
     mutedText: 'text-graphite',
-    indexText: 'text-graphite',
-    divider: 'border-ash/60',
-    badgeVariant: 'default',
+    indexText: 'text-slate-tag',
+    tagClass: 'text-slate-tag bg-slate-wash',
+    divider: 'border-ash/50',
+    linkClass: 'text-terracotta',
   },
 };
 
@@ -100,7 +127,7 @@ const isExternalHref = Boolean(href && /^https?:\/\//i.test(href));
 <article
   class:list={[
     'rounded-none shadow-none p-6 md:p-8 flex flex-col justify-between gap-6',
-    'transition-[transform,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1',
+    'transition-[transform,border-color,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1',
     style.wrapper,
     className,
   ]}
@@ -108,18 +135,27 @@ const isExternalHref = Boolean(href && /^https?:\/\//i.test(href));
   <div class="flex flex-col gap-5">
     {(indexNumber || category) && (
       <div class="flex items-center justify-between gap-3">
-        {indexNumber ? (
-          <span class:list={['type-eyebrow', style.indexText]}>{indexNumber}</span>
+        {category ? (
+          <span
+            class:list={[
+              'inline-block px-2.5 py-1 text-[10px] leading-none font-medium uppercase tracking-[0.07em]',
+              style.tagClass,
+            ]}
+          >
+            {category}
+          </span>
         ) : (
           <span />
         )}
-        {category && <CategoryBadge label={category} variant={style.badgeVariant} />}
+        {indexNumber && (
+          <span class:list={['type-eyebrow', style.indexText]}>{indexNumber}</span>
+        )}
       </div>
     )}
 
-    <h3 class="type-heading-sm font-light">{title}</h3>
+    <h3 class:list={['type-heading-sm', style.titleClass]}>{title}</h3>
 
-    <p class:list={['text-[15px] md:text-[16px] leading-[1.5] font-normal', style.mutedText]}>
+    <p class:list={['text-[14.5px] md:text-[15.5px] leading-[1.58] font-normal', style.mutedText]}>
       {description}
     </p>
 
@@ -133,12 +169,15 @@ const isExternalHref = Boolean(href && /^https?:\/\//i.test(href));
           href={href}
           target={isExternalHref ? '_blank' : undefined}
           rel={isExternalHref ? 'noopener noreferrer' : undefined}
-          class="group editorial-link inline-flex items-center gap-2 text-[14px] leading-[1.43] font-normal uppercase tracking-normal"
+          class:list={[
+            'group editorial-link inline-flex items-center gap-2 text-[13px] leading-[1.4] font-medium uppercase tracking-[0.045em]',
+            style.linkClass,
+          ]}
         >
           <span>{linkLabel}</span>
           <span
             aria-hidden="true"
-            class="inline-block transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 group-hover:-translate-y-1"
+            class="inline-block transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 group-hover:-translate-y-0.5"
           >
             ↗
           </span>

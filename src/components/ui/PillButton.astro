@@ -29,23 +29,23 @@ const {
 
 const variantClasses: Record<NonNullable<Props['variant']>, string> = {
   primary:
-    'bg-ink-black text-bone-white border border-transparent hover:bg-charcoal-scale focus-visible:outline-ink-black',
+    'bg-vermilion text-bone-white border border-vermilion hover:bg-terracotta hover:border-terracotta focus-visible:outline-vermilion',
   outline:
-    'bg-transparent text-ink-black border border-ink-black hover:bg-ink-black hover:text-bone-white focus-visible:outline-ink-black',
+    'bg-ivory-tile/70 text-terracotta border border-terracotta/45 hover:bg-vermilion hover:text-bone-white hover:border-vermilion focus-visible:outline-vermilion',
   inverted:
-    'bg-bone-white text-ink-black border border-transparent hover:bg-signal-yellow hover:text-ink-black focus-visible:outline-bone-white',
+    'bg-bone-white text-vermilion border border-transparent hover:bg-ivory-tile hover:text-ink-black focus-visible:outline-bone-white',
 };
 
 const sizeClasses: Record<NonNullable<Props['size']>, string> = {
-  md: 'px-6 py-3 text-[16px] leading-[1.4]',
-  sm: 'px-4 py-2 text-[14px] leading-[1.43]',
+  md: 'px-6 py-3 text-[15px] leading-[1.35]',
+  sm: 'px-4 py-2 text-[13px] leading-[1.35]',
 };
 
 const computedRel = target === '_blank' ? (rel ?? 'noopener noreferrer') : rel;
 
 const baseClasses = [
   'inline-flex items-center justify-center gap-2',
-  'rounded-[1440px] font-normal tracking-[-0.018em]',
+  'rounded-[1440px] font-medium tracking-[-0.005em]',
   'shadow-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
   'hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]',
   'cursor-pointer select-none',

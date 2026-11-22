@@ -213,8 +213,9 @@ const talentEcosystem: TalentRole[] = [
     <div class="editorial-px">
       <p class="type-eyebrow text-graphite">KEMITRAAN &amp; KOLABORASI // EKOSISTEM</p>
 
-      <h1 class="type-display font-light text-ink-black mt-5 md:mt-6 max-w-5xl">
-        Membangun Ekosistem Kemitraan Digital.
+      <h1 class="type-display text-terracotta mt-5 md:mt-6 max-w-5xl">
+        Kemitraan &amp; Kolaborasi:<br />
+        Membangun Ekosistem Digital.
       </h1>
 
       <div class="mt-10 md:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
@@ -234,39 +235,38 @@ const talentEcosystem: TalentRole[] = [
     </div>
   </section>
 
-  <!-- Full-Bleed Documentary Editorial Visual -->
-  <section class="w-full pb-8 md:pb-12" aria-label="Visual ekosistem kolaborasi AutoDeploy">
-    <figure class="relative w-full overflow-hidden rounded-none shadow-none bg-navy-ink">
-      <img
-        src={withBase('/assets/IMG_3103.jpeg')}
-        alt="Suasana diskusi kolaboratif tim AutoDeploy dalam membangun ekosistem kemitraan digital"
-        class="w-full h-[52vh] min-h-[360px] max-h-[680px] object-cover object-[50%_78%] rounded-none block"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-      <div
-        aria-hidden="true"
-        class="absolute inset-0 bg-gradient-to-t from-ink-black/80 via-ink-black/25 to-transparent pointer-events-none"
-      />
-      <figcaption class="absolute inset-x-0 bottom-0 editorial-px pb-8 md:pb-12 pt-16">
-        <p class="type-eyebrow text-bone-white/80">
+  <!-- Studio Framed Documentary Editorial Visual -->
+  <section class="w-full editorial-px pb-12 md:pb-16" aria-label="Visual ekosistem kolaborasi AutoDeploy">
+    <figure class="p-3 md:p-4 bg-ivory-tile border border-ash">
+      <div class="overflow-hidden bg-bone-white">
+        <img
+          src={withBase('/assets/IMG_3103.jpeg')}
+          alt="Suasana diskusi kolaboratif tim AutoDeploy dalam membangun ekosistem kemitraan digital"
+          class="w-full h-[46vh] min-h-[320px] max-h-[560px] object-cover object-[50%_78%] block"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+      <figcaption class="pt-4 px-1 flex flex-col md:flex-row md:items-baseline justify-between gap-2">
+        <p class="type-eyebrow text-vermilion">
           ANOMIA PROJECT (HEADQUARTERS) // PT. ANOMIA DIGITAL INDUSTRY
         </p>
-        <p class="type-heading-sm font-light text-bone-white mt-3 max-w-2xl">
-          Menjembatani pemberdayaan UMKM, pusat pelatihan digital, dan ruang tumbuh generasi muda di berbagai daerah.
+        <p class="text-[14px] text-graphite">
+          Menjembatani pemberdayaan UMKM, pusat pelatihan digital, dan ruang tumbuh generasi muda.
         </p>
       </figcaption>
     </figure>
   </section>
 
   <!-- Section 1: Kerja Sama Institusional -->
-  <section id="institusional" class="w-full editorial-px py-16 md:py-24">
+  <section id="institusional" class="w-full editorial-px py-16 md:py-24 border-t border-ash">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
       <div class="lg:col-span-7">
-        <p class="type-eyebrow text-graphite">01 // KERJA SAMA INSTITUSIONAL</p>
-        <h2 class="type-heading font-light text-ink-black mt-5">
-          Sinergi Institusional untuk Pemberdayaan UMKM &amp; Pusat Pelatihan Digital.
+        <p class="type-eyebrow text-vermilion">01 // KERJA SAMA INSTITUSIONAL</p>
+        <h2 class="type-heading text-terracotta mt-4">
+          Sinergi Institusional:<br />
+          Pemberdayaan UMKM &amp; Pelatihan Digital.
         </h2>
       </div>
 
@@ -312,23 +312,25 @@ const talentEcosystem: TalentRole[] = [
         </div>
       </div>
 
-      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {
           institutionalSegments.map((segment) => (
             <div
               class:list={[
-                'border-t-2 border-ash/70 pt-5 flex flex-col gap-3 transition-colors duration-300',
+                'studio-tile p-6 border-t-2 flex flex-col gap-3',
                 segment.hoverBorder,
               ]}
             >
               <div class="flex items-center justify-between gap-3">
-                <span class="inline-flex items-center gap-2 type-eyebrow text-graphite">
+                <span class="inline-flex items-center gap-2 type-eyebrow text-terracotta">
                   <span aria-hidden="true" class:list={['w-2 h-2 rounded-[1440px]', segment.dotColor]} />
                   <span>{segment.index}</span>
                 </span>
-                <span class="type-eyebrow text-graphite">{segment.scope}</span>
+                <span class="px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.06em] bg-slate-wash text-slate-tag">
+                  {segment.scope}
+                </span>
               </div>
-              <h4 class="type-subheading font-light text-ink-black">{segment.name}</h4>
+              <h4 class="type-subheading text-ink-black">{segment.name}</h4>
               <p class="text-[14px] md:text-[15px] leading-[1.55] text-graphite">
                 {segment.description}
               </p>
@@ -374,9 +376,10 @@ const talentEcosystem: TalentRole[] = [
   <section id="kolaborasi" class="w-full editorial-px py-16 md:py-24 border-t border-ash">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
       <div class="lg:col-span-7">
-        <p class="type-eyebrow text-graphite">02 // EKOSISTEM KOLABORASI &amp; TALENTA MUDA</p>
-        <h2 class="type-heading font-light text-ink-black mt-5">
-          Ruang Kolaborasi Aktif bagi Kreator, Komunitas, dan Generasi Muda.
+        <p class="type-eyebrow text-vermilion">02 // EKOSISTEM KOLABORASI &amp; TALENTA MUDA</p>
+        <h2 class="type-heading text-terracotta mt-4">
+          Kolaborasi Talenta:<br />
+          Kreator, Komunitas, dan Generasi Muda.
         </h2>
       </div>
 
@@ -424,33 +427,33 @@ const talentEcosystem: TalentRole[] = [
   <!-- Section 3: CTA Pengajuan Kemitraan -->
   <section id="ajukan" class="w-full editorial-px py-16 md:py-24 border-t border-ash">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-stretch">
-      <!-- Featured Inverted Dark Editorial Block -->
-      <div class="lg:col-span-7 bg-navy-ink text-bone-white rounded-none shadow-none p-8 md:p-12 flex flex-col justify-between gap-10">
+      <!-- Featured Vermilion Editorial Block -->
+      <div class="lg:col-span-7 bg-vermilion text-bone-white p-8 md:p-12 flex flex-col justify-between gap-10">
         <div>
-          <p class="type-eyebrow text-bone-white/65">03 // PENGAJUAN KEMITRAAN</p>
-          <h2 class="type-heading font-light text-bone-white mt-5">
+          <p class="type-eyebrow text-bone-white/80">03 // PENGAJUAN KEMITRAAN</p>
+          <h2 class="type-heading text-bone-white mt-4">
             Mari Mulai Diskusi Kemitraan Bersama AutoDeploy.
           </h2>
-          <p class="text-[15px] md:text-[16px] leading-[1.6] text-bone-white/80 mt-6 max-w-2xl">
+          <p class="text-[15px] md:text-[16px] leading-[1.6] text-bone-white/90 mt-5 max-w-2xl">
             Baik untuk penjajakan kerja sama institusional, program pemberdayaan UMKM, penyelenggaraan pusat pelatihan digital, maupun kolaborasi talenta muda—tim kami siap berdiskusi secara terbuka guna merumuskan skema sinergi yang tepat guna.
           </p>
         </div>
 
-        <div class="pt-6 border-t border-bone-white/20 flex flex-wrap items-center gap-4">
+        <div class="pt-6 border-t border-bone-white/25 flex flex-wrap items-center gap-4">
           <PillButton href={waPartnershipUrl} target="_blank" variant="inverted">
             Ajukan Kemitraan via WhatsApp ↗
           </PillButton>
           <a
             href={mailtoPartnershipUrl}
-            class="text-[14px] leading-[1.43] text-bone-white hover:text-signal-yellow underline underline-offset-4 transition-colors duration-200"
+            class="editorial-link text-[14px] leading-[1.43] text-bone-white font-medium"
           >
             Email: {SITE_INFO.email}
           </a>
         </div>
       </div>
 
-      <!-- Official Partnership Contact Card -->
-      <aside class="lg:col-span-5 bg-bone-white border border-ash rounded-none shadow-none p-8 md:p-12 flex flex-col justify-between gap-8">
+      <!-- Official Partnership Contact Studio Card -->
+      <aside class="lg:col-span-5 bg-ivory-tile border border-ash p-8 md:p-12 flex flex-col justify-between gap-8">
         <div>
           <p class="type-eyebrow text-graphite">NARAHUBUNG RESMI KEMITRAAN</p>
           <h3 class="type-heading-sm font-light text-ink-black mt-4">

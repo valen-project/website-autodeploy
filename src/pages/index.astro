@@ -16,10 +16,9 @@ interface ServiceSummary {
 
 interface CoreValue {
   indexNumber: string;
+  tag: string;
   title: string;
   description: string;
-  accentBg: string;
-  accentBar: string;
   iconPath: string;
 }
 
@@ -44,15 +43,15 @@ const services: ServiceSummary[] = [
   {
     indexNumber: '02',
     category: 'Branding',
-    surface: 'powder-blue',
+    surface: 'candy-pink',
     title: 'Desain Kreatif (2D & 3D)',
     description:
       'Pembuatan desain grafis, desain 3D, dokumentasi visual, serta berbagai aset kreatif untuk membangun dan memperkuat identitas merek (branding).',
   },
   {
     indexNumber: '03',
-    category: 'Teknologi',
-    surface: 'mint',
+    category: 'Teknologi Web',
+    surface: 'powder-blue',
     title: 'Pengembangan Website & Landing Page',
     description:
       'Perancangan dan pengembangan situs web maupun landing page profesional untuk mendukung kredibilitas usaha dan konversi pemasaran.',
@@ -60,7 +59,7 @@ const services: ServiceSummary[] = [
   {
     indexNumber: '04',
     category: 'Pemasaran',
-    surface: 'navy',
+    surface: 'mint',
     title: 'Digital Marketing & Digital Advertising',
     description:
       'Pengelolaan strategi pemasaran digital dan kampanye iklan berbayar (termasuk META Ads) guna memperluas jangkauan pasar secara terukur.',
@@ -68,7 +67,7 @@ const services: ServiceSummary[] = [
   {
     indexNumber: '05',
     category: 'Kecerdasan Buatan',
-    surface: 'magenta',
+    surface: 'cream',
     title: 'Optimasi Konten Berbasis AI',
     description:
       'Pemanfaatan kecerdasan buatan (Artificial Intelligence) untuk memproduksi dan mengoptimalkan konten bisnis secara lebih cepat, efektif, dan efisien.',
@@ -76,7 +75,7 @@ const services: ServiceSummary[] = [
   {
     indexNumber: '06',
     category: 'Pemberdayaan',
-    surface: 'cream',
+    surface: 'navy',
     title: 'Pelatihan & Pendampingan Digital',
     description:
       'Program pelatihan pemasaran digital dan pemanfaatan AI yang dilengkapi pedoman penggunaan agar klien dapat mengoperasikan teknologi secara mandiri.',
@@ -86,47 +85,36 @@ const services: ServiceSummary[] = [
 const coreValues: CoreValue[] = [
   {
     indexNumber: '01',
+    tag: 'TERPADU',
     title: 'One-Stop Digital Solution',
     description:
       'Mengintegrasikan berbagai kebutuhan digitalisasi bisnis dalam satu layanan terpadu sehingga klien bekerja lebih efisien tanpa perlu mencari banyak penyedia jasa.',
-    accentBg: 'bg-mint-wash/40',
-    accentBar: 'border-t-2 border-forest-teal',
     iconPath: 'M3 8h10M8 3v10M4.5 4.5h7v7h-7z',
   },
   {
     indexNumber: '02',
+    tag: 'TERARAH',
     title: 'Digital Business Blueprint',
     description:
       'Mengawali setiap proyek dengan pemetaan kebutuhan bisnis agar solusi yang dirancang tepat sasaran dan selaras dengan tujuan usaha klien.',
-    accentBg: 'bg-powder-blue/35',
-    accentBar: 'border-t-2 border-navy-ink',
     iconPath: 'M2.5 3.5h11v9h-11zM5.5 6.5h5M5.5 9.5h3',
   },
   {
     indexNumber: '03',
+    tag: 'MANDIRI',
     title: 'Pemberdayaan & Kemandirian',
     description:
       'Menyertakan transfer pengetahuan melalui panduan penggunaan dan pelatihan praktis dalam setiap layanan.',
-    accentBg: 'bg-candy-pink/35',
-    accentBar: 'border-t-2 border-magenta-bloom',
     iconPath: 'M8 2.5l5.5 3-5.5 3-5.5-3 5.5-3zM4 7.5v3.5c0 1.2 1.8 2 4 2s4-.8 4-2V7.5',
   },
   {
     indexNumber: '04',
+    tag: 'GARANSI',
     title: 'Transparansi & Garansi Kualitas',
     description:
       'Menjalankan kerja sama berdasarkan alur konsultasi dan kontrak (MoU) yang jelas, disertai komitmen perbaikan tanpa biaya tambahan apabila terjadi kesalahan dari pihak AutoDeploy.',
-    accentBg: 'bg-signal-yellow/25',
-    accentBar: 'border-t-2 border-ink-black',
     iconPath: 'M8 2L3 4.2v3.6c0 3.1 2.1 5.6 5 6.2 2.9-.6 5-3.1 5-6.2V4.2L8 2zM6 8.2l1.4 1.4 2.8-2.8',
   },
-];
-
-const marqueeColors = [
-  'bg-signal-yellow',
-  'bg-mint-wash',
-  'bg-candy-pink',
-  'bg-powder-blue',
 ];
 
 const clientSegments: ClientSegment[] = [
@@ -148,70 +136,71 @@ const clientSegments: ClientSegment[] = [
   ogImage="/assets/IMG_1824.jpeg"
   ogImageAlt="Tim AutoDeploy berkolaborasi merancang solusi bisnis digital terpadu di era Society 5.0"
 >
-  <!-- Section 1: Hero Section -->
-  <section class="w-full" aria-label="Pengantar AutoDeploy">
-    <div class="editorial-px pt-10 pb-12 md:pt-16 md:pb-16">
-      <p class="type-eyebrow text-graphite mb-6 md:mb-8">
-        {SITE_INFO.brandName} // {SITE_INFO.tagline}
-      </p>
+  <!-- Section 1: Signature Symbol-Style Hero (Overlapping Vermilion Masthead + Editorial Photo) -->
+  <section class="w-full border-b border-ash" aria-label="Pengantar AutoDeploy">
+    <div class="editorial-px pt-5 pb-12 md:pt-8 md:pb-16">
+      <!-- Top Micro Metadata Strip -->
+      <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] uppercase tracking-[0.06em] text-graphite mb-4 md:mb-6">
+        <span>{SITE_INFO.headquarters}</span>
+        <span class="hidden md:inline text-terracotta font-medium">{SITE_INFO.tagline}</span>
+        <span>Kartasura, Sukoharjo • Est. {SITE_INFO.foundedYear}</span>
+      </div>
 
-      <h1 class="type-display font-light text-ink-black max-w-6xl">
-        Solusi Bisnis Digital Terpadu di Era Society 5.0
-      </h1>
-
-      <div class="mt-8 md:mt-12 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-        <p class="text-[18px] md:text-[20px] leading-[1.4] font-light text-graphite max-w-2xl">
-          Mitra strategis bagi UMKM, bisnis rintisan, dan perusahaan dalam mengoptimalkan operasional serta pemasaran digital melalui integrasi kreativitas, teknologi, dan strategi.
+      <!-- Giant Overlapping Vermilion Wordmark + Centered Documentary Photo -->
+      <div class="relative flex flex-col items-center">
+        <p
+          aria-hidden="true"
+          class="type-masthead masthead-animate text-center select-none z-10 pointer-events-none"
+        >
+          AutoDeploy
         </p>
 
-        <div class="flex flex-wrap items-center gap-3 shrink-0">
+        <div class="hero-photo-frame relative z-0 -mt-5 sm:-mt-10 md:-mt-16 w-full max-w-4xl overflow-hidden border border-ash/70 bg-ivory-tile">
+          <img
+            src={withBase('/assets/IMG_1824.jpeg')}
+            alt="Dokumentasi kolaborasi tim AutoDeploy bersama perangkat kerja dalam merancang solusi bisnis digital"
+            class="w-full h-[300px] sm:h-[420px] md:h-[500px] object-cover object-[50%_48%]"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <!-- Value Proposition & Primary Actions Below Photo -->
+      <div class="mt-10 md:mt-14 pt-8 border-t border-ash/70 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div class="lg:col-span-7 flex flex-col gap-3">
+          <p class="type-eyebrow text-vermilion">SOLUSI BISNIS DIGITAL TERPADU</p>
+          <h1 class="type-heading text-terracotta max-w-2xl">
+            Solusi Bisnis Digital Terpadu di Era Society 5.0.
+          </h1>
+          <p class="text-[16px] md:text-[17px] leading-[1.6] text-graphite max-w-2xl mt-1">
+            Mitra strategis bagi UMKM, bisnis rintisan, dan perusahaan dalam mengoptimalkan operasional serta pemasaran digital melalui integrasi kreativitas, teknologi, dan strategi.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5 flex flex-wrap lg:justify-end items-center gap-3">
           <PillButton href={waConsultUrl} target="_blank" variant="primary">
             Konsultasi Sekarang ↗
           </PillButton>
           <PillButton href={withBase('/services')} variant="outline">
-            Jelajahi Layanan
+            Jelajahi 6 Layanan
           </PillButton>
         </div>
       </div>
     </div>
 
-    <!-- Full-Bleed Editorial Hero Image Band -->
-    <div class="w-full relative overflow-hidden rounded-none shadow-none bg-navy-ink h-[460px] sm:h-[540px] lg:h-[640px]">
-      <img
-        src={withBase('/assets/IMG_1824.jpeg')}
-        alt="Dokumentasi kolaborasi tim AutoDeploy bersama perangkat kerja dalam merancang solusi bisnis digital"
-        class="w-full h-full object-cover object-[50%_48%] rounded-none"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-      <div
-        aria-hidden="true"
-        class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-black/80 via-ink-black/35 to-ink-black/10"
-      />
-      <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8 md:p-10">
-        <p class="type-eyebrow text-bone-white/85 mb-4 md:mb-6">
-          KARTASURA, SUKOHARJO — ANOMIA PROJECT
-        </p>
-        <p class="type-heading-sm font-light text-bone-white max-w-2xl">
-          Menggabungkan kekuatan industri kreatif digital dan pemasaran modern dalam satu ekosistem layanan.
-        </p>
-      </div>
-    </div>
-    <!-- Kinetic Full-Bleed Editorial Ticker Band -->
+    <!-- Warm Terracotta Ticker Band -->
     <div
-      class="w-full bg-navy-ink text-bone-white py-4 border-y border-ink-black editorial-marquee"
+      class="w-full bg-terracotta-wash/75 text-terracotta py-3 border-t border-ash editorial-marquee"
       aria-label="Segmen klien dan layanan AutoDeploy"
     >
       <div class="editorial-marquee-track">
         {[0, 1].map(() => (
           <div class="flex items-center gap-8 pr-8 shrink-0">
-            {clientSegments.map((seg, i) => (
-              <span class="inline-flex items-center gap-3 type-eyebrow text-bone-white/90 whitespace-nowrap">
-                <span
-                  aria-hidden="true"
-                  class:list={['w-2 h-2 rounded-[1440px]', marqueeColors[i % marqueeColors.length]]}
-                />
+            {clientSegments.map((seg) => (
+              <span class="inline-flex items-center gap-3 type-eyebrow text-terracotta whitespace-nowrap">
+                <span aria-hidden="true" class="w-1.5 h-1.5 rounded-[1440px] bg-vermilion" />
                 <span>{seg.label}</span>
               </span>
             ))}
@@ -221,70 +210,32 @@ const clientSegments: ClientSegment[] = [
     </div>
   </section>
 
-  <!-- Section 2: Latar Belakang Masalah & Peran AutoDeploy -->
-  <section class="editorial-px py-16 md:py-24" aria-labelledby="section-background-title">
-    <p class="type-eyebrow text-graphite mb-6 md:mb-8">
-      01 // LATAR BELAKANG &amp; PERAN AUTODEPLOY
-    </p>
+  <!-- Section 2: Layanan Utama (Signature Symbol Asymmetric Catalog Studio Grid) -->
+  <section class="editorial-px py-16 md:py-24 border-b border-ash" aria-labelledby="section-services-title">
+    <div class="mb-10 md:mb-14">
+      <h2 id="section-services-title" class="type-heading text-terracotta">
+        Layanan Utama:<br />
+        Enam Solusi Digital Terpadu...
+      </h2>
+    </div>
 
-    <h2 id="section-background-title" class="type-heading font-light text-ink-black max-w-4xl">
-      Bukan sekadar penyedia jasa teknis, melainkan mitra strategis transformasi usaha.
-    </h2>
-
-    <div class="mt-12 md:mt-16 pt-8 md:pt-10 border-t border-ash grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-      <div class="lg:col-span-5 flex flex-col gap-4">
-        <p class="type-eyebrow text-graphite">Tantangan Pelaku Usaha</p>
-        <p class="text-[18px] md:text-[20px] leading-[1.45] font-light text-ink-black">
-          Berdiri pada tahun {SITE_INFO.foundedYear}, AutoDeploy lahir dari kepedulian terhadap banyaknya pelaku usaha konvensional—khususnya UMKM dan bisnis rintisan—yang memiliki produk berkualitas namun menghadapi kendala dalam memasarkan produk, membangun identitas merek, serta memanfaatkan teknologi digital secara optimal.
-        </p>
-      </div>
-
-      <div class="lg:col-span-7 flex flex-col justify-between gap-8">
-        <div class="flex flex-col gap-5 text-[16px] leading-[1.55] text-graphite max-w-2xl">
-          <p>
-            Keterbatasan pengetahuan, sumber daya, maupun strategi kerap membuat potensi usaha yang kuat belum terhubung secara maksimal dengan peluang pasar digital saat ini.
-          </p>
-          <p>
-            Beroperasi di bawah naungan <span class="text-ink-black">{SITE_INFO.headquarters}</span> dalam manajemen <span class="text-ink-black">{SITE_INFO.parentCompany}</span>, AutoDeploy hadir mendampingi pelaku usaha untuk beradaptasi, tumbuh mandiri, dan berdaya saing di era Society 5.0.
+    <!-- Asymmetric Symbol Catalog Grid: First cell is editorial intro on Buttercream, followed by crisp Ivory Studio Tiles -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- Intro Cell on Buttercream Canvas -->
+      <div class="p-2 md:p-4 flex flex-col justify-between gap-6">
+        <div class="flex flex-col gap-3">
+          <span class="type-eyebrow text-slate-tag">CAKUPAN LINTAS DAERAH</span>
+          <p class="text-[15px] leading-[1.6] text-graphite">
+            AutoDeploy melayani klien dari berbagai daerah tanpa batasan lokasi dengan cakupan layanan menyeluruh yang disesuaikan dengan skala, prioritas, serta anggaran usaha Anda.
           </p>
         </div>
-
-        <div class="pt-6 border-t border-ash/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <p class="type-eyebrow text-graphite">
-            {SITE_INFO.headquarters} • {SITE_INFO.parentCompany}
-          </p>
-          <PillButton href={withBase('/about')} variant="outline" size="sm">
-            Kenali AutoDeploy ↗
+        <div>
+          <PillButton href={withBase('/services')} variant="outline" size="sm">
+            Lihat Rincian Layanan ↗
           </PillButton>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Section 3: Ringkasan 6 Layanan Utama -->
-  <section class="editorial-px py-16 md:py-24 border-t border-ash/60" aria-labelledby="section-services-title">
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 md:mb-14">
-      <div>
-        <p class="type-eyebrow text-graphite mb-4 md:mb-6">
-          02 // LAYANAN UTAMA
-        </p>
-        <h2 id="section-services-title" class="type-heading font-light text-ink-black max-w-3xl">
-          Enam bidang layanan terpadu sesuai skala dan anggaran usaha.
-        </h2>
-      </div>
-
-      <div class="shrink-0">
-        <PillButton href={withBase('/services')} variant="outline">
-          Lihat Detail Layanan ↗
-        </PillButton>
-      </div>
-    </div>
-
-    <p class="text-[16px] leading-[1.5] text-graphite max-w-2xl mb-10 md:mb-12">
-      AutoDeploy melayani klien dari berbagai daerah tanpa batasan lokasi dengan cakupan layanan menyeluruh dari pemetaan konsep hingga pelatihan penggunaan teknologi secara mandiri.
-    </p>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         services.map((service) => (
           <ServiceCard
@@ -298,54 +249,96 @@ const clientSegments: ClientSegment[] = [
           />
         ))
       }
+
+      <!-- Closing Summary Studio Tile to complete the 8-cell 4x2 grid cleanly -->
+      <div class="studio-tile p-6 md:p-8 flex flex-col justify-between gap-6 bg-sand-warm/55">
+        <div class="flex flex-col gap-4">
+          <span class="inline-block w-fit px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.07em] bg-vermilion text-bone-white">
+            KONSULTASI AWAL
+          </span>
+          <h3 class="type-heading-sm text-terracotta">
+            Mulai dari Digital Business Blueprint
+          </h3>
+          <p class="text-[14.5px] leading-[1.58] text-graphite">
+            Bingung menentukan prioritas layanan? Kami bantu memetakan kebutuhan usaha Anda secara transparan sejak awal.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-ash/60">
+          <a
+            href={waConsultUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="editorial-link text-[13px] font-medium uppercase tracking-[0.045em] text-vermilion"
+          >
+            <span>Diskusi via WhatsApp ↗</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Section 4: 4 Nilai Utama (Core Values) -->
-  <section class="editorial-px py-16 md:py-24 border-t border-ash/60" aria-labelledby="section-values-title">
-    <p class="type-eyebrow text-graphite mb-4 md:mb-6">
-      03 // NILAI UTAMA (CORE VALUES)
-    </p>
+  <!-- Section 3: Latar Belakang & Peran AutoDeploy (Signature "Same as it ever was..." Manifesto Layout) -->
+  <section class="editorial-px py-20 md:py-28 border-b border-ash" aria-labelledby="section-background-title">
+    <div class="max-w-5xl mx-auto flex flex-col gap-6">
+      <div class="md:pl-[42%]">
+        <h2 id="section-background-title" class="type-heading-sm text-vermilion">
+          Bukan sekadar penyedia jasa teknis...
+        </h2>
+      </div>
 
-    <h2 id="section-values-title" class="type-heading font-light text-ink-black max-w-4xl">
-      Empat pilar kerja sama yang terarah, transparan, dan memberdayakan.
-    </h2>
+      <p class="type-manifesto">
+        Berdiri pada tahun {SITE_INFO.foundedYear} di bawah naungan {SITE_INFO.headquarters} dalam manajemen {SITE_INFO.parentCompany}, AutoDeploy lahir dari kepedulian terhadap banyaknya pelaku usaha konvensional—khususnya UMKM dan bisnis rintisan—yang memiliki produk berkualitas namun terkendala pemasaran, identitas merek, dan pemanfaatan teknologi digital. Kami hadir sebagai mitra strategis yang mendampingi usaha beradaptasi, tumbuh mandiri, dan berdaya saing di era Society 5.0.
+      </p>
 
-    <div class="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="md:pl-[42%] pt-3">
+        <a
+          href={withBase('/about')}
+          class="editorial-link text-[14px] font-medium uppercase tracking-[0.05em] text-terracotta"
+        >
+          <span>Kenali Profil &amp; Tim AutoDeploy ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: 4 Nilai Utama (Core Values Catalog Row) -->
+  <section class="editorial-px py-16 md:py-24 border-b border-ash" aria-labelledby="section-values-title">
+    <div class="mb-10 md:mb-14 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <h2 id="section-values-title" class="type-heading text-terracotta">
+        Nilai Utama:<br />
+        Empat Pilar Kerja Sama<sup class="text-[14px] ml-1 text-vermilion">04</sup>
+      </h2>
+      <p class="text-[14px] text-graphite max-w-sm">
+        Fondasi kualitas layanan AutoDeploy untuk memastikan setiap proyek tepat sasaran dan transparan.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
       {
         coreValues.map((value) => (
-          <article
-            class:list={[
-              'rounded-none shadow-none p-7 md:p-9 flex flex-col justify-between gap-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1',
-              value.accentBg,
-              value.accentBar,
-            ]}
-          >
-            <div class="flex items-center justify-between gap-4">
-              <span class="type-eyebrow text-ink-black/70">{value.indexNumber} // PILAR UTAMA</span>
-              <span class="w-9 h-9 rounded-[1440px] border border-ink-black/25 bg-bone-white/75 flex items-center justify-center shrink-0">
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  class="w-4 h-4 text-ink-black"
-                >
+          <article class="studio-tile p-6 md:p-7 flex flex-col justify-between gap-6">
+            <div class="flex items-center justify-between gap-3">
+              <span class="px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.07em] bg-slate-wash text-slate-tag">
+                {value.tag}
+              </span>
+              <span class="w-8 h-8 rounded-[1440px] border border-terracotta/30 bg-terracotta-wash/50 flex items-center justify-center shrink-0 text-vermilion">
+                <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" class="w-4 h-4">
                   <path
                     d={value.iconPath}
                     stroke="currentColor"
-                    stroke-width="1.15"
+                    stroke-width="1.2"
                     stroke-linecap="square"
-                    stroke-linejoin="miter"
                   />
                 </svg>
               </span>
             </div>
 
-            <div class="flex flex-col gap-3">
-              <h3 class="type-heading-sm font-light text-ink-black">
+            <div class="flex flex-col gap-2.5">
+              <span class="type-eyebrow text-vermilion">PILAR {value.indexNumber}</span>
+              <h3 class="type-heading-sm text-ink-black">
                 {value.title}
               </h3>
-              <p class="text-[15px] md:text-[16px] leading-[1.55] text-ink-black/80">
+              <p class="text-[14.5px] leading-[1.58] text-graphite">
                 {value.description}
               </p>
             </div>
@@ -355,35 +348,21 @@ const clientSegments: ClientSegment[] = [
     </div>
   </section>
 
-  <!-- Section 5: Segmen Klien yang Dilayani -->
-  <section class="editorial-px py-16 md:py-24 border-t border-ash/60" aria-labelledby="section-clients-title">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-      <div class="lg:col-span-5">
-        <p class="type-eyebrow text-graphite mb-4 md:mb-6">
-          04 // SEGMEN KLIEN &amp; EKOSISTEM
-        </p>
-
-        <h2 id="section-clients-title" class="type-heading font-light text-ink-black">
-          Dirancang menjangkau lintas sektor usaha dan institusi.
+  <!-- Section 5: Segmen Klien & Ekosistem (Symbol Split "About us" Editorial Band) -->
+  <section class="editorial-px py-16 md:py-24 border-b border-ash" aria-labelledby="section-clients-title">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      <!-- Left Editorial Copy & 9 Client Segments -->
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        <h2 id="section-clients-title" class="type-heading text-terracotta">
+          Segmen &amp; Ekosistem:<br />
+          Lintas Sektor Usaha
         </h2>
 
-        <p class="mt-6 text-[16px] leading-[1.55] text-graphite">
-          Dalam memperluas dampak dan jangkauan layanan, AutoDeploy membangun kolaborasi aktif dengan para kreator, komunitas UMKM, tenaga kreatif, dan pengembang teknologi. Melalui jaringan relasi {SITE_INFO.headquarters} dan {SITE_INFO.parentCompany}, kami menjajaki kerja sama institusional guna menjembatani pemberdayaan UMKM sekaligus menjadi pusat pelatihan digital.
+        <p class="text-[15.5px] leading-[1.62] text-graphite">
+          Dalam memperluas dampak dan jangkauan layanan, AutoDeploy membangun kolaborasi aktif dengan para kreator, komunitas UMKM, tenaga kreatif, dan pengembang teknologi, serta menjajaki kerja sama institusional melalui jaringan {SITE_INFO.headquarters} dan {SITE_INFO.parentCompany}.
         </p>
 
-        <div class="mt-8">
-          <PillButton href={withBase('/partnership')} variant="outline">
-            Pelajari Kemitraan &amp; Kolaborasi ↗
-          </PillButton>
-        </div>
-      </div>
-
-      <div class="lg:col-span-7 lg:pt-10">
-        <p class="type-eyebrow text-graphite mb-5">
-          Sembilan Kategori Mitra &amp; Pengguna Layanan
-        </p>
-
-        <ul class="flex flex-wrap gap-2.5" aria-label="Daftar segmen klien yang dilayani AutoDeploy">
+        <ul class="flex flex-wrap gap-2 pt-1" aria-label="Daftar segmen klien yang dilayani AutoDeploy">
           {
             clientSegments.map((segment) => (
               <li>
@@ -396,54 +375,49 @@ const clientSegments: ClientSegment[] = [
           }
         </ul>
 
-        <div class="mt-10 pt-8 border-t border-ash grid grid-cols-1 sm:grid-cols-2 gap-8">
-          <div class="flex flex-col gap-2">
-            <h3 class="type-subheading font-light text-ink-black">
-              Ekosistem Kolaborasi Aktif
-            </h3>
-            <p class="text-[14px] leading-[1.5] text-graphite">
-              Bersinergi bersama kreator, komunitas UMKM, tenaga kreatif, dan pengembang teknologi untuk mendorong pemberdayaan generasi muda.
-            </p>
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <h3 class="type-subheading font-light text-ink-black">
-              Jaringan Kemitraan Institusional
-            </h3>
-            <p class="text-[14px] leading-[1.5] text-graphite">
-              Menjalin kerja sama dengan instansi pemerintah, BUMN, dan perusahaan swasta bagi program pemberdayaan UMKM serta pusat pelatihan digital.
-            </p>
-          </div>
+        <div class="pt-2">
+          <a
+            href={withBase('/partnership')}
+            class="editorial-link text-[14px] font-medium uppercase tracking-[0.05em] text-vermilion"
+          >
+            <span>Pelajari Kemitraan &amp; Kolaborasi ↗</span>
+          </a>
         </div>
       </div>
+
+      <!-- Right Flush Documentary Photograph -->
+      <figure class="lg:col-span-7 overflow-hidden border border-ash/70 bg-ivory-tile">
+        <img
+          src={withBase('/assets/IMG_3103.jpeg')}
+          alt="Dokumentasi suasana diskusi ekosistem kemitraan AutoDeploy"
+          loading="lazy"
+          decoding="async"
+          class="w-full h-[320px] sm:h-[400px] md:h-[460px] object-cover object-[50%_78%]"
+        />
+      </figure>
     </div>
   </section>
 
-  <!-- Section 6: CTA Penutup -->
-  <section class="editorial-px py-16 md:py-24" aria-labelledby="section-cta-title">
-    <div class="w-full bg-navy-ink text-bone-white rounded-none shadow-none p-8 sm:p-12 md:p-16 lg:p-20">
-      <p class="type-eyebrow text-bone-white/65 mb-6">
-        05 // KONSULTASI &amp; PEMETAAN KEBUTUHAN
-      </p>
+  <!-- Section 6: CTA Penutup (Warm Ivory & Vermilion Studio Callout) -->
+  <section class="editorial-px pt-16 md:pt-24 pb-4" aria-labelledby="section-cta-title">
+    <div class="bg-ivory-tile border border-ash border-t-4 border-t-vermilion p-8 sm:p-12 md:p-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+      <div class="lg:col-span-8 flex flex-col gap-4">
+        <span class="type-eyebrow text-vermilion">KONSULTASI &amp; PEMETAAN KEBUTUHAN</span>
+        <h2 id="section-cta-title" class="type-display-sm text-terracotta">
+          Diskusikan kebutuhan digitalisasi sesuai skala dan anggaran usaha Anda.
+        </h2>
+        <p class="text-[15.5px] md:text-[16.5px] leading-[1.6] text-graphite max-w-2xl">
+          Setiap kerja sama dimulai dari konsultasi transparan mengenai syarat dan ketentuan serta penyusunan Digital Business Blueprint. Hubungi {SITE_INFO.contactPerson} ({SITE_INFO.contactRole}) melalui WhatsApp resmi {SITE_INFO.phoneDisplay}.
+        </p>
+      </div>
 
-      <h2 id="section-cta-title" class="type-display-sm font-light text-bone-white max-w-4xl">
-        Diskusikan kebutuhan digitalisasi sesuai skala dan anggaran usaha Anda.
-      </h2>
-
-      <p class="mt-6 text-[16px] md:text-[18px] leading-[1.5] font-light text-bone-white/80 max-w-2xl">
-        Setiap kerja sama dimulai dari konsultasi transparan mengenai syarat dan ketentuan serta penyusunan Digital Business Blueprint. Hubungi {SITE_INFO.contactPerson} ({SITE_INFO.contactRole}) melalui WhatsApp resmi {SITE_INFO.phoneDisplay}.
-      </p>
-
-      <div class="mt-10 flex flex-wrap items-center gap-4">
-        <PillButton href={waConsultUrl} target="_blank" variant="inverted">
+      <div class="lg:col-span-4 flex flex-wrap lg:justify-end items-center gap-3">
+        <PillButton href={waConsultUrl} target="_blank" variant="primary">
           Konsultasi via WhatsApp ↗
         </PillButton>
-        <a
-          href={withBase('/contact')}
-          class="inline-flex items-center justify-center gap-2 rounded-[1440px] px-6 py-3 text-[16px] leading-[1.4] font-normal tracking-[-0.018em] border border-bone-white/40 text-bone-white shadow-none transition-colors duration-200 hover:border-bone-white hover:bg-bone-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bone-white"
-        >
-          Halaman Kontak &amp; Formulir
-        </a>
+        <PillButton href={withBase('/contact')} variant="outline">
+          Formulir Kontak
+        </PillButton>
       </div>
     </div>
   </section>

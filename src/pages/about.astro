@@ -29,36 +29,36 @@ const missions: MissionItem[] = [
     title: 'Solusi Digital Praktis & Terjangkau',
     description:
       'Menyediakan solusi digital yang praktis, terarah, dan terjangkau sesuai dengan kondisi, prioritas, serta anggaran masing-masing pelaku usaha.',
-    accentBg: 'bg-mint-wash/35',
-    accentBorder: 'border-t-2 border-forest-teal',
-    numColor: 'text-forest-teal',
+    accentBg: 'bg-ivory-tile',
+    accentBorder: 'border border-ash/70 border-t-2 border-t-vermilion',
+    numColor: 'text-vermilion',
   },
   {
     number: '02',
     title: 'Perluasan Akses Teknologi & Kreativitas',
     description:
       'Membuka akses yang lebih luas terhadap pemanfaatan teknologi modern, kreativitas, dan pengetahuan bisnis digital bagi pelaku usaha di berbagai daerah.',
-    accentBg: 'bg-powder-blue/35',
-    accentBorder: 'border-t-2 border-navy-ink',
-    numColor: 'text-navy-ink',
+    accentBg: 'bg-ivory-tile',
+    accentBorder: 'border border-ash/70 border-t-2 border-t-slate-tag',
+    numColor: 'text-slate-tag',
   },
   {
     number: '03',
     title: 'Pendampingan & Kemandirian Klien',
     description:
       'Memberikan pendampingan, pelatihan, dan panduan penggunaan teknologi agar klien mampu mengelola aset dan proses digitalnya secara mandiri.',
-    accentBg: 'bg-candy-pink/35',
-    accentBorder: 'border-t-2 border-magenta-bloom',
-    numColor: 'text-magenta-bloom',
+    accentBg: 'bg-ivory-tile',
+    accentBorder: 'border border-ash/70 border-t-2 border-t-terracotta',
+    numColor: 'text-terracotta',
   },
   {
     number: '04',
     title: 'Pemberdayaan Generasi Muda',
     description:
       'Memberdayakan generasi muda melalui penciptaan peluang kerja, ruang kolaborasi, dan pengembangan keterampilan di bidang kreatif, teknologi, serta pemasaran digital.',
-    accentBg: 'bg-signal-yellow/25',
-    accentBorder: 'border-t-2 border-ink-black',
-    numColor: 'text-ink-black',
+    accentBg: 'bg-ivory-tile',
+    accentBorder: 'border border-ash/70 border-t-2 border-t-ochre-gold',
+    numColor: 'text-terracotta',
   },
 ];
 
@@ -71,7 +71,7 @@ const leadershipTeam: LeaderItem[] = [
     name: 'Affan Abdul Hanan',
     focus:
       'Memimpin arah visi strategis perusahaan, pengembangan kemitraan bisnis, serta menjembatani kolaborasi dengan UMKM, korporasi, dan instansi.',
-    monogramClass: 'bg-navy-ink text-bone-white',
+    monogramClass: 'bg-vermilion text-bone-white',
   },
   {
     number: '02',
@@ -81,7 +81,7 @@ const leadershipTeam: LeaderItem[] = [
     name: 'Valentino Freiazeva',
     focus:
       'Bertanggung jawab atas arsitektur teknologi, pengembangan website dan landing page, serta integrasi sistem berbasis kecerdasan buatan (AI).',
-    monogramClass: 'bg-forest-teal text-bone-white',
+    monogramClass: 'bg-slate-tag text-bone-white',
   },
   {
     number: '03',
@@ -91,7 +91,7 @@ const leadershipTeam: LeaderItem[] = [
     name: 'Safira Brillianty Permata Ranny',
     focus:
       'Mengelola arah kreatif, identitas visual merek (branding), produksi desain grafis 2D & 3D, serta kualitas aset kampanye digital.',
-    monogramClass: 'bg-magenta-bloom text-bone-white',
+    monogramClass: 'bg-terracotta text-bone-white',
   },
   {
     number: '04',
@@ -101,7 +101,7 @@ const leadershipTeam: LeaderItem[] = [
     name: 'Nandhifa Lunandita Syahira',
     focus:
       'Mengatur perencanaan keuangan, penyusunan struktur anggaran layanan yang terjangkau bagi klien, serta pengelolaan arus kas perusahaan.',
-    monogramClass: 'bg-powder-blue text-ink-black',
+    monogramClass: 'bg-ochre-gold text-bone-white',
   },
   {
     number: '05',
@@ -111,7 +111,7 @@ const leadershipTeam: LeaderItem[] = [
     name: 'Muhammad Saad Riyanto',
     focus:
       'Mengelola pengembangan talenta internal, rekrutmen kolaborator muda, serta koordinasi program pendampingan dan pelatihan klien.',
-    monogramClass: 'bg-mint-wash text-ink-black',
+    monogramClass: 'bg-ink-black text-bone-white',
   },
 ];
 
@@ -141,8 +141,9 @@ const waConsultUrl = getWhatsAppUrl(
           </div>
         </div>
 
-        <h1 class="type-display font-light text-ink-black max-w-6xl">
-          Mitra Strategis Transformasi Digital Usaha
+        <h1 class="type-display text-terracotta max-w-5xl">
+          Tentang Kami:<br />
+          Mitra Strategis Transformasi Digital
         </h1>
 
         <p class="type-subheading font-light text-graphite max-w-3xl">
@@ -225,18 +226,18 @@ const waConsultUrl = getWhatsAppUrl(
         </div>
 
         <!-- Right Column: Editorial Documentary Photo of 5 Core Team Members -->
-        <figure class="lg:col-span-5 flex flex-col gap-3 rounded-none shadow-none">
-          <div class="w-full aspect-[4/5] overflow-hidden rounded-none border-t-2 border-forest-teal bg-bone-white">
+        <figure class="lg:col-span-5 flex flex-col gap-3 p-3 bg-ivory-tile border border-ash">
+          <div class="w-full aspect-[4/5] overflow-hidden bg-bone-white">
             <img
               src={withBase('/assets/head.jpeg')}
               alt="Dokumentasi lima pimpinan inti AutoDeploy"
               loading="eager"
               decoding="async"
-              class="w-full h-full object-cover object-[50%_26%] rounded-none"
+              class="w-full h-full object-cover object-[50%_26%]"
             />
           </div>
-          <figcaption class="flex items-baseline justify-between gap-4 pt-1">
-            <span class="type-eyebrow text-graphite">
+          <figcaption class="flex items-baseline justify-between gap-4 px-1 pt-1">
+            <span class="type-eyebrow text-terracotta">
               DOKUMENTASI 5 TIM INTI AUTODEPLOY
             </span>
             <span class="type-eyebrow text-graphite shrink-0">
@@ -256,49 +257,50 @@ const waConsultUrl = getWhatsAppUrl(
         <p class="type-eyebrow text-graphite">
           02 // VISI &amp; MISI PERUSAHAAN
         </p>
-        <h2 class="type-heading font-light text-ink-black">
-          Arah Strategis &amp; Komitmen Pemberdayaan
+        <h2 class="type-heading text-terracotta">
+          Visi &amp; Misi:<br />
+          Arah Strategis Pemberdayaan
         </h2>
       </div>
 
-      <!-- Featured Chromatic Contrast Block (Visi) + Documentary Accent Image -->
+      <!-- Featured Studio Ivory Contrast Block (Visi) + Documentary Accent Image -->
       <div class="mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        <!-- Visi Card: Inverted Navy Ink surface (0px radius, no shadow) -->
-        <div class="lg:col-span-7 bg-navy-ink text-bone-white rounded-none shadow-none p-8 md:p-12 lg:p-14 flex flex-col justify-between gap-10">
+        <!-- Visi Card: Warm Studio Ivory with Vermilion Top Accent -->
+        <div class="lg:col-span-7 bg-ivory-tile text-ink-black border border-ash border-t-4 border-t-vermilion p-8 md:p-12 lg:p-14 flex flex-col justify-between gap-10">
           <div class="flex items-center justify-between gap-4">
-            <p class="type-eyebrow text-mint-wash">
+            <p class="type-eyebrow text-vermilion">
               VISI PERUSAHAAN
             </p>
-            <CategoryBadge label="TUJUAN UTAMA" variant="inverted" />
+            <CategoryBadge label="TUJUAN UTAMA" variant="accent" />
           </div>
 
-          <blockquote class="type-heading-sm font-light text-bone-white">
+          <blockquote class="type-manifesto">
             “Menjadi mitra strategis bagi UMKM, bisnis rintisan, maupun perusahaan dalam menghadapi
             perkembangan teknologi dan memenangkan persaingan pasar di era digitalisasi.”
           </blockquote>
 
-          <div class="pt-6 border-t border-bone-white/20 flex flex-wrap items-center justify-between gap-4">
-            <p class="type-eyebrow text-bone-white/70">
+          <div class="pt-6 border-t border-ash/70 flex flex-wrap items-center justify-between gap-4">
+            <p class="type-eyebrow text-graphite">
               {SITE_INFO.brandName} // {SITE_INFO.parentCompany}
             </p>
-            <p class="type-eyebrow text-bone-white/70">
+            <p class="type-eyebrow text-terracotta">
               {SITE_INFO.headquarters}
             </p>
           </div>
         </div>
 
         <!-- Documentary Accent Photo -->
-        <figure class="lg:col-span-5 flex flex-col gap-3 rounded-none shadow-none">
-          <div class="w-full flex-1 min-h-[320px] sm:min-h-[380px] lg:min-h-0 aspect-[4/5] lg:aspect-auto overflow-hidden rounded-none border-t-2 border-magenta-bloom bg-bone-white">
+        <figure class="lg:col-span-5 flex flex-col gap-3 p-3 bg-ivory-tile border border-ash">
+          <div class="w-full flex-1 min-h-[320px] sm:min-h-[380px] lg:min-h-0 aspect-[4/5] lg:aspect-auto overflow-hidden bg-bone-white">
             <img
               src={withBase('/assets/IMG_3103.jpeg')}
               alt="Dokumentasi kolaborasi tim AutoDeploy"
               loading="lazy"
               decoding="async"
-              class="w-full h-full object-cover object-[50%_80%] rounded-none"
+              class="w-full h-full object-cover object-[50%_80%]"
             />
           </div>
-          <figcaption class="type-eyebrow text-graphite pt-1">
+          <figcaption class="type-eyebrow text-terracotta px-1 pt-1">
             KOLABORASI &amp; PERENCANAAN — AUTODEPLOY
           </figcaption>
         </figure>
@@ -360,8 +362,9 @@ const waConsultUrl = getWhatsAppUrl(
           <p class="type-eyebrow text-graphite">
             03 // STRUKTUR ORGANISASI &amp; TIM INTI
           </p>
-          <h2 class="type-heading font-light text-ink-black">
-            Jajaran Pimpinan Inti (C-Level)
+          <h2 class="type-heading text-terracotta">
+            Tim Inti:<br />
+            Jajaran Pimpinan (C-Level)
           </h2>
         </div>
 

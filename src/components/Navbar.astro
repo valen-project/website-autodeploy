@@ -22,50 +22,88 @@ const waConsultUrl = getWhatsAppUrl(
 <header
   id="site-header"
   data-scrolled="false"
-  class="w-full bg-bone-white sticky top-0 z-40 border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-300"
+  class="w-full bg-bone-white sticky top-0 z-40 border-b border-ash/70 transition-[background-color,border-color,backdrop-filter] duration-300"
 >
-  <div class="editorial-px py-4 flex items-center justify-between gap-4">
-    <!-- Header Lockup: Circular Logo + Two-line Eyebrow -->
+  <div class="editorial-px py-3.5 flex items-center justify-between gap-4">
+    <!-- Brand Lockup: Vermilion Geometric Mark + Wordmark -->
     <a
       href={withBase('/')}
-      class="inline-flex items-center gap-3 group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink-black"
+      class="inline-flex items-center gap-3 group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-vermilion"
       aria-label="AutoDeploy — Kembali ke Beranda"
     >
       <span
-        class="w-9 h-9 rounded-[1440px] border border-ink-black/15 bg-bone-white flex items-center justify-center shrink-0 overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-ink-black group-hover:scale-105"
+        class="w-9 h-9 rounded-[1440px] border border-vermilion/30 bg-ivory-tile flex items-center justify-center shrink-0 overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-vermilion group-hover:scale-105"
       >
         <img
           src={SITE_INFO.logoPath}
           alt="Logo AutoDeploy"
-          width="24"
-          height="24"
+          width="22"
+          height="22"
           decoding="async"
-          class="w-6 h-6 object-contain mix-blend-multiply"
+          class="w-5 h-5 object-contain mix-blend-multiply"
         />
       </span>
-      <span class="hidden sm:flex flex-col type-eyebrow text-ink-black leading-[1.3]">
-        <span>{SITE_INFO.eyebrowLine1}</span>
-        <span class="text-graphite">{SITE_INFO.eyebrowLine2}</span>
-      </span>
-      <span class="sm:hidden type-eyebrow text-ink-black">
-        {SITE_INFO.brandName}
+      <span class="flex flex-col leading-none">
+        <span class="font-[var(--font-display)] font-bold text-[19px] tracking-[-0.03em] text-vermilion">
+          {SITE_INFO.brandName}
+        </span>
+        <span class="hidden sm:inline text-[10px] uppercase tracking-[0.06em] text-graphite mt-0.5">
+          {SITE_INFO.parentCompany}
+        </span>
       </span>
     </a>
 
-    <!-- Primary Navigation Trigger: Pill Menu Button -->
-    <PillButton
-      id="nav-menu-open"
-      variant="primary"
-      ariaLabel="Buka menu navigasi"
-      ariaExpanded="false"
-      ariaControls="nav-menu-drawer"
-    >
-      Menu
-    </PillButton>
+    <!-- Desktop Comfort Inline Navigation (5 Core Pages) -->
+    <nav class="hidden lg:flex items-center gap-7" aria-label="Navigasi desktop">
+      {
+        NAV_ITEMS.map((item) => {
+          const active = isActive(item.href, currentPath);
+          return (
+            <a
+              href={item.href}
+              aria-current={active ? 'page' : undefined}
+              class:list={[
+                'editorial-link text-[13.5px] font-medium tracking-[-0.005em] transition-colors duration-200',
+                active ? 'text-vermilion' : 'text-ink-black/80 hover:text-vermilion',
+              ]}
+            >
+              {active && (
+                <span class="w-1.5 h-1.5 rounded-[1440px] bg-vermilion mr-0.5" aria-hidden="true" />
+              )}
+              <span>{item.label}</span>
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <!-- Right Controls: Desktop Quick Consult + Drawer Menu Pill -->
+    <div class="flex items-center gap-2.5">
+      <a
+        href={waConsultUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden md:inline-flex items-center gap-1.5 rounded-[1440px] border border-terracotta/40 bg-ivory-tile px-4 py-2 text-[13px] font-medium text-terracotta transition-all duration-300 hover:bg-vermilion hover:text-bone-white hover:border-vermilion"
+      >
+        <span>Konsultasi</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+
+      <PillButton
+        id="nav-menu-open"
+        variant="primary"
+        size="sm"
+        ariaLabel="Buka menu navigasi"
+        ariaExpanded="false"
+        ariaControls="nav-menu-drawer"
+      >
+        Menu
+      </PillButton>
+    </div>
   </div>
 </header>
 
-<!-- Full-Screen Editorial Navigation Drawer -->
+<!-- Full-Screen Warm Terracotta & Espresso Editorial Navigation Drawer -->
 <div
   id="nav-menu-drawer"
   data-open="false"
@@ -73,7 +111,7 @@ const waConsultUrl = getWhatsAppUrl(
   aria-modal="true"
   aria-label="Navigasi utama AutoDeploy"
   aria-hidden="true"
-  class="fixed inset-0 z-50 bg-navy-ink text-bone-white flex flex-col justify-between invisible opacity-0 pointer-events-none transition-[opacity,visibility] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-y-auto"
+  class="fixed inset-0 z-50 bg-ink-black text-bone-white flex flex-col justify-between invisible opacity-0 pointer-events-none transition-[opacity,visibility] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-y-auto"
 >
   <!-- Drawer Top Chrome -->
   <div class="editorial-px py-4 flex items-center justify-between gap-4 border-b border-bone-white/15">
@@ -88,11 +126,11 @@ const waConsultUrl = getWhatsAppUrl(
         <img
           src={SITE_INFO.logoPath}
           alt="Logo AutoDeploy"
-          width="24"
-          height="24"
+          width="22"
+          height="22"
           loading="lazy"
           decoding="async"
-          class="w-6 h-6 object-contain mix-blend-multiply"
+          class="w-5 h-5 object-contain mix-blend-multiply"
         />
       </span>
       <span class="flex flex-col type-eyebrow text-bone-white leading-[1.3]">
@@ -104,6 +142,7 @@ const waConsultUrl = getWhatsAppUrl(
     <PillButton
       id="nav-menu-close"
       variant="inverted"
+      size="sm"
       ariaLabel="Tutup menu navigasi"
     >
       Tutup
@@ -112,7 +151,7 @@ const waConsultUrl = getWhatsAppUrl(
 
   <!-- Drawer Main Navigation Links (5 Pages from SITEPLAN.md) -->
   <nav class="editorial-px py-10 md:py-16 flex-1 flex flex-col justify-center" aria-label="Menu utama">
-    <p class="type-eyebrow text-bone-white/55 mb-6">Navigasi Halaman</p>
+    <p class="type-eyebrow text-ochre-gold mb-6">Direktori Halaman AutoDeploy</p>
     <ul class="divide-y divide-bone-white/15 border-y border-bone-white/15">
       {
         NAV_ITEMS.map((item, idx) => {
@@ -126,23 +165,23 @@ const waConsultUrl = getWhatsAppUrl(
                 href={item.href}
                 aria-current={active ? 'page' : undefined}
                 class:list={[
-                  'group flex items-baseline justify-between gap-4 py-4 md:py-6 transition-colors duration-300',
-                  active ? 'text-signal-yellow' : 'text-bone-white hover:text-mint-wash',
+                  'group flex items-baseline justify-between gap-4 py-4 md:py-5 transition-colors duration-300',
+                  active ? 'text-signal-yellow' : 'text-bone-white hover:text-terracotta-wash',
                 ]}
               >
                 <span class="flex items-baseline gap-4 md:gap-8 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2">
-                  <span class="type-eyebrow text-bone-white/50 shrink-0">{item.number}</span>
-                  <span class="type-heading font-light">{item.label}</span>
+                  <span class="type-eyebrow text-bone-white/45 shrink-0">{item.number}</span>
+                  <span class="type-heading">{item.label}</span>
                 </span>
                 <span class="flex items-center gap-3 shrink-0">
                   {active && (
-                    <span class="hidden sm:inline-block rounded-[1440px] bg-signal-yellow text-ink-black px-3 py-1 text-[11px] uppercase font-normal tracking-normal">
-                      Aktif
+                    <span class="hidden sm:inline-block rounded-[1440px] bg-vermilion text-bone-white px-3 py-1 text-[10px] uppercase font-medium tracking-[0.06em]">
+                      Halaman Ini
                     </span>
                   )}
                   <span
                     aria-hidden="true"
-                    class="text-[20px] md:text-[28px] font-light transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 group-hover:-translate-y-1"
+                    class="text-[20px] md:text-[26px] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 group-hover:-translate-y-1"
                   >
                     ↗
                   </span>
@@ -157,8 +196,8 @@ const waConsultUrl = getWhatsAppUrl(
 
   <!-- Drawer Footer Info & WhatsApp CTA -->
   <div class="editorial-px py-6 md:py-8 border-t border-bone-white/15 flex flex-col md:flex-row md:items-end justify-between gap-6">
-    <div class="flex flex-col gap-1 text-[14px] leading-[1.43] text-bone-white/75 max-w-xl">
-      <p class="text-bone-white">
+    <div class="flex flex-col gap-1 text-[13.5px] leading-[1.5] text-bone-white/75 max-w-xl">
+      <p class="text-bone-white font-medium">
         {SITE_INFO.headquarters} • {SITE_INFO.parentCompany}
       </p>
       <p>{SITE_INFO.address}</p>
@@ -171,7 +210,7 @@ const waConsultUrl = getWhatsAppUrl(
       <PillButton
         href={waConsultUrl}
         target="_blank"
-        variant="inverted"
+        variant="primary"
       >
         Konsultasi WhatsApp ↗
       </PillButton>

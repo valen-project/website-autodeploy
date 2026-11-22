@@ -42,7 +42,7 @@ const floatingWaUrl = getWhatsAppUrl(
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#fffef7" />
+    <meta name="theme-color" content="#fcf7df" />
     <title>{title}</title>
 
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
@@ -65,10 +65,11 @@ const floatingWaUrl = getWhatsAppUrl(
 
     <link rel="icon" type="image/png" href={SITE_INFO.logoPath} />
 
-    <!-- Switzer Font (weights 300 & 400) via Fontshare CDN -->
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <!-- Geometric Modernist Fonts: Jost (Display/Headings) + DM Sans (Body/Catalog UI) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://api.fontshare.com/v2/css?f[]=switzer@300,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..600;1,9..40,400..600&family=Jost:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -100,16 +101,16 @@ const floatingWaUrl = getWhatsAppUrl(
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Konsultasi cepat melalui WhatsApp resmi AutoDeploy"
-        class="inline-flex items-center gap-2 rounded-[1440px] bg-forest-teal text-bone-white px-4 py-2.5 text-[13px] leading-[1.2] font-normal tracking-[-0.018em] border border-bone-white/25 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-navy-ink hover:-translate-y-0.5 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-black"
+        class="inline-flex items-center gap-2 rounded-[1440px] bg-vermilion text-bone-white px-4 py-2.5 text-[13px] leading-[1.2] font-medium tracking-normal border border-bone-white/30 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-terracotta hover:-translate-y-0.5 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vermilion"
       >
-        <span class="w-2 h-2 rounded-[1440px] bg-mint-wash" aria-hidden="true"></span>
-        <span>WhatsApp</span>
+        <span class="w-2 h-2 rounded-[1440px] bg-bone-white" aria-hidden="true"></span>
+        <span>Konsultasi WA</span>
       </a>
       <button
         id="back-to-top-btn"
         type="button"
         aria-label="Kembali ke atas halaman"
-        class="inline-flex items-center justify-center w-10 h-10 rounded-[1440px] bg-ink-black text-bone-white border border-bone-white/20 cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-charcoal-scale hover:-translate-y-0.5 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-black"
+        class="inline-flex items-center justify-center w-10 h-10 rounded-[1440px] bg-ivory-tile text-terracotta border border-ash cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-vermilion hover:text-bone-white hover:border-vermilion hover:-translate-y-0.5 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vermilion"
       >
         <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" class="w-4 h-4">
           <path

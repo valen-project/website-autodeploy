@@ -1,56 +1,69 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
-  --color-bone-white: #fffef7;
-  --color-ink-black: #000000;
-  --color-graphite: #666666;
-  --color-ash: #aaaaaa;
-  --color-charcoal-scale: #4d4c4a;
-  --color-magenta-bloom: #8a0467;
-  --color-forest-teal: #03624c;
-  --color-powder-blue: #a5c8eb;
-  --color-candy-pink: #ffacea;
-  --color-mint-wash: #a5ebd6;
-  --color-navy-ink: #101731;
-  --color-signal-yellow: #ffd001;
+  /* Symbol-Inspired Warm Mid-Century Editorial Palette */
+  --color-bone-white: #fcf7df;       /* Primary Warm Buttercream Canvas */
+  --color-ivory-tile: #fffdf6;       /* Crisp Catalog Studio Card Surface */
+  --color-sand-warm: #f3ebc6;        /* Deeper Buttercream Wash */
+  --color-vermilion: #c8280e;        /* Primary Vivid Vermilion Masthead & CTA */
+  --color-terracotta: #9e2a14;       /* Section Heading & Manifesto Red-Umber */
+  --color-terracotta-wash: #fae6de;  /* Soft Terracotta Tint */
+  --color-ink-black: #26150e;        /* Deep Warm Espresso Body Ink */
+  --color-graphite: #6e4f41;         /* Warm Umber Secondary Copy */
+  --color-ash: #d5be9f;              /* Warm Terracotta-Sand Hairline Rule */
+  --color-charcoal-scale: #3d2419;   /* Warm Espresso Hover */
 
-  /* Typography */
-  --font-switzer: 'Switzer', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Supporting Mid-Century Catalog Accents (mapped cleanly for semantic compatibility) */
+  --color-slate-tag: #2f6b94;        /* Catalog Micro-Tag Blue (Symbol signature) */
+  --color-slate-wash: #e7eff5;
+  --color-ochre-gold: #d99b26;       /* Mid-Century Mustard Ochre */
+  --color-ochre-wash: #faecc8;
+
+  --color-navy-ink: #26150e;         /* Deep Espresso Dark Surface */
+  --color-forest-teal: #c8280e;      /* Mapped to Vermilion Brand Accent */
+  --color-magenta-bloom: #9e2a14;    /* Mapped to Terracotta */
+  --color-powder-blue: #e7eff5;      /* Soft Slate Studio Tint */
+  --color-candy-pink: #fae6de;       /* Soft Terracotta Studio Tint */
+  --color-mint-wash: #f3ebc6;        /* Warm Sand Studio Tint */
+  --color-signal-yellow: #f6cf65;    /* Warm Amber Highlight */
+
+  /* Typography — Geometric Modernist Sans (Jost + DM Sans) */
+  --font-display: 'Jost', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-switzer: 'DM Sans', 'Jost', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-sans: var(--font-switzer);
 
-  /* Typography — Scale (tracking aligned with DESIGN.md em proportions) */
+  /* Typography — Scale */
   --text-caption: 12px;
-  --leading-caption: 1.43;
-  --tracking-caption: -0.018em;
+  --leading-caption: 1.4;
+  --tracking-caption: 0.04em;
 
   --text-body-sm: 14px;
-  --leading-body-sm: 1.43;
-  --tracking-body-sm: -0.018em;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: -0.005em;
 
   --text-body: 16px;
-  --leading-body: 1.4;
-  --tracking-body: -0.018em;
+  --leading-body: 1.55;
+  --tracking-body: -0.008em;
 
   --text-subheading: 20px;
-  --leading-subheading: 1.4;
-  --tracking-subheading: -0.018em;
+  --leading-subheading: 1.35;
+  --tracking-subheading: -0.015em;
 
-  --text-heading-sm: 34px;
-  --leading-heading-sm: 1.25;
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.2;
   --tracking-heading-sm: -0.02em;
 
-  --text-heading: 54px;
-  --leading-heading: 1;
-  --tracking-heading: -0.023em;
+  --text-heading: 44px;
+  --leading-heading: 1.08;
+  --tracking-heading: -0.025em;
 
-  --text-display-sm: 64px;
-  --leading-display-sm: 1;
-  --tracking-display-sm: -0.027em;
+  --text-display-sm: 56px;
+  --leading-display-sm: 1.02;
+  --tracking-display-sm: -0.03em;
 
-  --text-display: 84px;
-  --leading-display: 1;
-  --tracking-display: -0.04em;
+  --text-display: 76px;
+  --leading-display: 0.98;
+  --tracking-display: -0.035em;
 
   /* Spacing */
   --spacing-8: 8px;
@@ -68,9 +81,6 @@
   --radius-pill: 1440px;
   --radius-card: 0px;
 
-  /* Shadows */
-  --shadow-subtle: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px;
-
   /* Motion */
   --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -83,7 +93,7 @@
   html {
     background-color: var(--color-bone-white);
     color: var(--color-ink-black);
-    font-family: var(--font-switzer);
+    font-family: var(--font-sans);
     scroll-behavior: smooth;
     overflow-x: clip;
   }
@@ -91,7 +101,7 @@
   body {
     background-color: var(--color-bone-white);
     color: var(--color-ink-black);
-    font-family: var(--font-switzer);
+    font-family: var(--font-sans);
     font-weight: 400;
     font-size: var(--text-body);
     line-height: var(--leading-body);
@@ -107,7 +117,8 @@
   h4,
   h5,
   h6 {
-    font-weight: 300;
+    font-family: var(--font-display);
+    font-weight: 500;
   }
 
   a {
@@ -116,72 +127,107 @@
   }
 
   ::selection {
-    background-color: var(--color-signal-yellow);
-    color: var(--color-ink-black);
+    background-color: var(--color-vermilion);
+    color: var(--color-bone-white);
   }
 }
 
 @layer components {
-  /* Display Poster Headline: 34px mobile -> 48px tablet -> 84px desktop (light 300, -0.04em tracking) */
+  /* Giant Symbol-Style Hero Masthead Wordmark */
+  .type-masthead {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(3.5rem, 15.2vw, 14.5rem);
+    line-height: 0.84;
+    letter-spacing: -0.045em;
+    color: var(--color-vermilion);
+  }
+
+  /* Page Display Headline (Jost Geometric Medium/SemiBold) */
   .type-display {
-    font-family: var(--font-switzer);
-    font-weight: 300;
-    font-size: clamp(2.125rem, 6.2vw, 5.25rem);
-    line-height: 1.02;
-    letter-spacing: -0.04em;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.125rem, 5.2vw, 4.5rem);
+    line-height: 1.03;
+    letter-spacing: -0.03em;
     overflow-wrap: break-word;
   }
 
-  /* Secondary Display: up to 64px light 300 */
+  /* Secondary Display */
   .type-display-sm {
-    font-family: var(--font-switzer);
-    font-weight: 300;
-    font-size: clamp(1.875rem, 4.5vw, 4rem);
-    line-height: 1.04;
-    letter-spacing: -0.027em;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.75rem, 4vw, 3.375rem);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
     overflow-wrap: break-word;
   }
 
-  /* Section Statement Heading: up to 54px light 300 */
+  /* Signature Symbol Section Heading ("What's on: Bestsellers..." Terracotta style) */
   .type-heading {
-    font-family: var(--font-switzer);
-    font-weight: 300;
-    font-size: clamp(1.625rem, 3.8vw, 3.375rem);
-    line-height: 1.08;
-    letter-spacing: -0.023em;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.625rem, 3.3vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.022em;
     overflow-wrap: break-word;
   }
 
-  /* Small Heading: up to 34px light 300 */
+  /* Small Card / Subsection Heading */
   .type-heading-sm {
-    font-family: var(--font-switzer);
-    font-weight: 300;
-    font-size: clamp(1.375rem, 2.4vw, 2.125rem);
-    line-height: 1.25;
-    letter-spacing: -0.02em;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.25rem, 2vw, 1.625rem);
+    line-height: 1.22;
+    letter-spacing: -0.018em;
     overflow-wrap: break-word;
   }
 
-  /* Subheading: 20px light 300 */
+  /* Subheading */
   .type-subheading {
-    font-family: var(--font-switzer);
-    font-weight: 300;
-    font-size: var(--text-subheading);
-    line-height: var(--leading-subheading);
-    letter-spacing: var(--tracking-subheading);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.1875rem;
+    line-height: 1.35;
+    letter-spacing: -0.012em;
   }
 
-  /* Meta Eyebrow: 12px regular 400 all-caps */
+  /* Signature Symbol Wide Terracotta Manifesto Copy ("Same as it ever was...") */
+  .type-manifesto {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.2rem, 2.05vw, 1.65rem);
+    line-height: 1.36;
+    letter-spacing: -0.015em;
+    color: var(--color-terracotta);
+  }
+
+  /* Crisp Catalog Micro-Eyebrow */
   .type-eyebrow {
-    font-family: var(--font-switzer);
-    font-weight: 400;
-    font-size: var(--text-caption);
-    line-height: var(--leading-caption);
-    letter-spacing: 0;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 1.35;
+    letter-spacing: 0.055em;
     text-transform: uppercase;
   }
 
-  /* Editorial container padding: full-bleed model with consistent edge padding */
+  /* Crisp Studio Ivory Tile sitting on Buttercream Canvas */
+  .studio-tile {
+    background-color: var(--color-ivory-tile);
+    border: 1px solid color-mix(in srgb, var(--color-ash) 55%, transparent);
+    transition:
+      transform 450ms var(--ease-editorial),
+      border-color 300ms var(--ease-editorial),
+      background-color 300ms var(--ease-editorial);
+  }
+
+  .studio-tile:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--color-vermilion) 45%, var(--color-ash));
+  }
+
+  /* Editorial container padding */
   .editorial-px {
     padding-left: var(--spacing-16);
     padding-right: var(--spacing-16);
@@ -221,12 +267,12 @@
     transform-origin: left center;
   }
 
-  /* Header scrolled glass separation on Bone White */
+  /* Header scrolled glass separation on Warm Buttercream */
   #site-header[data-scrolled='true'] {
     background-color: color-mix(in srgb, var(--color-bone-white) 92%, transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom-color: color-mix(in srgb, var(--color-ash) 45%, transparent);
+    border-bottom-color: var(--color-ash);
   }
 
   /* Staggered Nav Drawer item motion */
@@ -245,21 +291,21 @@
 
   /* Subtle editorial photographic motion inside sharp overflow-hidden frames */
   main figure img,
-  main > section:first-child img {
+  .hero-photo-frame img {
     transition: transform 900ms var(--ease-editorial);
     will-change: transform;
   }
 
   main figure:hover img,
-  main > section:first-child div:hover > img {
-    transform: scale(1.025);
+  .hero-photo-frame:hover img {
+    transform: scale(1.028);
   }
 
   /* Gentle above-the-fold hero entrance */
   @keyframes editorialFadeUp {
     from {
       opacity: 0;
-      transform: translateY(16px);
+      transform: translateY(14px);
     }
     to {
       opacity: 1;
@@ -267,60 +313,22 @@
     }
   }
 
-  main > section:first-child h1 {
+  main > section:first-child h1,
+  .masthead-animate {
     animation: editorialFadeUp 760ms var(--ease-editorial) both;
-  }
-
-  main > section:first-child p,
-  main > section:first-child .flex {
-    animation: editorialFadeUp 760ms var(--ease-editorial) 90ms both;
   }
 
   /* Progressive scroll-reveal for below-the-fold sections & cards */
   html.js-reveal [data-reveal] {
     transition:
-      opacity 720ms var(--ease-editorial),
-      transform 760ms var(--ease-editorial),
+      opacity 700ms var(--ease-editorial),
+      transform 740ms var(--ease-editorial),
       border-color 300ms var(--ease-editorial);
   }
 
   html.js-reveal [data-reveal]:not(.is-visible) {
     opacity: 0;
-    transform: translateY(22px);
-  }
-
-  /* Respect user motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-
-    main > section:first-child h1,
-    main > section:first-child p,
-    main > section:first-child .flex {
-      animation: none;
-    }
-
-    html.js-reveal [data-reveal],
-    .nav-drawer-item {
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
-    }
-
-    main figure img,
-    main > section:first-child img {
-      transition: none;
-    }
-
-    main figure:hover img,
-    main > section:first-child div:hover > img {
-      transform: none;
-    }
-
-    .editorial-marquee-track {
-      animation: none !important;
-    }
+    transform: translateY(20px);
   }
 
   /* Smooth infinite editorial marquee ticker */
@@ -341,35 +349,33 @@
   .editorial-marquee-track {
     display: flex;
     width: max-content;
-    animation: editorialMarquee 32s linear infinite;
+    animation: editorialMarquee 34s linear infinite;
   }
 
   .editorial-marquee:hover .editorial-marquee-track {
     animation-play-state: paused;
   }
 
-  /* Top hairline reading progress indicator */
+  /* Top hairline reading progress indicator (Vermilion -> Ochre) */
   #scroll-progress-bar {
     position: fixed;
     top: 0;
     left: 0;
-    height: 2px;
+    height: 2.5px;
     width: 100%;
     z-index: 60;
     transform-origin: left center;
     transform: scaleX(0);
     background: linear-gradient(
       90deg,
-      var(--color-forest-teal) 0%,
-      var(--color-powder-blue) 28%,
-      var(--color-candy-pink) 56%,
-      var(--color-magenta-bloom) 80%,
-      var(--color-signal-yellow) 100%
+      var(--color-vermilion) 0%,
+      var(--color-terracotta) 55%,
+      var(--color-ochre-gold) 100%
     );
     pointer-events: none;
   }
 
-  /* Floating comfort controls (Back to top + Quick WA) */
+  /* Floating comfort controls */
   #floating-controls[data-visible='true'] {
     opacity: 1;
     transform: translateY(0);
@@ -385,22 +391,40 @@
 
   @media (min-width: 768px) {
     .editorial-row:hover {
-      background-color: color-mix(in srgb, var(--color-ink-black) 2.5%, transparent);
+      background-color: var(--color-ivory-tile);
     }
   }
 
-  /* Chromatic spectrum hairline divider */
-  .chromatic-hairline {
-    height: 2px;
-    width: 100%;
-    background: linear-gradient(
-      90deg,
-      var(--color-forest-teal) 0%,
-      var(--color-mint-wash) 20%,
-      var(--color-powder-blue) 40%,
-      var(--color-candy-pink) 60%,
-      var(--color-signal-yellow) 80%,
-      var(--color-magenta-bloom) 100%
-    );
+  /* Respect user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    main > section:first-child h1,
+    .masthead-animate {
+      animation: none;
+    }
+
+    html.js-reveal [data-reveal],
+    .nav-drawer-item {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    main figure img,
+    .hero-photo-frame img {
+      transition: none;
+    }
+
+    main figure:hover img,
+    .hero-photo-frame:hover img {
+      transform: none;
+    }
+
+    .editorial-marquee-track {
+      animation: none !important;
+    }
   }
 }

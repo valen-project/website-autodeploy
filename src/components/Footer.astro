@@ -6,47 +6,59 @@ const waUrl = getWhatsAppUrl(
 );
 ---
 
-<footer class="w-full bg-bone-white text-ink-black mt-16">
-  <!-- Chromatic Spectrum Hairline Divider -->
-  <div class="chromatic-hairline" aria-hidden="true"></div>
+<footer class="w-full bg-bone-white text-ink-black mt-20">
+  <!-- Symbol-Style Pre-Footer Quick Consult Strip -->
+  <div class="editorial-px py-5 border-t border-ash flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    <p class="text-[14px] md:text-[15px] text-terracotta font-medium">
+      Konsultasikan kebutuhan digitalisasi usaha atau instansi Anda bersama tim AutoDeploy.
+    </p>
+    <a
+      href={waUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="editorial-link font-[var(--font-display)] text-[17px] font-semibold text-vermilion w-fit"
+    >
+      <span>Hubungi Kami ↗</span>
+    </a>
+  </div>
 
-  <div class="editorial-px py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
-    <!-- Column 1: Brand Identity & Corporate Umbrella -->
-    <div class="md:col-span-4 flex flex-col gap-4">
-      <a href={withBase('/')} class="group inline-flex items-center gap-3 w-fit">
-        <span class="w-9 h-9 rounded-[1440px] border border-ink-black/15 bg-bone-white flex items-center justify-center shrink-0 overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-ink-black group-hover:scale-105">
-          <img
-            src={SITE_INFO.logoPath}
-            alt="Logo AutoDeploy"
-            width="24"
-            height="24"
-            loading="lazy"
-            decoding="async"
-            class="w-6 h-6 object-contain mix-blend-multiply"
-          />
+  <!-- Main Buttercream Multi-Column Footer -->
+  <div class="editorial-px py-12 md:py-16 border-t border-ash grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 items-start">
+    <!-- Column 1: Iconic Vermilion Emblem + Corporate Umbrella -->
+    <div class="md:col-span-5 flex flex-col gap-5">
+      <a href={withBase('/')} class="group inline-flex items-center gap-3.5 w-fit">
+        <span class="w-12 h-12 rounded-[1440px] bg-vermilion text-bone-white flex items-center justify-center shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105">
+          <span class="font-[var(--font-display)] font-bold text-[22px] tracking-[-0.04em] leading-none">
+            AD
+          </span>
         </span>
-        <span class="type-subheading font-light text-ink-black">{SITE_INFO.brandName}</span>
+        <div class="flex flex-col">
+          <span class="font-[var(--font-display)] font-bold text-[24px] leading-none tracking-[-0.03em] text-vermilion">
+            {SITE_INFO.brandName}
+          </span>
+          <span class="text-[12px] text-graphite mt-1">
+            {SITE_INFO.tagline}
+          </span>
+        </div>
       </a>
 
-      <p class="text-[14px] leading-[1.5] text-ink-black">
-        {SITE_INFO.tagline}
-      </p>
-
-      <p class="text-[14px] leading-[1.5] text-graphite">
-        Solusi bisnis digital terpadu di bawah naungan <span class="text-ink-black">{SITE_INFO.headquarters}</span> dalam manajemen <span class="text-ink-black">{SITE_INFO.parentCompany}</span>.
+      <p class="text-[13.5px] leading-[1.6] text-graphite max-w-md">
+        Solusi bisnis digital terpadu yang beroperasi di bawah naungan{' '}
+        <span class="text-ink-black font-medium">{SITE_INFO.headquarters}</span> dalam manajemen{' '}
+        <span class="text-ink-black font-medium">{SITE_INFO.parentCompany}</span>.
       </p>
     </div>
 
     <!-- Column 2: Quick Navigation (5 Pages) -->
-    <div class="md:col-span-2 flex flex-col gap-4">
-      <p class="type-eyebrow text-graphite">Navigasi</p>
+    <div class="md:col-span-2 flex flex-col gap-3">
+      <p class="type-eyebrow text-terracotta">Halaman</p>
       <ul class="flex flex-col gap-2">
         {
           NAV_ITEMS.map((item) => (
             <li>
               <a
                 href={item.href}
-                class="editorial-link text-[14px] leading-[1.43] text-ink-black w-fit"
+                class="editorial-link text-[13.5px] leading-[1.45] text-ink-black hover:text-vermilion w-fit"
               >
                 <span>{item.label}</span>
               </a>
@@ -57,52 +69,42 @@ const waUrl = getWhatsAppUrl(
     </div>
 
     <!-- Column 3: Official Office Address -->
-    <div class="md:col-span-3 flex flex-col gap-4">
-      <p class="type-eyebrow text-graphite">Alamat Kantor</p>
-      <address class="not-italic text-[14px] leading-[1.5] text-ink-black">
+    <div class="md:col-span-2 flex flex-col gap-3">
+      <p class="type-eyebrow text-terracotta">Kantor Pusat</p>
+      <address class="not-italic text-[13.5px] leading-[1.55] text-graphite">
         {SITE_INFO.address}
       </address>
     </div>
 
     <!-- Column 4: Official Contact -->
-    <div class="md:col-span-3 flex flex-col gap-4">
-      <p class="type-eyebrow text-graphite">Kontak Resmi</p>
-      <div class="flex flex-col gap-2 text-[14px] leading-[1.43]">
-        <p class="text-ink-black">
+    <div class="md:col-span-3 flex flex-col gap-3">
+      <p class="type-eyebrow text-terracotta">Kontak Resmi</p>
+      <div class="flex flex-col gap-2 text-[13.5px] leading-[1.45]">
+        <p class="text-ink-black font-medium">
           {SITE_INFO.contactPerson}
-          <span class="block text-graphite text-[12px]">{SITE_INFO.contactRole}</span>
+          <span class="block text-graphite font-normal text-[12px]">{SITE_INFO.contactRole}</span>
         </p>
         <a
           href={waUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="editorial-link text-ink-black w-fit"
+          class="editorial-link text-vermilion font-medium w-fit"
         >
           WhatsApp: {SITE_INFO.phoneDisplay} ↗
         </a>
         <a
           href={`mailto:${SITE_INFO.email}`}
-          class="editorial-link text-ink-black w-fit"
+          class="editorial-link text-ink-black hover:text-vermilion w-fit"
         >
-          Email: {SITE_INFO.email}
+          {SITE_INFO.email}
         </a>
       </div>
     </div>
   </div>
 
-  <!-- Bottom Colophon -->
-  <div class="editorial-px py-5 border-t border-ash/50 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[12px] leading-[1.43] text-graphite">
-    <p>© {SITE_INFO.foundedYear} {SITE_INFO.brandName} — {SITE_INFO.parentCompany}</p>
-    <p>{SITE_INFO.headquarters}</p>
-  </div>
-
-  <!-- Oversized Editorial Poster Wordmark (Reference Signature) -->
-  <div
-    aria-hidden="true"
-    class="w-full overflow-hidden editorial-px pt-2 pb-4 md:pb-6 select-none"
-  >
-    <p class="font-light uppercase text-ink-black/[0.08] leading-[0.88] tracking-[-0.045em] text-[clamp(3.25rem,14.5vw,13.5rem)] whitespace-nowrap text-center">
-      AUTODEPLOY
-    </p>
+  <!-- Signature Symbol Solid Vermilion Bottom Strip -->
+  <div class="w-full bg-vermilion text-bone-white py-3 editorial-px flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] uppercase tracking-[0.06em] font-medium">
+    <p>{SITE_INFO.brandName} • {SITE_INFO.tagline}</p>
+    <p>© {SITE_INFO.foundedYear} {SITE_INFO.parentCompany} • {SITE_INFO.headquarters}</p>
   </div>
 </footer>

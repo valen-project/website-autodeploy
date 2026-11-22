@@ -220,8 +220,9 @@ const waBlueprintUrl = getWhatsAppUrl(
         LAYANAN // SOLUSI DIGITAL TERPADU
       </p>
 
-      <h1 class="type-display font-light text-ink-black max-w-5xl">
-        Enam Layanan Bisnis Digital Terpadu.
+      <h1 class="type-display text-terracotta max-w-5xl">
+        Layanan Terpadu:<br />
+        Enam Solusi Bisnis Digital.
       </h1>
 
       <div class="mt-10 md:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
@@ -268,21 +269,21 @@ const waBlueprintUrl = getWhatsAppUrl(
           </dl>
         </div>
 
-        <!-- Right Column: Sharp Editorial Documentary Photograph -->
+        <!-- Right Column: Studio Framed Documentary Photograph -->
         <div class="lg:col-span-5">
-          <figure class="w-full">
-            <div class="w-full aspect-[4/5] overflow-hidden rounded-none shadow-none border border-forest-teal/35 bg-bone-white">
+          <figure class="w-full p-3 bg-ivory-tile border border-ash">
+            <div class="w-full aspect-[4/5] overflow-hidden bg-bone-white">
               <img
                 src={withBase('/assets/IMG_1566.jpeg')}
                 alt="Dokumentasi proses kerja digital tim AutoDeploy menggunakan laptop"
                 loading="eager"
                 decoding="async"
-                class="w-full h-full object-cover object-bottom rounded-none"
+                class="w-full h-full object-cover object-bottom"
               />
             </div>
-            <figcaption class="mt-3 flex flex-wrap items-center justify-between gap-2 type-eyebrow text-graphite">
+            <figcaption class="mt-3 px-1 flex flex-wrap items-center justify-between gap-2 type-eyebrow text-terracotta">
               <span>Dokumentasi Proses Kerja Digital</span>
-              <span>AutoDeploy // Kartasura, Sukoharjo</span>
+              <span class="text-graphite">AutoDeploy // Kartasura</span>
             </figcaption>
           </figure>
         </div>
@@ -298,8 +299,9 @@ const waBlueprintUrl = getWhatsAppUrl(
           <p class="type-eyebrow text-graphite mb-4">
             01 // DAFTAR LENGKAP BIDANG LAYANAN
           </p>
-          <h2 class="type-heading font-light text-ink-black">
-            Enam Bidang Layanan Terpadu dari Perencanaan hingga Pendampingan.
+          <h2 class="type-heading text-terracotta">
+            Katalog Layanan:<br />
+            Dari Perencanaan hingga Pendampingan.
           </h2>
         </div>
 
@@ -313,12 +315,12 @@ const waBlueprintUrl = getWhatsAppUrl(
         aria-label="Navigasi cepat bidang layanan"
         class="mb-10 flex flex-wrap items-center gap-2 pb-6 border-b border-ash/60"
       >
-        <span class="type-eyebrow text-graphite mr-2">Lompat ke Layanan:</span>
+        <span class="type-eyebrow text-terracotta mr-2">Lompat ke Layanan:</span>
         {
           SERVICES.map((service) => (
             <a
               href={`#${service.id}`}
-              class="rounded-[1440px] border border-ash px-3.5 py-2 text-[12px] leading-[1.2] font-normal uppercase tracking-normal text-ink-black transition-all duration-250 hover:bg-ink-black hover:text-bone-white hover:border-ink-black"
+              class="rounded-[1440px] border border-ash bg-ivory-tile px-3.5 py-2 text-[11.5px] leading-[1.2] font-medium uppercase tracking-[0.045em] text-ink-black transition-all duration-250 hover:bg-vermilion hover:text-bone-white hover:border-vermilion"
             >
               {service.shortLabel}
             </a>
@@ -326,27 +328,15 @@ const waBlueprintUrl = getWhatsAppUrl(
         }
       </nav>
 
-      <!-- 2-Column Editorial Card Grid (Full Chromatic Token Spectrum) -->
+      <!-- 2-Column Editorial Card Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
         {
           SERVICES.map((service) => {
-            const isDarkSurface = service.surface === 'teal' || service.surface === 'navy' || service.surface === 'magenta';
-            const subLabelClass = isDarkSurface
-              ? 'text-bone-white/65'
-              : service.surface === 'cream'
-                ? 'text-graphite'
-                : 'text-ink-black/65';
-            const listTextClass = isDarkSurface
-              ? 'text-bone-white/90'
-              : service.surface === 'cream'
-                ? 'text-ink-black/85'
-                : 'text-ink-black/85';
-            const dividerClass = isDarkSurface
-              ? 'border-bone-white/20'
-              : service.surface === 'cream'
-                ? 'border-ash/60'
-                : 'border-ink-black/15';
-            const bulletClass = isDarkSurface ? 'bg-bone-white/70' : 'bg-ink-black/70';
+            const isDarkSurface = service.surface === 'navy' || service.surface === 'magenta';
+            const subLabelClass = isDarkSurface ? 'text-bone-white/75' : 'text-terracotta';
+            const listTextClass = isDarkSurface ? 'text-bone-white/90' : 'text-graphite';
+            const dividerClass = isDarkSurface ? 'border-bone-white/20' : 'border-ash/55';
+            const bulletClass = isDarkSurface ? 'bg-bone-white/80' : 'bg-vermilion';
 
             return (
               <div id={service.id} class="scroll-mt-24 flex">
@@ -400,8 +390,9 @@ const waBlueprintUrl = getWhatsAppUrl(
           <p class="type-eyebrow text-graphite mb-4">
             02 // STANDAR & ALUR KERJA SAMA
           </p>
-          <h2 class="type-heading font-light text-ink-black">
-            Tata Kelola Kerja Sama yang Transparan dan Dapat Dipertanggungjawabkan.
+          <h2 class="type-heading text-terracotta">
+            Standar Kerja Sama:<br />
+            Transparan, Terarah, dan Bergaransi.
           </h2>
         </div>
 
@@ -454,35 +445,32 @@ const waBlueprintUrl = getWhatsAppUrl(
   </section>
 
   <!-- Section 3: CTA Konsultasi Layanan -->
-  <section class="w-full py-16 md:py-24">
+  <section class="w-full pt-16 md:pt-24 pb-4">
     <div class="editorial-px">
-      <div class="bg-navy-ink text-bone-white rounded-none shadow-none p-8 md:p-14 lg:p-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
-        <div class="lg:col-span-8 flex flex-col gap-6">
-          <p class="type-eyebrow text-bone-white/60">
+      <div class="bg-ivory-tile text-ink-black border border-ash border-t-4 border-t-vermilion p-8 md:p-14 lg:p-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
+        <div class="lg:col-span-8 flex flex-col gap-5">
+          <p class="type-eyebrow text-vermilion">
             03 // KONSULTASI PEMETAAN KEBUTUHAN BISNIS
           </p>
-          <h2 class="type-heading font-light text-bone-white">
+          <h2 class="type-heading text-terracotta">
             Mulai dari Penyusunan Digital Business Blueprint untuk Usaha Anda.
           </h2>
-          <p class="text-[16px] leading-[1.6] text-bone-white/80 max-w-2xl">
+          <p class="text-[16px] leading-[1.6] text-graphite max-w-2xl">
             Diskusikan kebutuhan, tantangan, dan prioritas digitalisasi usaha Anda bersama tim AutoDeploy. Kami membantu memetakan langkah yang paling praktis, terarah, dan selaras dengan skala serta anggaran usaha—untuk UMKM, bisnis rintisan, perusahaan, maupun instansi di berbagai daerah.
           </p>
         </div>
 
         <div class="lg:col-span-4 flex flex-col items-start lg:items-end gap-5">
           <div class="flex flex-wrap lg:flex-col items-start lg:items-end gap-3 w-full">
-            <PillButton href={waBlueprintUrl} target="_blank" variant="inverted">
+            <PillButton href={waBlueprintUrl} target="_blank" variant="primary">
               Konsultasi WhatsApp ({SITE_INFO.phoneDisplay}) ↗
             </PillButton>
-            <a
-              href={withBase('/contact')}
-              class="inline-flex items-center justify-center gap-2 rounded-[1440px] px-6 py-3 text-[16px] leading-[1.4] font-normal tracking-[-0.018em] border border-bone-white/40 text-bone-white hover:bg-bone-white hover:text-ink-black transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bone-white"
-            >
+            <PillButton href={withBase('/contact')} variant="outline">
               Isi Formulir di Halaman Kontak ↗
-            </a>
+            </PillButton>
           </div>
 
-          <p class="text-[12px] leading-[1.5] text-bone-white/60 lg:text-right">
+          <p class="text-[12px] leading-[1.5] text-graphite lg:text-right">
             Narahubung: {SITE_INFO.contactPerson} ({SITE_INFO.contactRole})
           </p>
         </div>
