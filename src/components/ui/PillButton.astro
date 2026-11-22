@@ -1,0 +1,83 @@
+---
+export interface Props {
+  href?: string;
+  variant?: 'primary' | 'outline' | 'inverted';
+  size?: 'md' | 'sm';
+  type?: 'button' | 'submit' | 'reset';
+  target?: '_self' | '_blank';
+  rel?: string;
+  id?: string;
+  ariaLabel?: string;
+  ariaExpanded?: 'true' | 'false';
+  ariaControls?: string;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  type = 'button',
+  target,
+  rel,
+  id,
+  ariaLabel,
+  ariaExpanded,
+  ariaControls,
+  class: className = '',
+} = Astro.props;
+
+const variantClasses: Record<NonNullable<Props['variant']>, string> = {
+  primary:
+    'bg-ink-black text-bone-white border border-transparent hover:bg-charcoal-scale focus-visible:outline-ink-black',
+  outline:
+    'bg-transparent text-ink-black border border-ink-black hover:bg-ink-black hover:text-bone-white focus-visible:outline-ink-black',
+  inverted:
+    'bg-bone-white text-ink-black border border-transparent hover:bg-signal-yellow hover:text-ink-black focus-visible:outline-bone-white',
+};
+
+const sizeClasses: Record<NonNullable<Props['size']>, string> = {
+  md: 'px-6 py-3 text-[16px] leading-[1.4]',
+  sm: 'px-4 py-2 text-[14px] leading-[1.43]',
+};
+
+const computedRel = target === '_blank' ? (rel ?? 'noopener noreferrer') : rel;
+
+const baseClasses = [
+  'inline-flex items-center justify-center gap-2',
+  'rounded-[1440px] font-normal tracking-[-0.018em]',
+  'shadow-none transition-colors duration-200 cursor-pointer select-none',
+  'focus-visible:outline-2 focus-visible:outline-offset-2',
+  variantClasses[variant],
+  sizeClasses[size],
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+{
+  href ? (
+    <a
+      id={id}
+      href={href}
+      target={target}
+      rel={computedRel}
+      aria-label={ariaLabel}
+      class={baseClasses}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      id={id}
+      type={type}
+      aria-label={ariaLabel}
+      aria-expanded={ariaExpanded}
+      aria-controls={ariaControls}
+      class={baseClasses}
+    >
+      <slot />
+    </button>
+  )
+}

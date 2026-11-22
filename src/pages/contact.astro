@@ -1,0 +1,519 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PillButton from '../components/ui/PillButton.astro';
+import CategoryBadge from '../components/ui/CategoryBadge.astro';
+import { SITE_INFO, getWhatsAppUrl } from '../data/site';
+
+const directWhatsAppUrl = getWhatsAppUrl(
+  'Halo AutoDeploy, saya ingin berkonsultasi mengenai kebutuhan solusi bisnis digital atau kerja sama.'
+);
+
+const businessCategories = [
+  'UMKM',
+  'Startup',
+  'Perusahaan',
+  'Instansi',
+  'Lainnya',
+] as const;
+
+const serviceOptions = [
+  'Perencanaan Konsep & Digital Business Blueprint',
+  'Desain Kreatif (2D & 3D)',
+  'Pengembangan Website & Landing Page',
+  'Digital Marketing & Digital Advertising',
+  'Optimasi Konten Berbasis AI',
+  'Pelatihan & Pendampingan Digital',
+  'Kemitraan & Kolaborasi',
+] as const;
+---
+
+<Layout
+  title={`Kontak & Konsultasi — ${SITE_INFO.brandName}`}
+  description={`Hubungi ${SITE_INFO.brandName} (${SITE_INFO.headquarters} • ${SITE_INFO.parentCompany}) melalui WhatsApp ${SITE_INFO.phoneDisplay}, email resmi, atau formulir konsultasi cepat.`}
+  ogImage="/assets/IMG_3108.jpeg"
+  ogImageAlt="Saluran resmi konsultasi dan kantor pusat AutoDeploy di Kartasura, Sukoharjo"
+>
+  <!-- Page Header -->
+  <section class="w-full pt-12 pb-16 md:pt-20 md:pb-24">
+    <div class="editorial-px">
+      <p class="type-eyebrow text-graphite mb-6 md:mb-8">
+        KONTAK // KONSULTASI &amp; KERJA SAMA
+      </p>
+
+      <h1 class="type-display font-light text-ink-black max-w-5xl">
+        Konsultasi &amp; Kerja Sama
+      </h1>
+
+      <div class="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+        <p class="md:col-span-7 type-subheading font-light text-graphite max-w-2xl">
+          AutoDeploy melayani klien dari berbagai daerah tanpa batasan lokasi
+          dengan cakupan solusi digital terpadu yang disesuaikan dengan skala
+          dan anggaran usaha Anda.
+        </p>
+
+        <div class="md:col-span-5 flex flex-wrap md:justify-end gap-2">
+          <CategoryBadge label={SITE_INFO.headquarters} variant="default" />
+          <CategoryBadge label={SITE_INFO.parentCompany} variant="accent" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Informasi Kontak & Alamat Resmi -->
+  <section
+    aria-labelledby="contact-info-heading"
+    class="w-full py-16 md:py-24 border-t border-ash"
+  >
+    <div class="editorial-px">
+      <div class="mb-12 md:mb-16">
+        <p class="type-eyebrow text-graphite mb-4">
+          01 // INFORMASI KONTAK &amp; ALAMAT RESMI
+        </p>
+        <h2
+          id="contact-info-heading"
+          class="type-heading font-light text-ink-black max-w-3xl"
+        >
+          Saluran resmi konsultasi dan kantor pusat AutoDeploy
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <!-- Official Contact Directory -->
+        <div class="lg:col-span-7 flex flex-col">
+          <dl class="divide-y divide-ash border-y border-ash">
+            <!-- Narahubung -->
+            <div class="py-6 md:py-8 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6">
+              <dt class="sm:col-span-4 type-eyebrow text-graphite pt-1">
+                Narahubung
+              </dt>
+              <dd class="sm:col-span-8 flex flex-col gap-1">
+                <span class="type-heading-sm font-light text-ink-black">
+                  {SITE_INFO.contactPerson}
+                </span>
+                <span class="text-[14px] leading-[1.43] text-graphite">
+                  {SITE_INFO.contactRole}
+                </span>
+              </dd>
+            </div>
+
+            <!-- Naungan Korporasi -->
+            <div class="py-6 md:py-8 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6">
+              <dt class="sm:col-span-4 type-eyebrow text-graphite pt-1">
+                Naungan
+              </dt>
+              <dd class="sm:col-span-8 flex flex-col gap-1">
+                <span class="type-subheading font-light text-ink-black">
+                  {SITE_INFO.headquarters}
+                </span>
+                <span class="text-[14px] leading-[1.43] text-graphite">
+                  {SITE_INFO.parentCompany}
+                </span>
+              </dd>
+            </div>
+
+            <!-- Telepon / WhatsApp -->
+            <div class="py-6 md:py-8 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6">
+              <dt class="sm:col-span-4 type-eyebrow text-graphite pt-1">
+                Telepon / WhatsApp
+              </dt>
+              <dd class="sm:col-span-8 flex flex-col gap-2">
+                <a
+                  href={directWhatsAppUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="type-heading-sm font-light text-ink-black hover:underline underline-offset-4 w-fit focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink-black"
+                >
+                  {SITE_INFO.phoneDisplay} <span aria-hidden="true">↗</span>
+                </a>
+                <span class="text-[14px] leading-[1.43] text-graphite">
+                  Klik nomor untuk memulai percakapan langsung melalui WhatsApp resmi.
+                </span>
+              </dd>
+            </div>
+
+            <!-- Email Resmi -->
+            <div class="py-6 md:py-8 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6">
+              <dt class="sm:col-span-4 type-eyebrow text-graphite pt-1">
+                Email Resmi
+              </dt>
+              <dd class="sm:col-span-8 flex flex-col gap-2">
+                <a
+                  href={`mailto:${SITE_INFO.email}`}
+                  class="type-subheading md:text-[24px] font-light text-ink-black hover:underline underline-offset-4 break-all w-fit focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink-black"
+                >
+                  {SITE_INFO.email}
+                </a>
+                <span class="text-[14px] leading-[1.43] text-graphite">
+                  Untuk korespondensi resmi, pengajuan proposal kemitraan, dan dokumen kerja sama.
+                </span>
+              </dd>
+            </div>
+
+            <!-- Alamat Kantor -->
+            <div class="py-6 md:py-8 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6">
+              <dt class="sm:col-span-4 type-eyebrow text-graphite pt-1">
+                Alamat Kantor
+              </dt>
+              <dd class="sm:col-span-8">
+                <address class="not-italic type-subheading font-light text-ink-black leading-[1.45]">
+                  {SITE_INFO.address}
+                </address>
+              </dd>
+            </div>
+          </dl>
+
+          <!-- Direct Action Pills -->
+          <div class="mt-8 md:mt-10 flex flex-wrap items-center gap-4">
+            <PillButton
+              href={directWhatsAppUrl}
+              target="_blank"
+              variant="primary"
+            >
+              Hubungi via WhatsApp ↗
+            </PillButton>
+            <PillButton
+              href={`mailto:${SITE_INFO.email}`}
+              variant="outline"
+            >
+              Kirim Email
+            </PillButton>
+          </div>
+        </div>
+
+        <!-- Editorial Visual Frame -->
+        <figure class="lg:col-span-5 flex flex-col gap-4">
+          <div class="w-full overflow-hidden rounded-none border border-forest-teal/40 bg-bone-white">
+            <img
+              src="/assets/IMG_3108.jpeg"
+              alt="Dokumentasi suasana kerja dan komunikasi AutoDeploy di lingkungan Kartasura, Sukoharjo"
+              loading="lazy"
+              decoding="async"
+              class="w-full aspect-[4/5] object-cover object-center rounded-none block"
+            />
+          </div>
+          <figcaption class="flex items-center justify-between gap-4 border-t border-ash/60 pt-3">
+            <span class="type-eyebrow text-graphite">
+              GONILAN, KARTASURA — SUKOHARJO
+            </span>
+            <span class="type-eyebrow text-ink-black">
+              {SITE_INFO.brandName}
+            </span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Formulir Konsultasi Cepat -->
+  <section
+    id="formulir-konsultasi"
+    aria-labelledby="quick-consult-heading"
+    class="w-full py-16 md:py-24 border-t border-ash"
+  >
+    <div class="editorial-px">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <!-- Left Column: Section Statement & Governance Note -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          <div>
+            <p class="type-eyebrow text-graphite mb-4">
+              02 // FORMULIR KONSULTASI CEPAT
+            </p>
+            <h2
+              id="quick-consult-heading"
+              class="type-heading font-light text-ink-black"
+            >
+              Ceritakan kebutuhan bisnis digital Anda
+            </h2>
+          </div>
+
+          <p class="text-[16px] leading-[1.5] text-graphite max-w-md">
+            Lengkapi formulir singkat berikut untuk menyiapkan ringkasan
+            kebutuhan Anda. Saat dikirim, pesan terformat akan langsung dibuka
+            melalui WhatsApp resmi AutoDeploy ({SITE_INFO.phoneDisplay}).
+          </p>
+
+          <div class="mt-2 pt-6 border-t border-ash/60 max-w-md">
+            <p class="type-eyebrow text-graphite mb-2">
+              STANDAR KONSULTASI AWAL
+            </p>
+            <p class="text-[14px] leading-[1.5] text-graphite">
+              Setiap kerja sama diawali dengan konsultasi transparan mengenai
+              kebutuhan bisnis, syarat dan ketentuan (Terms &amp; Conditions),
+              hingga penyusunan perjanjian kerja sama (MoU) yang jelas.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Column: Minimal Editorial Consultation Form -->
+        <div class="lg:col-span-7">
+          <form
+            id="consultation-form"
+            data-whatsapp-number={SITE_INFO.whatsappNumber}
+            novalidate
+            class="flex flex-col gap-10"
+          >
+            <!-- Row 1: Nama & Kategori Usaha/Instansi -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8">
+              <div class="flex flex-col gap-2">
+                <label
+                  for="contact-name"
+                  class="type-eyebrow text-graphite"
+                >
+                  Nama <span aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  placeholder="Nama lengkap Anda"
+                  class="w-full rounded-none border-0 border-b border-ash bg-transparent py-3 text-[18px] md:text-[20px] font-light leading-[1.4] tracking-[-0.018em] text-ink-black placeholder:text-ash focus:border-ink-black focus:outline-none transition-colors duration-200"
+                />
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label
+                  for="contact-category"
+                  class="type-eyebrow text-graphite"
+                >
+                  Kategori Usaha / Instansi <span aria-hidden="true">*</span>
+                </label>
+                <div class="relative">
+                  <select
+                    id="contact-category"
+                    name="category"
+                    required
+                    class="w-full appearance-none rounded-none border-0 border-b border-ash bg-transparent py-3 pr-8 text-[18px] md:text-[20px] font-light leading-[1.4] tracking-[-0.018em] text-ink-black focus:border-ink-black focus:outline-none transition-colors duration-200 cursor-pointer"
+                  >
+                    <option value="" disabled selected class="bg-bone-white text-graphite">
+                      Pilih kategori usaha / instansi
+                    </option>
+                    {
+                      businessCategories.map((category) => (
+                        <option value={category} class="bg-bone-white text-ink-black">
+                          {category}
+                        </option>
+                      ))
+                    }
+                  </select>
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-black"
+                  >
+                    <path
+                      d="M3.5 6L8 10.5L12.5 6"
+                      stroke="currentColor"
+                      stroke-width="1"
+                      stroke-linecap="square"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: Layanan yang Diminati -->
+            <div class="flex flex-col gap-2">
+              <label
+                for="contact-service"
+                class="type-eyebrow text-graphite"
+              >
+                Layanan yang Diminati <span aria-hidden="true">*</span>
+              </label>
+              <div class="relative">
+                <select
+                  id="contact-service"
+                  name="service"
+                  required
+                  class="w-full appearance-none rounded-none border-0 border-b border-ash bg-transparent py-3 pr-8 text-[18px] md:text-[20px] font-light leading-[1.4] tracking-[-0.018em] text-ink-black focus:border-ink-black focus:outline-none transition-colors duration-200 cursor-pointer"
+                >
+                  <option value="" disabled selected class="bg-bone-white text-graphite">
+                    Pilih layanan atau jenis kolaborasi
+                  </option>
+                  {
+                    serviceOptions.map((service) => (
+                      <option value={service} class="bg-bone-white text-ink-black">
+                        {service}
+                      </option>
+                    ))
+                  }
+                </select>
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-black"
+                >
+                  <path
+                    d="M3.5 6L8 10.5L12.5 6"
+                    stroke="currentColor"
+                    stroke-width="1"
+                    stroke-linecap="square"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Row 3: Ringkasan Kebutuhan -->
+            <div class="flex flex-col gap-2">
+              <label
+                for="contact-summary"
+                class="type-eyebrow text-graphite"
+              >
+                Ringkasan Kebutuhan <span aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="contact-summary"
+                name="summary"
+                rows="4"
+                required
+                placeholder="Ceritakan singkat mengenai usaha/instansi Anda, target yang ingin dicapai, atau kebutuhan proyek..."
+                class="w-full resize-y rounded-none border-0 border-b border-ash bg-transparent py-3 text-[18px] md:text-[20px] font-light leading-[1.45] tracking-[-0.018em] text-ink-black placeholder:text-ash focus:border-ink-black focus:outline-none transition-colors duration-200"
+              ></textarea>
+            </div>
+
+            <!-- Inline Validation Error -->
+            <p
+              id="form-error"
+              role="alert"
+              aria-live="assertive"
+              class="hidden rounded-none border-l-2 border-magenta-bloom pl-4 py-1 text-[14px] leading-[1.43] text-magenta-bloom"
+            ></p>
+
+            <!-- Submit Button -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
+              <PillButton type="submit" variant="primary">
+                Kirim via WhatsApp ↗
+              </PillButton>
+              <span class="text-[12px] leading-[1.43] text-graphite">
+                Akan membuka tab baru WhatsApp ke {SITE_INFO.phoneDisplay}
+              </span>
+            </div>
+
+            <!-- Subtle Confirmation Banner -->
+            <div
+              id="form-confirmation"
+              role="status"
+              aria-live="polite"
+              class="hidden rounded-none border-l-2 border-forest-teal bg-mint-wash/35 px-5 py-4 text-[14px] leading-[1.5] text-ink-black"
+            >
+              <p class="type-eyebrow text-forest-teal mb-1">
+                PESAN SIAP DIKIRIM
+              </p>
+              <p>
+                Ringkasan konsultasi Anda telah diformat dan dibuka melalui
+                WhatsApp resmi AutoDeploy ({SITE_INFO.phoneDisplay}).
+              </p>
+              <a
+                id="form-whatsapp-fallback"
+                href={directWhatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-2 inline-flex items-center gap-1 text-[14px] text-ink-black underline underline-offset-4 hover:text-forest-teal"
+              >
+                Jika tab WhatsApp tidak terbuka otomatis, klik di sini ↗
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('consultation-form') as HTMLFormElement | null;
+  const nameInput = document.getElementById('contact-name') as HTMLInputElement | null;
+  const categorySelect = document.getElementById('contact-category') as HTMLSelectElement | null;
+  const serviceSelect = document.getElementById('contact-service') as HTMLSelectElement | null;
+  const summaryTextarea = document.getElementById('contact-summary') as HTMLTextAreaElement | null;
+  const errorBox = document.getElementById('form-error');
+  const confirmationBox = document.getElementById('form-confirmation');
+  const fallbackLink = document.getElementById('form-whatsapp-fallback') as HTMLAnchorElement | null;
+
+  const fields = [nameInput, categorySelect, serviceSelect, summaryTextarea].filter(
+    (field): field is HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement => field !== null
+  );
+
+  function clearFieldError(field: HTMLElement) {
+    field.classList.remove('border-magenta-bloom');
+    field.classList.add('border-ash');
+    field.removeAttribute('aria-invalid');
+  }
+
+  function markFieldError(field: HTMLElement) {
+    field.classList.remove('border-ash');
+    field.classList.add('border-magenta-bloom');
+    field.setAttribute('aria-invalid', 'true');
+  }
+
+  fields.forEach((field) => {
+    const clearHandler = () => {
+      if (field.value.trim().length > 0) {
+        clearFieldError(field);
+      }
+    };
+    field.addEventListener('input', clearHandler);
+    field.addEventListener('change', clearHandler);
+  });
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!nameInput || !categorySelect || !serviceSelect || !summaryTextarea) {
+      return;
+    }
+
+    const name = nameInput.value.trim();
+    const category = categorySelect.value.trim();
+    const service = serviceSelect.value.trim();
+    const summary = summaryTextarea.value.trim();
+
+    fields.forEach(clearFieldError);
+
+    const missingFields: Array<{ el: HTMLElement; label: string }> = [];
+    if (!name) missingFields.push({ el: nameInput, label: 'Nama' });
+    if (!category) missingFields.push({ el: categorySelect, label: 'Kategori Usaha / Instansi' });
+    if (!service) missingFields.push({ el: serviceSelect, label: 'Layanan yang Diminati' });
+    if (!summary) missingFields.push({ el: summaryTextarea, label: 'Ringkasan Kebutuhan' });
+
+    if (missingFields.length > 0) {
+      missingFields.forEach(({ el }) => markFieldError(el));
+      if (errorBox) {
+        const labels = missingFields.map(({ label }) => label).join(', ');
+        errorBox.textContent = `Mohon lengkapi kolom berikut terlebih dahulu: ${labels}.`;
+        errorBox.classList.remove('hidden');
+      }
+      confirmationBox?.classList.add('hidden');
+      missingFields[0].el.focus();
+      return;
+    }
+
+    if (errorBox) {
+      errorBox.textContent = '';
+      errorBox.classList.add('hidden');
+    }
+
+    const whatsappNumber = form.dataset.whatsappNumber || '6285642550886';
+    const message = [
+      'Halo AutoDeploy, saya ingin berkonsultasi mengenai kebutuhan solusi digital.',
+      '',
+      `Nama: ${name}`,
+      `Kategori Usaha / Instansi: ${category}`,
+      `Layanan yang Diminati: ${service}`,
+      `Ringkasan Kebutuhan:`,
+      summary,
+    ].join('\n');
+
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    if (fallbackLink) {
+      fallbackLink.href = whatsappUrl;
+    }
+    confirmationBox?.classList.remove('hidden');
+
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  });
+</script>

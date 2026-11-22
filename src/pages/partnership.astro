@@ -1,0 +1,490 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PillButton from '../components/ui/PillButton.astro';
+import ServiceCard, { type ServiceCardSurface } from '../components/ui/ServiceCard.astro';
+import CategoryBadge from '../components/ui/CategoryBadge.astro';
+import { SITE_INFO, getWhatsAppUrl } from '../data/site';
+
+interface PillarItem {
+  indexNumber: string;
+  category: string;
+  title: string;
+  description: string;
+  surface: ServiceCardSurface;
+}
+
+interface PartnerSegment {
+  index: string;
+  name: string;
+  scope: string;
+  description: string;
+}
+
+interface GovernanceItem {
+  step: string;
+  title: string;
+  description: string;
+}
+
+interface TalentRole {
+  indexNumber: string;
+  category: string;
+  title: string;
+  description: string;
+  surface: ServiceCardSurface;
+  href: string;
+  linkLabel: string;
+}
+
+const waPartnershipUrl = getWhatsAppUrl(
+  'Halo Bapak Affan Abdul Hanan / Tim AutoDeploy, saya ingin mengajukan diskusi mengenai peluang kemitraan dan kolaborasi bersama AutoDeploy.'
+);
+
+const waInstitutionalUrl = getWhatsAppUrl(
+  'Halo AutoDeploy, kami dari instansi/perusahaan/lembaga ingin menjajaki peluang kerja sama institusional untuk program pemberdayaan UMKM atau pelatihan digital.'
+);
+
+const waTalentUrl = getWhatsAppUrl(
+  'Halo AutoDeploy, saya tertarik menjajaki ruang kolaborasi dalam ekosistem kreator, komunitas UMKM, tenaga kreatif, atau pengembang teknologi bersama AutoDeploy.'
+);
+
+const emailSubject = encodeURIComponent('Pengajuan Kemitraan & Kolaborasi — AutoDeploy');
+const mailtoPartnershipUrl = `mailto:${SITE_INFO.email}?subject=${emailSubject}`;
+
+const institutionalPillars: PillarItem[] = [
+  {
+    indexNumber: '01',
+    category: 'Pemberdayaan UMKM',
+    title: 'Menjembatani Digitalisasi UMKM & Bisnis Rintisan',
+    description:
+      'Memperluas akses pemanfaatan teknologi modern, penguatan identitas merek, dan strategi pemasaran digital bagi pelaku usaha di berbagai daerah tanpa batasan lokasi.',
+    surface: 'powder-blue',
+  },
+  {
+    indexNumber: '02',
+    category: 'Pelatihan Digital',
+    title: 'Pusat Pelatihan & Pendampingan Praktis',
+    description:
+      'Menyelenggarakan program pelatihan pemasaran digital dan pemanfaatan kecerdasan buatan (AI) yang dilengkapi panduan penggunaan agar peserta mampu mengelola aset digital secara mandiri.',
+    surface: 'cream',
+  },
+  {
+    indexNumber: '03',
+    category: 'Tata Kelola',
+    title: 'Kerja Sama Terukur & Berbasis MoU',
+    description:
+      'Didukung jaringan Headquarters Anomia Project dan PT. Anomia Digital Industry dengan alur konsultasi transparan, pemetaan kebutuhan, serta perjanjian kontrak atau MoU yang jelas.',
+    surface: 'cream',
+  },
+];
+
+const institutionalSegments: PartnerSegment[] = [
+  {
+    index: '01',
+    name: 'Instansi Pemerintah',
+    scope: 'Program Pemberdayaan & Pelatihan',
+    description:
+      'Sinergi program pendampingan UMKM daerah, literasi pemasaran digital, serta pemanfaatan teknologi modern bagi pelaku usaha konvensional.',
+  },
+  {
+    index: '02',
+    name: 'BUMN',
+    scope: 'Pengembangan Mitra Binaan',
+    description:
+      'Kolaborasi penguatan daya saing usaha binaan melalui penyusunan Digital Business Blueprint, identitas merek, dan pelatihan digital terarah.',
+  },
+  {
+    index: '03',
+    name: 'Perusahaan Swasta',
+    scope: 'Solusi Bisnis & Kemitraan Strategis',
+    description:
+      'Kerja sama operasional digital terpadu maupun inisiatif kolaboratif untuk memperluas jangkauan pemasaran dan pemberdayaan ekosistem usaha.',
+  },
+  {
+    index: '04',
+    name: 'Perguruan Tinggi',
+    scope: 'Ekosistem Akademik & Talenta',
+    description:
+      'Ruang sinergi pengembangan keterampilan digital generasi muda, pelatihan praktis, serta pertukaran pengetahuan di bidang bisnis digital dan kreatif.',
+  },
+  {
+    index: '05',
+    name: 'Lembaga Pelatihan',
+    scope: 'Kurikulum & Pendampingan Teknis',
+    description:
+      'Kolaborasi penyelenggaraan pelatihan pemasaran digital dan optimasi konten berbasis AI yang dilengkapi pedoman penggunaan praktis.',
+  },
+  {
+    index: '06',
+    name: 'Penyelenggara Acara',
+    scope: 'Aktivasi Visual & Promosi Digital',
+    description:
+      'Dukungan solusi kreatif 2D & 3D, halaman informasi digital, serta strategi kampanye pemasaran untuk mendukung penyelenggaraan kegiatan.',
+  },
+];
+
+const governanceSteps: GovernanceItem[] = [
+  {
+    step: '01',
+    title: 'Konsultasi Transparan (Terms & Conditions)',
+    description:
+      'Setiap penjajakan diawali diskusi terbuka mengenai tujuan program, prioritas kebutuhan, anggaran, serta syarat dan ketentuan kerja sama.',
+  },
+  {
+    step: '02',
+    title: 'Perjanjian Kontrak / Memorandum of Understanding (MoU)',
+    description:
+      'Ruang lingkup kolaborasi, tahapan pelaksanaan, dan tanggung jawab para pihak diikat secara resmi melalui perjanjian kontrak atau MoU.',
+  },
+  {
+    step: '03',
+    title: 'Panduan Penggunaan & Garansi Kualitas',
+    description:
+      'Setiap hasil pekerjaan dilengkapi panduan penggunaan agar mitra dapat beroperasi mandiri, disertai komitmen perbaikan tanpa biaya tambahan jika terjadi kesalahan dari pihak AutoDeploy.',
+  },
+];
+
+const talentEcosystem: TalentRole[] = [
+  {
+    indexNumber: '01',
+    category: 'Konten & Kampanye',
+    title: 'Kreator',
+    description:
+      'Ruang kolaborasi produksi konten digital, narasi kampanye pemasaran, serta eksplorasi optimasi konten berbasis kecerdasan buatan (AI) untuk mendorong jangkauan pelaku usaha.',
+    surface: 'mint',
+    href: '/contact',
+    linkLabel: 'Diskusikan Kolaborasi Kreator',
+  },
+  {
+    indexNumber: '02',
+    category: 'Jaringan Pelaku Usaha',
+    title: 'Komunitas UMKM',
+    description:
+      'Kemitraan langsung bersama komunitas pelaku usaha untuk menghadirkan pendampingan praktis, pelatihan pemasaran digital, dan perluasan akses teknologi ke berbagai daerah.',
+    surface: 'cream',
+    href: '/contact',
+    linkLabel: 'Sinergi Bersama Komunitas',
+  },
+  {
+    indexNumber: '03',
+    category: 'Desain & Identitas Visual',
+    title: 'Tenaga Kreatif',
+    description:
+      'Kolaborasi bagi talenta desain grafis 2D, desain 3D, dokumentasi visual, dan pengembangan identitas merek (branding) dalam proyek bisnis digital yang terarah.',
+    surface: 'cream',
+    href: '/contact',
+    linkLabel: 'Gabung Jaringan Kreatif',
+  },
+  {
+    indexNumber: '04',
+    category: 'Web & Integrasi AI',
+    title: 'Pengembang Teknologi',
+    description:
+      'Ruang kontribusi bagi pengembang situs web, landing page, dan integrasi sistem berbasis AI dalam membangun solusi digital praktis yang berdampak bagi mitra usaha.',
+    surface: 'teal',
+    href: '/contact',
+    linkLabel: 'Kolaborasi Pengembang Teknologi',
+  },
+];
+---
+
+<Layout
+  title={`Kemitraan & Kolaborasi — ${SITE_INFO.brandName}`}
+  description="Peluang kerja sama institusional melalui jaringan Anomia Project & PT. Anomia Digital Industry serta ekosistem kolaborasi kreator, komunitas UMKM, tenaga kreatif, dan pengembang teknologi bersama AutoDeploy."
+  ogImage="/assets/IMG_3103.jpeg"
+  ogImageAlt="Suasana diskusi kolaboratif tim AutoDeploy dalam membangun ekosistem kemitraan digital"
+>
+  <!-- Page Header & Editorial Introduction -->
+  <section class="w-full pt-10 md:pt-16 pb-12 md:pb-16">
+    <div class="editorial-px">
+      <p class="type-eyebrow text-graphite">KEMITRAAN &amp; KOLABORASI // EKOSISTEM</p>
+
+      <h1 class="type-display font-light text-ink-black mt-5 md:mt-6 max-w-5xl">
+        Membangun Ekosistem Kemitraan Digital.
+      </h1>
+
+      <div class="mt-10 md:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <p class="lg:col-span-7 text-[16px] md:text-[18px] leading-[1.55] text-graphite max-w-2xl">
+          Dalam memperluas dampak dan jangkauan layanan digitalisasi di berbagai daerah, AutoDeploy membuka jalur kerja sama institusional melalui jaringan <span class="text-ink-black">{SITE_INFO.headquarters}</span> dan <span class="text-ink-black">{SITE_INFO.parentCompany}</span>, sekaligus membangun ruang kolaborasi aktif bersama kreator, komunitas UMKM, tenaga kreatif, dan pengembang teknologi.
+        </p>
+
+        <div class="lg:col-span-5 flex flex-wrap items-center lg:justify-end gap-3">
+          <PillButton href="#institusional" variant="primary" size="sm">
+            Kerja Sama Institusional ↓
+          </PillButton>
+          <PillButton href="#kolaborasi" variant="outline" size="sm">
+            Kolaborasi Talenta ↓
+          </PillButton>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full-Bleed Documentary Editorial Visual -->
+  <section class="w-full pb-8 md:pb-12" aria-label="Visual ekosistem kolaborasi AutoDeploy">
+    <figure class="relative w-full overflow-hidden rounded-none shadow-none bg-navy-ink">
+      <img
+        src="/assets/IMG_3103.jpeg"
+        alt="Suasana diskusi kolaboratif tim AutoDeploy dalam membangun ekosistem kemitraan digital"
+        class="w-full h-[52vh] min-h-[360px] max-h-[680px] object-cover object-[50%_78%] rounded-none block"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 bg-gradient-to-t from-ink-black/80 via-ink-black/25 to-transparent pointer-events-none"
+      />
+      <figcaption class="absolute inset-x-0 bottom-0 editorial-px pb-8 md:pb-12 pt-16">
+        <p class="type-eyebrow text-bone-white/80">
+          ANOMIA PROJECT (HEADQUARTERS) // PT. ANOMIA DIGITAL INDUSTRY
+        </p>
+        <p class="type-heading-sm font-light text-bone-white mt-3 max-w-2xl">
+          Menjembatani pemberdayaan UMKM, pusat pelatihan digital, dan ruang tumbuh generasi muda di berbagai daerah.
+        </p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- Section 1: Kerja Sama Institusional -->
+  <section id="institusional" class="w-full editorial-px py-16 md:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+      <div class="lg:col-span-7">
+        <p class="type-eyebrow text-graphite">01 // KERJA SAMA INSTITUSIONAL</p>
+        <h2 class="type-heading font-light text-ink-black mt-5">
+          Sinergi Institusional untuk Pemberdayaan UMKM &amp; Pusat Pelatihan Digital.
+        </h2>
+      </div>
+
+      <div class="lg:col-span-5 flex flex-col gap-5">
+        <p class="text-[16px] leading-[1.55] text-graphite">
+          Melalui jaringan relasi <span class="text-ink-black">Headquarters</span> (<span class="text-ink-black">Anomia Project</span> dan <span class="text-ink-black">PT. Anomia Digital Industry</span>), AutoDeploy menjajaki kerja sama institusional bersama instansi pemerintah, BUMN, perusahaan swasta, perguruan tinggi, lembaga pelatihan, serta penyelenggara acara.
+        </p>
+        <div>
+          <PillButton href={waInstitutionalUrl} target="_blank" variant="outline" size="sm">
+            Diskusikan Kerja Sama Institusional ↗
+          </PillButton>
+        </div>
+      </div>
+    </div>
+
+    <!-- Institutional Pillars (ServiceCard Grid with Controlled Powder-Blue Accent) -->
+    <div class="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      {
+        institutionalPillars.map((pillar) => (
+          <ServiceCard
+            indexNumber={pillar.indexNumber}
+            category={pillar.category}
+            title={pillar.title}
+            description={pillar.description}
+            surface={pillar.surface}
+          />
+        ))
+      }
+    </div>
+
+    <!-- Institutional Partner Segments -->
+    <div class="mt-16 md:mt-20 pt-10 md:pt-12 border-t border-ash">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <p class="type-eyebrow text-graphite">SEGMEN MITRA INSTITUSIONAL &amp; KORPORASI</p>
+          <h3 class="type-heading-sm font-light text-ink-black mt-3">
+            Terbuka untuk Enam Kategori Mitra Strategis
+          </h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <CategoryBadge label="Pemberdayaan UMKM" variant="default" />
+          <CategoryBadge label="Pusat Pelatihan Digital" variant="default" />
+        </div>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+        {
+          institutionalSegments.map((segment) => (
+            <div class="border-t border-ash/70 pt-5 flex flex-col gap-3">
+              <div class="flex items-center justify-between gap-3">
+                <span class="type-eyebrow text-graphite">{segment.index}</span>
+                <span class="type-eyebrow text-graphite">{segment.scope}</span>
+              </div>
+              <h4 class="type-subheading font-light text-ink-black">{segment.name}</h4>
+              <p class="text-[14px] md:text-[15px] leading-[1.55] text-graphite">
+                {segment.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Partnership Governance & MoU Standard -->
+    <div class="mt-16 md:mt-20 pt-10 md:pt-12 border-t border-ash">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div class="lg:col-span-4">
+          <p class="type-eyebrow text-graphite">TATA KELOLA KERJA SAMA</p>
+          <h3 class="type-heading-sm font-light text-ink-black mt-3">
+            Standar Transparan Berbasis Konsultasi &amp; MoU
+          </h3>
+          <p class="text-[15px] leading-[1.55] text-graphite mt-4">
+            Setiap kerja sama dirancang agar profesional, terukur, dan memberi kejelasan hak serta kewajiban bagi seluruh pihak.
+          </p>
+        </div>
+
+        <div class="lg:col-span-8 divide-y divide-ash/70 border-y border-ash/70">
+          {
+            governanceSteps.map((item) => (
+              <div class="py-6 grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-6 items-baseline">
+                <span class="sm:col-span-2 type-eyebrow text-graphite">{item.step}</span>
+                <div class="sm:col-span-10 flex flex-col gap-2">
+                  <h4 class="type-subheading font-light text-ink-black">{item.title}</h4>
+                  <p class="text-[14px] md:text-[15px] leading-[1.55] text-graphite">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Ekosistem Kolaborasi Kreator & Talenta Muda -->
+  <section id="kolaborasi" class="w-full editorial-px py-16 md:py-24 border-t border-ash">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+      <div class="lg:col-span-7">
+        <p class="type-eyebrow text-graphite">02 // EKOSISTEM KOLABORASI &amp; TALENTA MUDA</p>
+        <h2 class="type-heading font-light text-ink-black mt-5">
+          Ruang Kolaborasi Aktif bagi Kreator, Komunitas, dan Generasi Muda.
+        </h2>
+      </div>
+
+      <div class="lg:col-span-5">
+        <p class="text-[16px] leading-[1.55] text-graphite">
+          Selaras dengan misi AutoDeploy dalam <span class="text-ink-black">memberdayakan generasi muda</span> melalui penciptaan peluang kerja, ruang kolaborasi, dan pengembangan keterampilan di bidang kreatif, teknologi, serta pemasaran digital.
+        </p>
+      </div>
+    </div>
+
+    <!-- 2x2 Talent & Community Ecosystem Cards (Mint & Teal Accent Separation) -->
+    <div class="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      {
+        talentEcosystem.map((role) => (
+          <ServiceCard
+            indexNumber={role.indexNumber}
+            category={role.category}
+            title={role.title}
+            description={role.description}
+            surface={role.surface}
+            href={role.href}
+            linkLabel={role.linkLabel}
+          />
+        ))
+      }
+    </div>
+
+    <!-- Talent & HR Coordination Strip -->
+    <div class="mt-12 md:mt-16 pt-8 md:pt-10 border-t border-ash flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div class="max-w-3xl flex flex-col gap-2">
+        <p class="type-eyebrow text-graphite">KOORDINASI MANAJEMEN TALENTA &amp; HUMAN RESOURCE</p>
+        <p class="text-[15px] md:text-[16px] leading-[1.55] text-graphite">
+          Pengembangan talenta internal, rekrutmen kolaborator muda, serta koordinasi program pendampingan dan pelatihan klien dikoordinasikan bersama fungsi Human Resource (<span class="text-ink-black">Muhammad Saad Riyanto — HR</span>) agar setiap kolaborasi menghasilkan transfer keterampilan yang nyata.
+        </p>
+      </div>
+
+      <div class="shrink-0">
+        <PillButton href={waTalentUrl} target="_blank" variant="outline">
+          Jajaki Kolaborasi Talenta ↗
+        </PillButton>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: CTA Pengajuan Kemitraan -->
+  <section id="ajukan" class="w-full editorial-px py-16 md:py-24 border-t border-ash">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-stretch">
+      <!-- Featured Inverted Dark Editorial Block -->
+      <div class="lg:col-span-7 bg-navy-ink text-bone-white rounded-none shadow-none p-8 md:p-12 flex flex-col justify-between gap-10">
+        <div>
+          <p class="type-eyebrow text-bone-white/65">03 // PENGAJUAN KEMITRAAN</p>
+          <h2 class="type-heading font-light text-bone-white mt-5">
+            Mari Mulai Diskusi Kemitraan Bersama AutoDeploy.
+          </h2>
+          <p class="text-[15px] md:text-[16px] leading-[1.6] text-bone-white/80 mt-6 max-w-2xl">
+            Baik untuk penjajakan kerja sama institusional, program pemberdayaan UMKM, penyelenggaraan pusat pelatihan digital, maupun kolaborasi talenta muda—tim kami siap berdiskusi secara terbuka guna merumuskan skema sinergi yang tepat guna.
+          </p>
+        </div>
+
+        <div class="pt-6 border-t border-bone-white/20 flex flex-wrap items-center gap-4">
+          <PillButton href={waPartnershipUrl} target="_blank" variant="inverted">
+            Ajukan Kemitraan via WhatsApp ↗
+          </PillButton>
+          <a
+            href={mailtoPartnershipUrl}
+            class="text-[14px] leading-[1.43] text-bone-white hover:text-signal-yellow underline underline-offset-4 transition-colors duration-200"
+          >
+            Email: {SITE_INFO.email}
+          </a>
+        </div>
+      </div>
+
+      <!-- Official Partnership Contact Card -->
+      <aside class="lg:col-span-5 bg-bone-white border border-ash rounded-none shadow-none p-8 md:p-12 flex flex-col justify-between gap-8">
+        <div>
+          <p class="type-eyebrow text-graphite">NARAHUBUNG RESMI KEMITRAAN</p>
+          <h3 class="type-heading-sm font-light text-ink-black mt-4">
+            {SITE_INFO.contactPerson}
+          </h3>
+          <p class="text-[14px] leading-[1.43] text-graphite mt-1">
+            {SITE_INFO.contactRole} • Chief Executive Officer (CEO)
+          </p>
+
+          <dl class="mt-8 divide-y divide-ash/60 border-y border-ash/60 text-[14px] leading-[1.5]">
+            <div class="py-3.5 flex flex-col gap-1">
+              <dt class="type-eyebrow text-graphite">Naungan Korporasi</dt>
+              <dd class="text-ink-black">
+                {SITE_INFO.headquarters} • {SITE_INFO.parentCompany}
+              </dd>
+            </div>
+            <div class="py-3.5 flex flex-col gap-1">
+              <dt class="type-eyebrow text-graphite">Telepon / WhatsApp</dt>
+              <dd>
+                <a
+                  href={waPartnershipUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-ink-black hover:underline underline-offset-4"
+                >
+                  {SITE_INFO.phoneDisplay} ↗
+                </a>
+              </dd>
+            </div>
+            <div class="py-3.5 flex flex-col gap-1">
+              <dt class="type-eyebrow text-graphite">Email Resmi</dt>
+              <dd>
+                <a
+                  href={mailtoPartnershipUrl}
+                  class="text-ink-black hover:underline underline-offset-4"
+                >
+                  {SITE_INFO.email}
+                </a>
+              </dd>
+            </div>
+            <div class="py-3.5 flex flex-col gap-1">
+              <dt class="type-eyebrow text-graphite">Alamat Kantor</dt>
+              <dd class="text-ink-black">{SITE_INFO.address}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <PillButton href="/contact" variant="outline" size="sm">
+            Buka Halaman Kontak ↗
+          </PillButton>
+          <PillButton href={mailtoPartnershipUrl} variant="primary" size="sm">
+            Kirim Email Resmi
+          </PillButton>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>

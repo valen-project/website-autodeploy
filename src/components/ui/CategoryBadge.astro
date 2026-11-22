@@ -1,0 +1,28 @@
+---
+export interface Props {
+  label: string;
+  variant?: 'default' | 'accent' | 'inverted';
+  class?: string;
+}
+
+const { label, variant = 'default', class: className = '' } = Astro.props;
+
+const variantClasses: Record<NonNullable<Props['variant']>, string> = {
+  default: 'bg-transparent text-ink-black border border-ash',
+  accent: 'bg-signal-yellow text-ink-black border border-transparent',
+  inverted: 'bg-transparent text-bone-white border border-bone-white/40',
+};
+
+const classes = [
+  'inline-flex items-center justify-center',
+  'rounded-[1440px] px-3 py-2',
+  'text-[12px] leading-[1.2] font-normal uppercase tracking-normal',
+  'whitespace-nowrap select-none',
+  variantClasses[variant],
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<span class={classes}>{label}</span>

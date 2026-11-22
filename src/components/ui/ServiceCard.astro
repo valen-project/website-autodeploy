@@ -1,0 +1,148 @@
+---
+import CategoryBadge from './CategoryBadge.astro';
+
+export type ServiceCardSurface =
+  | 'teal'
+  | 'powder-blue'
+  | 'mint'
+  | 'navy'
+  | 'magenta'
+  | 'candy-pink'
+  | 'cream';
+
+export interface Props {
+  title: string;
+  description: string;
+  category?: string;
+  indexNumber?: string;
+  surface?: ServiceCardSurface;
+  href?: string;
+  linkLabel?: string;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  category,
+  indexNumber,
+  surface = 'cream',
+  href,
+  linkLabel = 'Pelajari Layanan',
+  class: className = '',
+} = Astro.props;
+
+const surfaceConfig: Record<
+  ServiceCardSurface,
+  {
+    wrapper: string;
+    mutedText: string;
+    indexText: string;
+    divider: string;
+    badgeVariant: 'default' | 'inverted';
+  }
+> = {
+  teal: {
+    wrapper: 'bg-forest-teal text-bone-white',
+    mutedText: 'text-bone-white/85',
+    indexText: 'text-bone-white/60',
+    divider: 'border-bone-white/25',
+    badgeVariant: 'inverted',
+  },
+  'powder-blue': {
+    wrapper: 'bg-powder-blue text-ink-black',
+    mutedText: 'text-ink-black/80',
+    indexText: 'text-ink-black/55',
+    divider: 'border-ink-black/20',
+    badgeVariant: 'default',
+  },
+  mint: {
+    wrapper: 'bg-mint-wash text-ink-black',
+    mutedText: 'text-ink-black/80',
+    indexText: 'text-ink-black/55',
+    divider: 'border-ink-black/20',
+    badgeVariant: 'default',
+  },
+  navy: {
+    wrapper: 'bg-navy-ink text-bone-white',
+    mutedText: 'text-bone-white/85',
+    indexText: 'text-bone-white/60',
+    divider: 'border-bone-white/25',
+    badgeVariant: 'inverted',
+  },
+  magenta: {
+    wrapper: 'bg-magenta-bloom text-bone-white',
+    mutedText: 'text-bone-white/85',
+    indexText: 'text-bone-white/60',
+    divider: 'border-bone-white/25',
+    badgeVariant: 'inverted',
+  },
+  'candy-pink': {
+    wrapper: 'bg-candy-pink text-ink-black',
+    mutedText: 'text-ink-black/80',
+    indexText: 'text-ink-black/55',
+    divider: 'border-ink-black/20',
+    badgeVariant: 'default',
+  },
+  cream: {
+    wrapper: 'bg-bone-white text-ink-black border border-ash',
+    mutedText: 'text-graphite',
+    indexText: 'text-graphite',
+    divider: 'border-ash/60',
+    badgeVariant: 'default',
+  },
+};
+
+const style = surfaceConfig[surface];
+const isExternalHref = Boolean(href && /^https?:\/\//i.test(href));
+---
+
+<article
+  class:list={[
+    'rounded-none shadow-none p-6 md:p-8 flex flex-col justify-between gap-6',
+    style.wrapper,
+    className,
+  ]}
+>
+  <div class="flex flex-col gap-5">
+    {(indexNumber || category) && (
+      <div class="flex items-center justify-between gap-3">
+        {indexNumber ? (
+          <span class:list={['type-eyebrow', style.indexText]}>{indexNumber}</span>
+        ) : (
+          <span />
+        )}
+        {category && <CategoryBadge label={category} variant={style.badgeVariant} />}
+      </div>
+    )}
+
+    <h3 class="type-heading-sm font-light">{title}</h3>
+
+    <p class:list={['text-[15px] md:text-[16px] leading-[1.5] font-normal', style.mutedText]}>
+      {description}
+    </p>
+
+    <slot />
+  </div>
+
+  {
+    href && (
+      <div class:list={['pt-4 border-t', style.divider]}>
+        <a
+          href={href}
+          target={isExternalHref ? '_blank' : undefined}
+          rel={isExternalHref ? 'noopener noreferrer' : undefined}
+          class="group inline-flex items-center gap-2 text-[14px] leading-[1.43] font-normal uppercase tracking-normal hover:underline underline-offset-4"
+        >
+          <span>{linkLabel}</span>
+          <span
+            aria-hidden="true"
+            class="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          >
+            ↗
+          </span>
+        </a>
+      </div>
+    )
+  }
+</article>

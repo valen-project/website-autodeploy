@@ -1,0 +1,451 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PillButton from '../components/ui/PillButton.astro';
+import ServiceCard, { type ServiceCardSurface } from '../components/ui/ServiceCard.astro';
+import CategoryBadge from '../components/ui/CategoryBadge.astro';
+import { SITE_INFO, getWhatsAppUrl } from '../data/site';
+
+interface ServiceDetail {
+  id: string;
+  indexNumber: string;
+  category: string;
+  title: string;
+  description: string;
+  scopeItems: string[];
+  benefit: string;
+  surface: ServiceCardSurface;
+  waMessage: string;
+}
+
+interface WorkflowStep {
+  number: string;
+  stageLabel: string;
+  title: string;
+  description: string;
+  badge?: string;
+  badgeVariant?: 'default' | 'accent';
+}
+
+const SERVICES: ServiceDetail[] = [
+  {
+    id: 'blueprint',
+    indexNumber: '01',
+    category: 'Strategi',
+    title: 'Perencanaan Konsep & Digital Business Blueprint',
+    description:
+      'Pemetaan kebutuhan bisnis secara menyeluruh serta penyusunan konsep bisnis dan proyek untuk menentukan prioritas solusi digital yang tepat guna.',
+    scopeItems: [
+      'Pemetaan kondisi, kendala, dan prioritas digitalisasi usaha secara menyeluruh.',
+      'Penyusunan konsep proyek dan Digital Business Blueprint sebelum tahap eksekusi.',
+      'Penyelarasan rekomendasi solusi digital dengan tujuan, skala, dan anggaran usaha klien.',
+    ],
+    benefit:
+      'Solusi digital dirancang tepat sasaran dan selaras dengan tujuan usaha sejak tahap perencanaan.',
+    surface: 'teal',
+    waMessage:
+      'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan Perencanaan Konsep & Digital Business Blueprint untuk usaha/instansi kami.',
+  },
+  {
+    id: 'desain-kreatif',
+    indexNumber: '02',
+    category: 'Kreatif & Branding',
+    title: 'Desain Kreatif (2D & 3D)',
+    description:
+      'Pembuatan desain grafis, desain 3D, dokumentasi visual, serta berbagai aset kreatif untuk membangun dan memperkuat identitas merek (branding).',
+    scopeItems: [
+      'Produksi desain grafis 2D dan visualisasi desain 3D sesuai karakter usaha.',
+      'Dokumentasi visual untuk mendukung profil usaha dan komunikasi produk.',
+      'Pembuatan aset kreatif untuk identitas visual merek (branding) dan kampanye digital.',
+    ],
+    benefit:
+      'Memperkuat identitas merek agar produk berkualitas tampil lebih kredibel dan mudah dikenali pasar.',
+    surface: 'cream',
+    waMessage:
+      'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan Desain Kreatif (2D & 3D) untuk usaha/instansi kami.',
+  },
+  {
+    id: 'website-landing-page',
+    indexNumber: '03',
+    category: 'Teknologi Web',
+    title: 'Pengembangan Website & Landing Page',
+    description:
+      'Perancangan dan pengembangan situs web maupun landing page profesional untuk mendukung kredibilitas usaha dan konversi pemasaran.',
+    scopeItems: [
+      'Perancangan struktur informasi dan pengembangan situs web usaha yang profesional.',
+      'Pembuatan landing page terarah untuk mendukung kampanye pemasaran dan konversi.',
+      'Penyerahan panduan penggunaan agar klien dapat memahami dan mengelola aset digital secara mandiri.',
+    ],
+    benefit:
+      'Mendukung kredibilitas usaha di hadapan pelanggan maupun mitra sekaligus memperkuat konversi pemasaran.',
+    surface: 'cream',
+    waMessage:
+      'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan Pengembangan Website & Landing Page untuk usaha/instansi kami.',
+  },
+  {
+    id: 'digital-marketing',
+    indexNumber: '04',
+    category: 'Pemasaran',
+    title: 'Digital Marketing & Digital Advertising',
+    description:
+      'Pengelolaan strategi pemasaran digital dan kampanye iklan berbayar (termasuk META Ads) guna memperluas jangkauan pasar secara terukur.',
+    scopeItems: [
+      'Penyusunan dan pengelolaan strategi pemasaran digital yang sesuai dengan karakter target pasar.',
+      'Perencanaan serta pengelolaan kampanye iklan berbayar, termasuk META Ads.',
+      'Pengintegrasian aset kreatif dan kanal digital untuk memperluas visibilitas usaha.',
+    ],
+    benefit:
+      'Memperluas jangkauan pasar secara terukur dan membantu usaha memenangkan persaingan di era digital.',
+    surface: 'powder-blue',
+    waMessage:
+      'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan Digital Marketing & Digital Advertising (termasuk META Ads) untuk usaha/instansi kami.',
+  },
+  {
+    id: 'optimasi-konten-ai',
+    indexNumber: '05',
+    category: 'Kecerdasan Buatan',
+    title: 'Optimasi Konten Berbasis AI',
+    description:
+      'Pemanfaatan kecerdasan buatan (Artificial Intelligence) untuk memproduksi dan mengoptimalkan konten bisnis secara lebih cepat, efektif, dan efisien.',
+    scopeItems: [
+      'Pemanfaatan kecerdasan buatan (Artificial Intelligence) dalam alur produksi konten bisnis.',
+      'Optimasi materi komunikasi dan pemasaran digital agar lebih relevan dan konsisten.',
+      'Integrasi pemanfaatan AI yang praktis untuk mendukung efisiensi kerja operasional usaha.',
+    ],
+    benefit:
+      'Membantu bisnis memproduksi dan mengoptimalkan konten secara lebih cepat, efektif, dan efisien.',
+    surface: 'mint',
+    waMessage:
+      'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan Optimasi Konten Berbasis AI untuk usaha/instansi kami.',
+  },
+  {
+    id: 'pelatihan-pendampingan',
+    indexNumber: '06',
+    category: 'Pemberdayaan',
+    title: 'Pelatihan & Pendampingan Digital',
+    description:
+      'Program pelatihan pemasaran digital dan pemanfaatan AI yang dilengkapi pedoman penggunaan agar klien dapat mengoperasikan teknologi secara mandiri.',
+    scopeItems: [
+      'Program pelatihan praktis pemasaran digital bagi pelaku usaha, tim internal, maupun komunitas.',
+      'Pelatihan pemanfaatan kecerdasan buatan (AI) untuk operasional dan pemasaran usaha.',
+      'Pendampingan langsung dilengkapi pedoman penggunaan teknologi untuk transfer pengetahuan.',
+    ],
+    benefit:
+      'Mendorong kemandirian klien dalam mengoperasikan teknologi serta mengelola aset dan proses digitalnya.',
+    surface: 'cream',
+    waMessage:
+      'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan Pelatihan & Pendampingan Digital untuk usaha/instansi kami.',
+  },
+];
+
+const WORKFLOW_STEPS: WorkflowStep[] = [
+  {
+    number: '01',
+    stageLabel: 'Konsultasi Awal',
+    title: 'Konsultasi Transparan & Pemetaan Kebutuhan',
+    description:
+      'Setiap kerja sama dimulai dengan konsultasi awal yang terbuka mengenai syarat dan ketentuan (Terms & Conditions) sekaligus pemetaan kondisi, prioritas, serta kebutuhan usaha sesuai skala dan anggaran klien.',
+    badge: 'Terms & Conditions',
+    badgeVariant: 'default',
+  },
+  {
+    number: '02',
+    stageLabel: 'Perencanaan',
+    title: 'Penyusunan Digital Business Blueprint',
+    description:
+      'AutoDeploy menyusun Digital Business Blueprint sebagai dasar perencanaan solusi agar arah pengerjaan kreatif, teknologi, maupun pemasaran tepat sasaran dan selaras dengan tujuan usaha klien.',
+    badge: 'Blueprint',
+    badgeVariant: 'default',
+  },
+  {
+    number: '03',
+    stageLabel: 'Kesepakatan Formal',
+    title: 'Perjanjian Kontrak atau Memorandum of Understanding (MoU)',
+    description:
+      'Seluruh ruang lingkup layanan dan kesepakatan kerja sama diikat secara resmi melalui perjanjian kontrak atau Memorandum of Understanding (MoU) yang jelas demi menjaga kepastian bagi kedua belah pihak.',
+    badge: 'Kontrak / MoU',
+    badgeVariant: 'default',
+  },
+  {
+    number: '04',
+    stageLabel: 'Eksekusi & Kemandirian',
+    title: 'Pelaksanaan Layanan, Transfer Pengetahuan & Panduan Penggunaan',
+    description:
+      'Pelaksanaan proyek disertai transfer pengetahuan dan penyerahan panduan penggunaan pada setiap hasil pekerjaan agar klien mampu memahami, mengoperasikan, dan mengelola aset digitalnya secara mandiri.',
+    badge: 'Panduan Penggunaan',
+    badgeVariant: 'default',
+  },
+  {
+    number: '05',
+    stageLabel: 'Jaminan Mutu',
+    title: 'Komitmen Garansi Perbaikan Tanpa Biaya Tambahan',
+    description:
+      'AutoDeploy memegang komitmen garansi perbaikan tanpa biaya tambahan apabila terjadi kesalahan dari pihak AutoDeploy, sebagai bentuk tanggung jawab penuh terhadap kualitas hasil pekerjaan.',
+    badge: 'Garansi Kualitas',
+    badgeVariant: 'accent',
+  },
+];
+
+const waGeneralUrl = getWhatsAppUrl(
+  'Halo AutoDeploy, saya ingin berkonsultasi mengenai pemetaan kebutuhan bisnis dan layanan solusi digital terpadu.'
+);
+
+const waBlueprintUrl = getWhatsAppUrl(
+  'Halo AutoDeploy, saya ingin berkonsultasi untuk pemetaan kebutuhan bisnis dan penyusunan Digital Business Blueprint sesuai skala serta anggaran usaha kami.'
+);
+---
+
+<Layout
+  title="Layanan — Enam Solusi Bisnis Digital Terpadu AutoDeploy"
+  description="Daftar lengkap 6 bidang layanan solusi bisnis digital terpadu AutoDeploy beserta standar dan alur kerja sama transparan berbasis Digital Business Blueprint, MoU, panduan penggunaan, dan garansi kualitas."
+  ogImage="/assets/IMG_1566.jpeg"
+  ogImageAlt="Dokumentasi proses kerja layanan digital terpadu tim AutoDeploy"
+>
+  <!-- Page Header: Poster Headline + Editorial Intro & Documentary Photo -->
+  <section class="w-full pt-12 md:pt-20 pb-16 md:pb-24">
+    <div class="editorial-px">
+      <p class="type-eyebrow text-graphite mb-6 md:mb-8">
+        LAYANAN // SOLUSI DIGITAL TERPADU
+      </p>
+
+      <h1 class="type-display font-light text-ink-black max-w-5xl">
+        Enam Layanan Bisnis Digital Terpadu.
+      </h1>
+
+      <div class="mt-10 md:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
+        <!-- Left Column: Service Scope Overview & Governance Meta -->
+        <div class="lg:col-span-7 flex flex-col gap-8">
+          <div class="flex flex-col gap-5 max-w-2xl">
+            <p class="type-heading-sm font-light text-ink-black">
+              AutoDeploy melayani klien dari berbagai daerah tanpa batasan lokasi dengan cakupan layanan terpadu yang disesuaikan dengan skala dan anggaran usaha.
+            </p>
+            <p class="text-[16px] leading-[1.6] text-graphite">
+              Beroperasi di bawah naungan <span class="text-ink-black">{SITE_INFO.headquarters}</span> dalam manajemen <span class="text-ink-black">{SITE_INFO.parentCompany}</span>, seluruh layanan kami dirancang dalam satu ekosistem <em class="not-italic text-ink-black">One-Stop Digital Solution</em>—mengintegrasikan perencanaan konsep, desain kreatif, pengembangan web, pemasaran digital, optimasi AI, hingga pendampingan agar klien tumbuh secara mandiri.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <PillButton href={waGeneralUrl} target="_blank" variant="primary">
+              Konsultasi Layanan ↗
+            </PillButton>
+            <PillButton href="#alur-kerja-sama" variant="outline">
+              Standar & Alur Kerja Sama
+            </PillButton>
+          </div>
+
+          <!-- Editorial Meta Highlights -->
+          <dl class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-ash">
+            <div class="flex flex-col gap-1.5">
+              <dt class="type-eyebrow text-graphite">Jangkauan Layanan</dt>
+              <dd class="text-[15px] leading-[1.45] text-ink-black">
+                Berbagai daerah tanpa batasan lokasi
+              </dd>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <dt class="type-eyebrow text-graphite">Penyesuaian Solusi</dt>
+              <dd class="text-[15px] leading-[1.45] text-ink-black">
+                Selaras skala, prioritas & anggaran usaha
+              </dd>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <dt class="type-eyebrow text-graphite">Cakupan Ekosistem</dt>
+              <dd class="text-[15px] leading-[1.45] text-ink-black">
+                6 bidang layanan digital terpadu
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Right Column: Sharp Editorial Documentary Photograph -->
+        <div class="lg:col-span-5">
+          <figure class="w-full">
+            <div class="w-full aspect-[4/5] overflow-hidden rounded-none shadow-none border border-forest-teal/35 bg-bone-white">
+              <img
+                src="/assets/IMG_1566.jpeg"
+                alt="Dokumentasi proses kerja digital tim AutoDeploy menggunakan laptop"
+                loading="eager"
+                decoding="async"
+                class="w-full h-full object-cover object-bottom rounded-none"
+              />
+            </div>
+            <figcaption class="mt-3 flex flex-wrap items-center justify-between gap-2 type-eyebrow text-graphite">
+              <span>Dokumentasi Proses Kerja Digital</span>
+              <span>AutoDeploy // Kartasura, Sukoharjo</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Daftar Lengkap 6 Bidang Layanan Terpadu -->
+  <section id="daftar-layanan" class="w-full py-16 md:py-24 border-t border-ash">
+    <div class="editorial-px">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 md:mb-16">
+        <div class="max-w-3xl">
+          <p class="type-eyebrow text-graphite mb-4">
+            01 // DAFTAR LENGKAP BIDANG LAYANAN
+          </p>
+          <h2 class="type-heading font-light text-ink-black">
+            Enam Bidang Layanan Terpadu dari Perencanaan hingga Pendampingan.
+          </h2>
+        </div>
+
+        <p class="text-[14px] leading-[1.55] text-graphite max-w-md">
+          Setiap bidang dapat dijalankan secara terintegrasi dalam satu ekosistem maupun disesuaikan dengan prioritas kebutuhan usaha Anda saat ini.
+        </p>
+      </div>
+
+      <!-- 2-Column Editorial Card Grid (Max 1 Chromatic Surface Per Row) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+        {
+          SERVICES.map((service) => {
+            const isDarkSurface = service.surface === 'teal' || service.surface === 'navy' || service.surface === 'magenta';
+            const subLabelClass = isDarkSurface
+              ? 'text-bone-white/65'
+              : service.surface === 'cream'
+                ? 'text-graphite'
+                : 'text-ink-black/65';
+            const listTextClass = isDarkSurface
+              ? 'text-bone-white/90'
+              : service.surface === 'cream'
+                ? 'text-ink-black/85'
+                : 'text-ink-black/85';
+            const dividerClass = isDarkSurface
+              ? 'border-bone-white/20'
+              : service.surface === 'cream'
+                ? 'border-ash/60'
+                : 'border-ink-black/15';
+            const bulletClass = isDarkSurface ? 'bg-bone-white/70' : 'bg-ink-black/70';
+
+            return (
+              <ServiceCard
+                indexNumber={service.indexNumber}
+                category={service.category}
+                title={service.title}
+                description={service.description}
+                surface={service.surface}
+                href={getWhatsAppUrl(service.waMessage)}
+                linkLabel="Konsultasi Layanan Ini via WhatsApp"
+              >
+                <div class:list={['pt-5 mt-1 border-t flex flex-col gap-5', dividerClass]}>
+                  <div class="flex flex-col gap-2.5">
+                    <p class:list={['type-eyebrow', subLabelClass]}>Cakupan Solusi</p>
+                    <ul class="flex flex-col gap-2">
+                      {service.scopeItems.map((item) => (
+                        <li class:list={['flex items-start gap-3 text-[14px] leading-[1.5]', listTextClass]}>
+                          <span
+                            aria-hidden="true"
+                            class:list={['w-1.5 h-1.5 mt-2 shrink-0 rounded-none', bulletClass]}
+                          />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div class:list={['pt-4 border-t flex flex-col gap-1.5', dividerClass]}>
+                    <p class:list={['type-eyebrow', subLabelClass]}>Manfaat bagi Klien</p>
+                    <p class:list={['text-[14px] leading-[1.55]', listTextClass]}>
+                      {service.benefit}
+                    </p>
+                  </div>
+                </div>
+              </ServiceCard>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Standar & Alur Kerja Sama -->
+  <section id="alur-kerja-sama" class="w-full py-16 md:py-24 border-t border-ash">
+    <div class="editorial-px">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12 md:mb-16">
+        <div class="lg:col-span-7">
+          <p class="type-eyebrow text-graphite mb-4">
+            02 // STANDAR & ALUR KERJA SAMA
+          </p>
+          <h2 class="type-heading font-light text-ink-black">
+            Tata Kelola Kerja Sama yang Transparan dan Dapat Dipertanggungjawabkan.
+          </h2>
+        </div>
+
+        <div class="lg:col-span-5 flex flex-col justify-end">
+          <p class="text-[16px] leading-[1.6] text-graphite">
+            Seluruh tahapan kolaborasi dijalankan secara profesional di bawah tata kelola <span class="text-ink-black">{SITE_INFO.headquarters}</span> dan <span class="text-ink-black">{SITE_INFO.parentCompany}</span>—dimulai dari kesepakatan awal yang jelas hingga penyerahan panduan penggunaan dan garansi kualitas.
+          </p>
+        </div>
+      </div>
+
+      <!-- Numbered Editorial Workflow List (01 - 05) -->
+      <ol class="border-t border-ash divide-y divide-ash">
+        {
+          WORKFLOW_STEPS.map((step) => (
+            <li class="py-8 md:py-10 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start">
+              <div class="lg:col-span-2 flex items-baseline lg:flex-col gap-3 lg:gap-1.5">
+                <span class="type-heading-sm font-light text-ink-black">{step.number}</span>
+                <span class="type-eyebrow text-graphite">{step.stageLabel}</span>
+              </div>
+
+              <div class="lg:col-span-4 flex flex-col items-start gap-3">
+                <h3 class="type-heading-sm font-light text-ink-black">
+                  {step.title}
+                </h3>
+                {step.badge && (
+                  <CategoryBadge
+                    label={step.badge}
+                    variant={step.badgeVariant ?? 'default'}
+                  />
+                )}
+              </div>
+
+              <div class="lg:col-span-6">
+                <p class="text-[16px] leading-[1.6] text-graphite">
+                  {step.description}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Section 3: CTA Konsultasi Layanan -->
+  <section class="w-full py-16 md:py-24">
+    <div class="editorial-px">
+      <div class="bg-navy-ink text-bone-white rounded-none shadow-none p-8 md:p-14 lg:p-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
+        <div class="lg:col-span-8 flex flex-col gap-6">
+          <p class="type-eyebrow text-bone-white/60">
+            03 // KONSULTASI PEMETAAN KEBUTUHAN BISNIS
+          </p>
+          <h2 class="type-heading font-light text-bone-white">
+            Mulai dari Penyusunan Digital Business Blueprint untuk Usaha Anda.
+          </h2>
+          <p class="text-[16px] leading-[1.6] text-bone-white/80 max-w-2xl">
+            Diskusikan kebutuhan, tantangan, dan prioritas digitalisasi usaha Anda bersama tim AutoDeploy. Kami membantu memetakan langkah yang paling praktis, terarah, dan selaras dengan skala serta anggaran usaha—untuk UMKM, bisnis rintisan, perusahaan, maupun instansi di berbagai daerah.
+          </p>
+        </div>
+
+        <div class="lg:col-span-4 flex flex-col items-start lg:items-end gap-5">
+          <div class="flex flex-wrap lg:flex-col items-start lg:items-end gap-3 w-full">
+            <PillButton href={waBlueprintUrl} target="_blank" variant="inverted">
+              Konsultasi WhatsApp ({SITE_INFO.phoneDisplay}) ↗
+            </PillButton>
+            <a
+              href="/contact"
+              class="inline-flex items-center justify-center gap-2 rounded-[1440px] px-6 py-3 text-[16px] leading-[1.4] font-normal tracking-[-0.018em] border border-bone-white/40 text-bone-white hover:bg-bone-white hover:text-ink-black transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bone-white"
+            >
+              Isi Formulir di Halaman Kontak ↗
+            </a>
+          </div>
+
+          <p class="text-[12px] leading-[1.5] text-bone-white/60 lg:text-right">
+            Narahubung: {SITE_INFO.contactPerson} ({SITE_INFO.contactRole})
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

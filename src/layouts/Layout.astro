@@ -1,0 +1,78 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_INFO } from '../data/site';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  ogType?: 'website' | 'article';
+}
+
+const {
+  title = `${SITE_INFO.brandName} — ${SITE_INFO.tagline}`,
+  description = 'AutoDeploy adalah usaha solusi bisnis digital terpadu di bawah naungan Anomia Project (PT. Anomia Digital Industry) untuk UMKM, bisnis rintisan, perusahaan, dan instansi.',
+  ogTitle,
+  ogDescription,
+  ogImage = '/assets/IMG_1824.jpeg',
+  ogImageAlt = 'AutoDeploy — Solusi Bisnis Digital Terpadu di Era Society 5.0',
+  ogType = 'website',
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const resolvedOgTitle = ogTitle ?? title;
+const resolvedOgDescription = ogDescription ?? description;
+const resolvedOgImage = Astro.site ? new URL(ogImage, Astro.site).href : ogImage;
+const canonicalUrl = Astro.site ? new URL(currentPath, Astro.site).href : undefined;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#fffef7" />
+    <title>{title}</title>
+
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    <!-- OpenGraph Meta Tags (WhatsApp & Social Preview) -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content={SITE_INFO.brandName} />
+    <meta property="og:title" content={resolvedOgTitle} />
+    <meta property="og:description" content={resolvedOgDescription} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+
+    <!-- Twitter / X Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={resolvedOgTitle} />
+    <meta name="twitter:description" content={resolvedOgDescription} />
+    <meta name="twitter:image" content={resolvedOgImage} />
+
+    <link rel="icon" type="image/png" href={SITE_INFO.logoPath} />
+
+    <!-- Switzer Font (weights 300 & 400) via Fontshare CDN -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=switzer@300,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-bone-white text-ink-black font-sans antialiased min-h-screen flex flex-col">
+    <Navbar currentPath={currentPath} />
+    <main class="flex-1 w-full">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

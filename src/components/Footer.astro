@@ -1,0 +1,95 @@
+---
+import { NAV_ITEMS, SITE_INFO, getWhatsAppUrl } from '../data/site';
+
+const waUrl = getWhatsAppUrl(
+  'Halo AutoDeploy, saya ingin berkonsultasi mengenai layanan solusi bisnis digital.'
+);
+---
+
+<footer class="w-full bg-bone-white text-ink-black border-t border-ash mt-16">
+  <div class="editorial-px py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
+    <!-- Column 1: Brand Identity & Corporate Umbrella -->
+    <div class="md:col-span-4 flex flex-col gap-4">
+      <a href="/" class="inline-flex items-center gap-3 w-fit">
+        <span class="w-9 h-9 rounded-[1440px] border border-ink-black/15 bg-bone-white flex items-center justify-center shrink-0 overflow-hidden">
+          <img
+            src={SITE_INFO.logoPath}
+            alt="Logo AutoDeploy"
+            width="24"
+            height="24"
+            loading="lazy"
+            decoding="async"
+            class="w-6 h-6 object-contain mix-blend-multiply"
+          />
+        </span>
+        <span class="type-subheading font-light text-ink-black">{SITE_INFO.brandName}</span>
+      </a>
+
+      <p class="text-[14px] leading-[1.5] text-ink-black">
+        {SITE_INFO.tagline}
+      </p>
+
+      <p class="text-[14px] leading-[1.5] text-graphite">
+        Solusi bisnis digital terpadu di bawah naungan <span class="text-ink-black">{SITE_INFO.headquarters}</span> dalam manajemen <span class="text-ink-black">{SITE_INFO.parentCompany}</span>.
+      </p>
+    </div>
+
+    <!-- Column 2: Quick Navigation (5 Pages) -->
+    <div class="md:col-span-2 flex flex-col gap-4">
+      <p class="type-eyebrow text-graphite">Navigasi</p>
+      <ul class="flex flex-col gap-2">
+        {
+          NAV_ITEMS.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-[14px] leading-[1.43] text-ink-black hover:underline underline-offset-4 inline-flex items-center gap-1"
+              >
+                <span>{item.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Column 3: Official Office Address -->
+    <div class="md:col-span-3 flex flex-col gap-4">
+      <p class="type-eyebrow text-graphite">Alamat Kantor</p>
+      <address class="not-italic text-[14px] leading-[1.5] text-ink-black">
+        {SITE_INFO.address}
+      </address>
+    </div>
+
+    <!-- Column 4: Official Contact -->
+    <div class="md:col-span-3 flex flex-col gap-4">
+      <p class="type-eyebrow text-graphite">Kontak Resmi</p>
+      <div class="flex flex-col gap-2 text-[14px] leading-[1.43]">
+        <p class="text-ink-black">
+          {SITE_INFO.contactPerson}
+          <span class="block text-graphite text-[12px]">{SITE_INFO.contactRole}</span>
+        </p>
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-ink-black hover:underline underline-offset-4 w-fit"
+        >
+          WhatsApp: {SITE_INFO.phoneDisplay} ↗
+        </a>
+        <a
+          href={`mailto:${SITE_INFO.email}`}
+          class="text-ink-black hover:underline underline-offset-4 w-fit"
+        >
+          Email: {SITE_INFO.email}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Colophon -->
+  <div class="editorial-px py-5 border-t border-ash/50 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[12px] leading-[1.43] text-graphite">
+    <p>© {SITE_INFO.foundedYear} {SITE_INFO.brandName} — {SITE_INFO.parentCompany}</p>
+    <p>{SITE_INFO.headquarters}</p>
+  </div>
+</footer>
