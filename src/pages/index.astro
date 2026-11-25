@@ -1,10 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PillButton from '../components/ui/PillButton.astro';
-import ServiceCard from '../components/ui/ServiceCard.astro';
-import type { ServiceCardSurface } from '../components/ui/ServiceCard.astro';
-import CategoryBadge from '../components/ui/CategoryBadge.astro';
-import { SITE_INFO, getWhatsAppUrl, withBase } from '../data/site';
+import Layout from "../layouts/Layout.astro";
+import PillButton from "../components/ui/PillButton.astro";
+import ServiceCard from "../components/ui/ServiceCard.astro";
+import type { ServiceCardSurface } from "../components/ui/ServiceCard.astro";
+import CategoryBadge from "../components/ui/CategoryBadge.astro";
+import { SITE_INFO, getWhatsAppUrl, withBase } from "../data/site";
 
 interface ServiceSummary {
   indexNumber: string;
@@ -28,105 +28,107 @@ interface ClientSegment {
 }
 
 const waConsultUrl = getWhatsAppUrl(
-  'Halo AutoDeploy, saya ingin berkonsultasi mengenai kebutuhan solusi bisnis digital sesuai skala dan anggaran usaha kami.'
+  "Halo AutoDeploy, saya ingin berkonsultasi mengenai kebutuhan solusi bisnis digital sesuai skala dan anggaran usaha kami.",
 );
 
 const services: ServiceSummary[] = [
   {
-    indexNumber: '01',
-    category: 'Strategi',
-    surface: 'teal',
-    title: 'Perencanaan Konsep & Digital Business Blueprint',
+    indexNumber: "01",
+    category: "Strategi",
+    surface: "teal",
+    title: "Perencanaan Konsep & Digital Business Blueprint",
     description:
-      'Pemetaan kebutuhan bisnis secara menyeluruh serta penyusunan konsep bisnis dan proyek untuk menentukan prioritas solusi digital yang tepat guna.',
+      "Pemetaan kebutuhan bisnis secara menyeluruh serta penyusunan konsep bisnis dan proyek untuk menentukan prioritas solusi digital yang tepat guna.",
   },
   {
-    indexNumber: '02',
-    category: 'Branding',
-    surface: 'candy-pink',
-    title: 'Desain Kreatif (2D & 3D)',
+    indexNumber: "02",
+    category: "Branding",
+    surface: "candy-pink",
+    title: "Desain Kreatif (2D & 3D)",
     description:
-      'Pembuatan desain grafis, desain 3D, dokumentasi visual, serta berbagai aset kreatif untuk membangun dan memperkuat identitas merek (branding).',
+      "Pembuatan desain grafis, desain 3D, dokumentasi visual, serta berbagai aset kreatif untuk membangun dan memperkuat identitas merek (branding).",
   },
   {
-    indexNumber: '03',
-    category: 'Teknologi Web',
-    surface: 'powder-blue',
-    title: 'Pengembangan Website & Landing Page',
+    indexNumber: "03",
+    category: "Teknologi Web",
+    surface: "powder-blue",
+    title: "Pengembangan Website & Landing Page",
     description:
-      'Perancangan dan pengembangan situs web maupun landing page profesional untuk mendukung kredibilitas usaha dan konversi pemasaran.',
+      "Perancangan dan pengembangan situs web maupun landing page profesional untuk mendukung kredibilitas usaha dan konversi pemasaran.",
   },
   {
-    indexNumber: '04',
-    category: 'Pemasaran',
-    surface: 'mint',
-    title: 'Digital Marketing & Digital Advertising',
+    indexNumber: "04",
+    category: "Pemasaran",
+    surface: "mint",
+    title: "Digital Marketing & Digital Advertising",
     description:
-      'Pengelolaan strategi pemasaran digital dan kampanye iklan berbayar (termasuk META Ads) guna memperluas jangkauan pasar secara terukur.',
+      "Pengelolaan strategi pemasaran digital dan kampanye iklan berbayar (termasuk META Ads) guna memperluas jangkauan pasar secara terukur.",
   },
   {
-    indexNumber: '05',
-    category: 'Kecerdasan Buatan',
-    surface: 'cream',
-    title: 'Optimasi Konten Berbasis AI',
+    indexNumber: "05",
+    category: "Kecerdasan Buatan",
+    surface: "cream",
+    title: "Optimasi Konten Berbasis AI",
     description:
-      'Pemanfaatan kecerdasan buatan (Artificial Intelligence) untuk memproduksi dan mengoptimalkan konten bisnis secara lebih cepat, efektif, dan efisien.',
+      "Pemanfaatan kecerdasan buatan (Artificial Intelligence) untuk memproduksi dan mengoptimalkan konten bisnis secara lebih cepat, efektif, dan efisien.",
   },
   {
-    indexNumber: '06',
-    category: 'Pemberdayaan',
-    surface: 'navy',
-    title: 'Pelatihan & Pendampingan Digital',
+    indexNumber: "06",
+    category: "Pemberdayaan",
+    surface: "navy",
+    title: "Pelatihan & Pendampingan Digital",
     description:
-      'Program pelatihan pemasaran digital dan pemanfaatan AI yang dilengkapi pedoman penggunaan agar klien dapat mengoperasikan teknologi secara mandiri.',
+      "Program pelatihan pemasaran digital dan pemanfaatan AI yang dilengkapi pedoman penggunaan agar klien dapat mengoperasikan teknologi secara mandiri.",
   },
 ];
 
 const coreValues: CoreValue[] = [
   {
-    indexNumber: '01',
-    tag: 'TERPADU',
-    title: 'One-Stop Digital Solution',
+    indexNumber: "01",
+    tag: "TERPADU",
+    title: "One-Stop Digital Solution",
     description:
-      'Mengintegrasikan berbagai kebutuhan digitalisasi bisnis dalam satu layanan terpadu sehingga klien bekerja lebih efisien tanpa perlu mencari banyak penyedia jasa.',
-    iconPath: 'M3 8h10M8 3v10M4.5 4.5h7v7h-7z',
+      "Mengintegrasikan berbagai kebutuhan digitalisasi bisnis dalam satu layanan terpadu sehingga klien bekerja lebih efisien tanpa perlu mencari banyak penyedia jasa.",
+    iconPath: "M3 8h10M8 3v10M4.5 4.5h7v7h-7z",
   },
   {
-    indexNumber: '02',
-    tag: 'TERARAH',
-    title: 'Digital Business Blueprint',
+    indexNumber: "02",
+    tag: "TERARAH",
+    title: "Digital Business Blueprint",
     description:
-      'Mengawali setiap proyek dengan pemetaan kebutuhan bisnis agar solusi yang dirancang tepat sasaran dan selaras dengan tujuan usaha klien.',
-    iconPath: 'M2.5 3.5h11v9h-11zM5.5 6.5h5M5.5 9.5h3',
+      "Mengawali setiap proyek dengan pemetaan kebutuhan bisnis agar solusi yang dirancang tepat sasaran dan selaras dengan tujuan usaha klien.",
+    iconPath: "M2.5 3.5h11v9h-11zM5.5 6.5h5M5.5 9.5h3",
   },
   {
-    indexNumber: '03',
-    tag: 'MANDIRI',
-    title: 'Pemberdayaan & Kemandirian',
+    indexNumber: "03",
+    tag: "MANDIRI",
+    title: "Pemberdayaan & Kemandirian",
     description:
-      'Menyertakan transfer pengetahuan melalui panduan penggunaan dan pelatihan praktis dalam setiap layanan.',
-    iconPath: 'M8 2.5l5.5 3-5.5 3-5.5-3 5.5-3zM4 7.5v3.5c0 1.2 1.8 2 4 2s4-.8 4-2V7.5',
+      "Menyertakan transfer pengetahuan melalui panduan penggunaan dan pelatihan praktis dalam setiap layanan.",
+    iconPath:
+      "M8 2.5l5.5 3-5.5 3-5.5-3 5.5-3zM4 7.5v3.5c0 1.2 1.8 2 4 2s4-.8 4-2V7.5",
   },
   {
-    indexNumber: '04',
-    tag: 'GARANSI',
-    title: 'Transparansi & Garansi Kualitas',
+    indexNumber: "04",
+    tag: "GARANSI",
+    title: "Transparansi & Garansi Kualitas",
     description:
-      'Menjalankan kerja sama berdasarkan alur konsultasi dan kontrak (MoU) yang jelas, disertai komitmen perbaikan tanpa biaya tambahan apabila terjadi kesalahan dari pihak AutoDeploy.',
-    iconPath: 'M8 2L3 4.2v3.6c0 3.1 2.1 5.6 5 6.2 2.9-.6 5-3.1 5-6.2V4.2L8 2zM6 8.2l1.4 1.4 2.8-2.8',
+      "Menjalankan kerja sama berdasarkan alur konsultasi dan kontrak (MoU) yang jelas, disertai komitmen perbaikan tanpa biaya tambahan apabila terjadi kesalahan dari pihak AutoDeploy.",
+    iconPath:
+      "M8 2L3 4.2v3.6c0 3.1 2.1 5.6 5 6.2 2.9-.6 5-3.1 5-6.2V4.2L8 2zM6 8.2l1.4 1.4 2.8-2.8",
   },
 ];
 
 const clientSegments: ClientSegment[] = [
-  { label: 'UMKM', featured: true },
-  { label: 'Bisnis Rintisan (Startup)' },
-  { label: 'Perusahaan Swasta' },
-  { label: 'Instansi Pemerintah' },
-  { label: 'BUMN' },
-  { label: 'Penyelenggara Acara' },
-  { label: 'Perguruan Tinggi' },
-  { label: 'Komunitas' },
-  { label: 'Lembaga Pelatihan' },
+  { label: "UMKM", featured: true },
+  { label: "Bisnis Rintisan (Startup)" },
+  { label: "Perusahaan Swasta" },
+  { label: "Instansi Pemerintah" },
+  { label: "BUMN" },
+  { label: "Penyelenggara Acara" },
+  { label: "Perguruan Tinggi" },
+  { label: "Komunitas" },
+  { label: "Lembaga Pelatihan" },
 ];
 ---
 
@@ -142,7 +144,9 @@ const clientSegments: ClientSegment[] = [
       <!-- Top Micro Metadata Strip -->
       <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] uppercase tracking-[0.06em] text-graphite mb-4 md:mb-6">
         <span>{SITE_INFO.headquarters}</span>
-        <span class="hidden md:inline text-terracotta font-medium">{SITE_INFO.tagline}</span>
+        <span class="hidden md:inline text-terracotta font-medium">
+          {SITE_INFO.tagline}
+        </span>
         <span>Kartasura, Sukoharjo • Est. {SITE_INFO.foundedYear}</span>
       </div>
 
@@ -157,7 +161,7 @@ const clientSegments: ClientSegment[] = [
 
         <div class="hero-photo-frame relative z-0 -mt-5 sm:-mt-10 md:-mt-16 w-full max-w-4xl overflow-hidden border border-ash/70 bg-ivory-tile">
           <img
-            src={withBase('/assets/IMG_1824.jpeg')}
+            src={withBase("/assets/IMG_1824.jpeg")}
             alt="Dokumentasi kolaborasi tim AutoDeploy bersama perangkat kerja dalam merancang solusi bisnis digital"
             class="w-full h-[300px] sm:h-[420px] md:h-[500px] object-cover object-[50%_48%]"
             loading="eager"
@@ -170,12 +174,16 @@ const clientSegments: ClientSegment[] = [
       <!-- Value Proposition & Primary Actions Below Photo -->
       <div class="mt-10 md:mt-14 pt-8 border-t border-ash/70 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
         <div class="lg:col-span-7 flex flex-col gap-3">
-          <p class="type-eyebrow text-vermilion">SOLUSI BISNIS DIGITAL TERPADU</p>
+          <p class="type-eyebrow text-vermilion">
+            SOLUSI BISNIS DIGITAL TERPADU
+          </p>
           <h1 class="type-heading text-terracotta max-w-2xl">
             Solusi Bisnis Digital Terpadu di Era Society 5.0.
           </h1>
           <p class="text-[16px] md:text-[17px] leading-[1.6] text-graphite max-w-2xl mt-1">
-            Mitra strategis bagi UMKM, bisnis rintisan, dan perusahaan dalam mengoptimalkan operasional serta pemasaran digital melalui integrasi kreativitas, teknologi, dan strategi.
+            Mitra strategis bagi UMKM, bisnis rintisan, dan perusahaan dalam
+            mengoptimalkan operasional serta pemasaran digital melalui integrasi
+            kreativitas, teknologi, dan strategi.
           </p>
         </div>
 
@@ -183,7 +191,7 @@ const clientSegments: ClientSegment[] = [
           <PillButton href={waConsultUrl} target="_blank" variant="primary">
             Konsultasi Sekarang ↗
           </PillButton>
-          <PillButton href={withBase('/services')} variant="outline">
+          <PillButton href={withBase("/services")} variant="outline">
             Jelajahi 6 Layanan
           </PillButton>
         </div>
@@ -200,7 +208,10 @@ const clientSegments: ClientSegment[] = [
           <div class="flex items-center gap-8 pr-8 shrink-0">
             {clientSegments.map((seg) => (
               <span class="inline-flex items-center gap-3 type-eyebrow text-terracotta whitespace-nowrap">
-                <span aria-hidden="true" class="w-1.5 h-1.5 rounded-[1440px] bg-vermilion" />
+                <span
+                  aria-hidden="true"
+                  class="w-1.5 h-1.5 rounded-[1440px] bg-vermilion"
+                />
                 <span>{seg.label}</span>
               </span>
             ))}
@@ -211,10 +222,14 @@ const clientSegments: ClientSegment[] = [
   </section>
 
   <!-- Section 2: Layanan Utama (Signature Symbol Asymmetric Catalog Studio Grid) -->
-  <section class="editorial-px py-16 md:py-24 border-b border-ash" aria-labelledby="section-services-title">
+  <section
+    class="editorial-px py-16 md:py-24 border-b border-ash"
+    aria-labelledby="section-services-title"
+  >
     <div class="mb-10 md:mb-14">
       <h2 id="section-services-title" class="type-heading text-terracotta">
-        Layanan Utama:<br />
+        Layanan Utama:
+        <br />
         Enam Solusi Digital Terpadu...
       </h2>
     </div>
@@ -226,29 +241,29 @@ const clientSegments: ClientSegment[] = [
         <div class="flex flex-col gap-3">
           <span class="type-eyebrow text-slate-tag">CAKUPAN LINTAS DAERAH</span>
           <p class="text-[15px] leading-[1.6] text-graphite">
-            AutoDeploy melayani klien dari berbagai daerah tanpa batasan lokasi dengan cakupan layanan menyeluruh yang disesuaikan dengan skala, prioritas, serta anggaran usaha Anda.
+            AutoDeploy melayani klien dari berbagai daerah tanpa batasan lokasi
+            dengan cakupan layanan menyeluruh yang disesuaikan dengan skala,
+            prioritas, serta anggaran usaha Anda.
           </p>
         </div>
         <div>
-          <PillButton href={withBase('/services')} variant="outline" size="sm">
+          <PillButton href={withBase("/services")} variant="outline" size="sm">
             Lihat Rincian Layanan ↗
           </PillButton>
         </div>
       </div>
 
-      {
-        services.map((service) => (
-          <ServiceCard
-            indexNumber={service.indexNumber}
-            category={service.category}
-            surface={service.surface}
-            title={service.title}
-            description={service.description}
-            href={withBase('/services')}
-            linkLabel="Detail Layanan"
-          />
-        ))
-      }
+      {services.map((service) => (
+        <ServiceCard
+          indexNumber={service.indexNumber}
+          category={service.category}
+          surface={service.surface}
+          title={service.title}
+          description={service.description}
+          href={withBase("/services")}
+          linkLabel="Detail Layanan"
+        />
+      ))}
 
       <!-- Closing Summary Studio Tile to complete the 8-cell 4x2 grid cleanly -->
       <div class="studio-tile p-6 md:p-8 flex flex-col justify-between gap-6 bg-sand-warm/55">
@@ -260,7 +275,8 @@ const clientSegments: ClientSegment[] = [
             Mulai dari Digital Business Blueprint
           </h3>
           <p class="text-[14.5px] leading-[1.58] text-graphite">
-            Bingung menentukan prioritas layanan? Kami bantu memetakan kebutuhan usaha Anda secara transparan sejak awal.
+            Bingung menentukan prioritas layanan? Kami bantu memetakan kebutuhan
+            usaha Anda secara transparan sejak awal.
           </p>
         </div>
         <div class="pt-4 border-t border-ash/60">
@@ -278,21 +294,33 @@ const clientSegments: ClientSegment[] = [
   </section>
 
   <!-- Section 3: Latar Belakang & Peran AutoDeploy (Signature "Same as it ever was..." Manifesto Layout) -->
-  <section class="editorial-px py-20 md:py-28 border-b border-ash" aria-labelledby="section-background-title">
+  <section
+    class="editorial-px py-20 md:py-28 border-b border-ash"
+    aria-labelledby="section-background-title"
+  >
     <div class="max-w-5xl mx-auto flex flex-col gap-6">
       <div class="md:pl-[42%]">
-        <h2 id="section-background-title" class="type-heading-sm text-vermilion">
+        <h2
+          id="section-background-title"
+          class="type-heading-sm text-vermilion"
+        >
           Bukan sekadar penyedia jasa teknis...
         </h2>
       </div>
 
       <p class="type-manifesto">
-        Berdiri pada tahun {SITE_INFO.foundedYear} di bawah naungan {SITE_INFO.headquarters} dalam manajemen {SITE_INFO.parentCompany}, AutoDeploy lahir dari kepedulian terhadap banyaknya pelaku usaha konvensional—khususnya UMKM dan bisnis rintisan—yang memiliki produk berkualitas namun terkendala pemasaran, identitas merek, dan pemanfaatan teknologi digital. Kami hadir sebagai mitra strategis yang mendampingi usaha beradaptasi, tumbuh mandiri, dan berdaya saing di era Society 5.0.
+        Berdiri pada tahun {SITE_INFO.foundedYear} di bawah naungan{" "}
+        {SITE_INFO.headquarters} dalam manajemen {SITE_INFO.parentCompany},
+        AutoDeploy lahir dari kepedulian terhadap banyaknya pelaku usaha
+        konvensional khususnya UMKM dan bisnis rintisan yang memiliki produk
+        berkualitas namun terkendala pemasaran, identitas merek, dan pemanfaatan
+        teknologi digital. Kami hadir sebagai mitra strategis yang mendampingi
+        usaha beradaptasi, tumbuh mandiri, dan berdaya saing di era Society 5.0.
       </p>
 
       <div class="md:pl-[42%] pt-3">
         <a
-          href={withBase('/about')}
+          href={withBase("/about")}
           class="editorial-link text-[14px] font-medium uppercase tracking-[0.05em] text-terracotta"
         >
           <span>Kenali Profil &amp; Tim AutoDeploy ↗</span>
@@ -302,82 +330,100 @@ const clientSegments: ClientSegment[] = [
   </section>
 
   <!-- Section 4: 4 Nilai Utama (Core Values Catalog Row) -->
-  <section class="editorial-px py-16 md:py-24 border-b border-ash" aria-labelledby="section-values-title">
+  <section
+    class="editorial-px py-16 md:py-24 border-b border-ash"
+    aria-labelledby="section-values-title"
+  >
     <div class="mb-10 md:mb-14 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
       <h2 id="section-values-title" class="type-heading text-terracotta">
-        Nilai Utama:<br />
-        Empat Pilar Kerja Sama<sup class="text-[14px] ml-1 text-vermilion">04</sup>
+        Nilai Utama:
+        <br />
+        Empat Pilar Kerja Sama
+        <sup class="text-[14px] ml-1 text-vermilion">04</sup>
       </h2>
       <p class="text-[14px] text-graphite max-w-sm">
-        Fondasi kualitas layanan AutoDeploy untuk memastikan setiap proyek tepat sasaran dan transparan.
+        Fondasi kualitas layanan AutoDeploy untuk memastikan setiap proyek tepat
+        sasaran dan transparan.
       </p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      {
-        coreValues.map((value) => (
-          <article class="studio-tile p-6 md:p-7 flex flex-col justify-between gap-6">
-            <div class="flex items-center justify-between gap-3">
-              <span class="px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.07em] bg-slate-wash text-slate-tag">
-                {value.tag}
-              </span>
-              <span class="w-8 h-8 rounded-[1440px] border border-terracotta/30 bg-terracotta-wash/50 flex items-center justify-center shrink-0 text-vermilion">
-                <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" class="w-4 h-4">
-                  <path
-                    d={value.iconPath}
-                    stroke="currentColor"
-                    stroke-width="1.2"
-                    stroke-linecap="square"
-                  />
-                </svg>
-              </span>
-            </div>
+      {coreValues.map((value) => (
+        <article class="studio-tile p-6 md:p-7 flex flex-col justify-between gap-6">
+          <div class="flex items-center justify-between gap-3">
+            <span class="px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.07em] bg-slate-wash text-slate-tag">
+              {value.tag}
+            </span>
+            <span class="w-8 h-8 rounded-[1440px] border border-terracotta/30 bg-terracotta-wash/50 flex items-center justify-center shrink-0 text-vermilion">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+                fill="none"
+                class="w-4 h-4"
+              >
+                <path
+                  d={value.iconPath}
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  stroke-linecap="square"
+                />
+              </svg>
+            </span>
+          </div>
 
-            <div class="flex flex-col gap-2.5">
-              <span class="type-eyebrow text-vermilion">PILAR {value.indexNumber}</span>
-              <h3 class="type-heading-sm text-ink-black">
-                {value.title}
-              </h3>
-              <p class="text-[14.5px] leading-[1.58] text-graphite">
-                {value.description}
-              </p>
-            </div>
-          </article>
-        ))
-      }
+          <div class="flex flex-col gap-2.5">
+            <span class="type-eyebrow text-vermilion">
+              PILAR {value.indexNumber}
+            </span>
+            <h3 class="type-heading-sm text-ink-black">{value.title}</h3>
+            <p class="text-[14.5px] leading-[1.58] text-graphite">
+              {value.description}
+            </p>
+          </div>
+        </article>
+      ))}
     </div>
   </section>
 
   <!-- Section 5: Segmen Klien & Ekosistem (Symbol Split "About us" Editorial Band) -->
-  <section class="editorial-px py-16 md:py-24 border-b border-ash" aria-labelledby="section-clients-title">
+  <section
+    class="editorial-px py-16 md:py-24 border-b border-ash"
+    aria-labelledby="section-clients-title"
+  >
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
       <!-- Left Editorial Copy & 9 Client Segments -->
       <div class="lg:col-span-5 flex flex-col gap-6">
         <h2 id="section-clients-title" class="type-heading text-terracotta">
-          Segmen &amp; Ekosistem:<br />
+          Segmen &amp; Ekosistem:
+          <br />
           Lintas Sektor Usaha
         </h2>
 
         <p class="text-[15.5px] leading-[1.62] text-graphite">
-          Dalam memperluas dampak dan jangkauan layanan, AutoDeploy membangun kolaborasi aktif dengan para kreator, komunitas UMKM, tenaga kreatif, dan pengembang teknologi, serta menjajaki kerja sama institusional melalui jaringan {SITE_INFO.headquarters} dan {SITE_INFO.parentCompany}.
+          Dalam memperluas dampak dan jangkauan layanan, AutoDeploy membangun
+          kolaborasi aktif dengan para kreator, komunitas UMKM, tenaga kreatif,
+          dan pengembang teknologi, serta menjajaki kerja sama institusional
+          melalui jaringan {SITE_INFO.headquarters} dan{" "}
+          {SITE_INFO.parentCompany}.
         </p>
 
-        <ul class="flex flex-wrap gap-2 pt-1" aria-label="Daftar segmen klien yang dilayani AutoDeploy">
-          {
-            clientSegments.map((segment) => (
-              <li>
-                <CategoryBadge
-                  label={segment.label}
-                  variant={segment.featured ? 'accent' : 'default'}
-                />
-              </li>
-            ))
-          }
+        <ul
+          class="flex flex-wrap gap-2 pt-1"
+          aria-label="Daftar segmen klien yang dilayani AutoDeploy"
+        >
+          {clientSegments.map((segment) => (
+            <li>
+              <CategoryBadge
+                label={segment.label}
+                variant={segment.featured ? "accent" : "default"}
+              />
+            </li>
+          ))}
         </ul>
 
         <div class="pt-2">
           <a
-            href={withBase('/partnership')}
+            href={withBase("/partnership")}
             class="editorial-link text-[14px] font-medium uppercase tracking-[0.05em] text-vermilion"
           >
             <span>Pelajari Kemitraan &amp; Kolaborasi ↗</span>
@@ -388,7 +434,7 @@ const clientSegments: ClientSegment[] = [
       <!-- Right Flush Documentary Photograph -->
       <figure class="lg:col-span-7 overflow-hidden border border-ash/70 bg-ivory-tile">
         <img
-          src={withBase('/assets/IMG_3103.jpeg')}
+          src={withBase("/assets/IMG_3103.jpeg")}
           alt="Dokumentasi suasana diskusi ekosistem kemitraan AutoDeploy"
           loading="lazy"
           decoding="async"
@@ -399,15 +445,24 @@ const clientSegments: ClientSegment[] = [
   </section>
 
   <!-- Section 6: CTA Penutup (Warm Ivory & Vermilion Studio Callout) -->
-  <section class="editorial-px pt-16 md:pt-24 pb-4" aria-labelledby="section-cta-title">
+  <section
+    class="editorial-px pt-16 md:pt-24 pb-4"
+    aria-labelledby="section-cta-title"
+  >
     <div class="bg-ivory-tile border border-ash border-t-4 border-t-vermilion p-8 sm:p-12 md:p-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
       <div class="lg:col-span-8 flex flex-col gap-4">
-        <span class="type-eyebrow text-vermilion">KONSULTASI &amp; PEMETAAN KEBUTUHAN</span>
+        <span class="type-eyebrow text-vermilion">
+          KONSULTASI &amp; PEMETAAN KEBUTUHAN
+        </span>
         <h2 id="section-cta-title" class="type-display-sm text-terracotta">
-          Diskusikan kebutuhan digitalisasi sesuai skala dan anggaran usaha Anda.
+          Diskusikan kebutuhan digitalisasi sesuai skala dan anggaran usaha
+          Anda.
         </h2>
         <p class="text-[15.5px] md:text-[16.5px] leading-[1.6] text-graphite max-w-2xl">
-          Setiap kerja sama dimulai dari konsultasi transparan mengenai syarat dan ketentuan serta penyusunan Digital Business Blueprint. Hubungi {SITE_INFO.contactPerson} ({SITE_INFO.contactRole}) melalui WhatsApp resmi {SITE_INFO.phoneDisplay}.
+          Setiap kerja sama dimulai dari konsultasi transparan mengenai syarat
+          dan ketentuan serta penyusunan Digital Business Blueprint. Hubungi{" "}
+          {SITE_INFO.contactPerson} ({SITE_INFO.contactRole}) melalui WhatsApp
+          resmi {SITE_INFO.phoneDisplay}.
         </p>
       </div>
 
@@ -415,7 +470,7 @@ const clientSegments: ClientSegment[] = [
         <PillButton href={waConsultUrl} target="_blank" variant="primary">
           Konsultasi via WhatsApp ↗
         </PillButton>
-        <PillButton href={withBase('/contact')} variant="outline">
+        <PillButton href={withBase("/contact")} variant="outline">
           Formulir Kontak
         </PillButton>
       </div>
