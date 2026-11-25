@@ -94,7 +94,8 @@ const floatingWaUrl = getWhatsAppUrl(
     <div
       id="floating-controls"
       data-visible="false"
-      class="fixed bottom-5 right-4 md:bottom-7 md:right-7 z-30 flex items-center gap-2 opacity-0 translate-y-3 pointer-events-none transition-[opacity,transform] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]"
+      aria-hidden="true"
+      class="fixed bottom-5 right-4 md:bottom-7 md:right-7 z-30 flex items-center gap-2 invisible opacity-0 translate-y-3 pointer-events-none transition-[opacity,transform,visibility] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]"
     >
       <a
         href={floatingWaUrl}
@@ -137,7 +138,9 @@ const floatingWaUrl = getWhatsAppUrl(
           progressBar.style.transform = `scaleX(${progress})`;
         }
         if (floatingControls) {
-          floatingControls.setAttribute('data-visible', scrollTop > 360 ? 'true' : 'false');
+          const visible = scrollTop > 360;
+          floatingControls.setAttribute('data-visible', visible ? 'true' : 'false');
+          floatingControls.setAttribute('aria-hidden', visible ? 'false' : 'true');
         }
       };
 
@@ -154,6 +157,7 @@ const floatingWaUrl = getWhatsAppUrl(
         const revealTargets: HTMLElement[] = [];
 
         document.querySelectorAll<HTMLElement>('main > section:not(:first-child)').forEach((sec) => {
+          if (sec.querySelector('.grid > article')) return;
           sec.setAttribute('data-reveal', '');
           revealTargets.push(sec);
         });
@@ -192,7 +196,7 @@ const floatingWaUrl = getWhatsAppUrl(
                 }
               });
             },
-            { threshold: 0.05, rootMargin: '0px 0px -4% 0px' }
+            { threshold: 0, rootMargin: '0px 0px 40px 0px' }
           );
 
           revealTargets.forEach((el) => observer.observe(el));

@@ -44,7 +44,7 @@ const waConsultUrl = getWhatsAppUrl(
         />
       </span>
       <span class="flex flex-col leading-none">
-        <span class="font-[var(--font-display)] font-bold text-[19px] tracking-[-0.03em] text-vermilion">
+        <span class="font-display font-bold text-[19px] tracking-[-0.03em] text-vermilion">
           {SITE_INFO.brandName}
         </span>
         <span class="hidden sm:inline text-[10px] uppercase tracking-[0.06em] text-graphite mt-0.5">
@@ -264,8 +264,27 @@ const waConsultUrl = getWhatsAppUrl(
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && drawer?.getAttribute('aria-hidden') === 'false') {
+    if (!drawer || drawer.getAttribute('aria-hidden') !== 'false') return;
+    if (event.key === 'Escape') {
       closeDrawer();
+      return;
+    }
+    if (event.key === 'Tab') {
+      const focusable = Array.from(
+        drawer.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((el) => el.offsetParent !== null);
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
   });
 </script>
