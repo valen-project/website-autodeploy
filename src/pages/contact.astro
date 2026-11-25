@@ -258,9 +258,8 @@ const serviceOptions = [
           </div>
 
           <p class="text-[16px] leading-[1.55] text-graphite max-w-md">
-            Lengkapi formulir singkat berikut untuk menyiapkan ringkasan
-            kebutuhan Anda. Saat dikirim, pesan terformat akan langsung dibuka
-            melalui WhatsApp resmi AutoDeploy ({SITE_INFO.phoneDisplay}).
+            Lengkapi formulir singkat berikut untuk mengirimkan ringkasan
+            kebutuhan Anda langsung ke email resmi AutoDeploy ({SITE_INFO.email}).
           </p>
 
           <div class="mt-2 flex flex-col gap-4 max-w-md">
@@ -292,11 +291,21 @@ const serviceOptions = [
         <div class="lg:col-span-7 bg-ivory-tile border border-ash border-t-4 border-t-vermilion p-7 sm:p-9 md:p-11">
           <form
             id="consultation-form"
-            data-whatsapp-number={SITE_INFO.whatsappNumber}
+            data-contact-email={SITE_INFO.email}
             novalidate
             class="flex flex-col gap-10"
           >
-            <!-- Row 1: Nama & Kategori Usaha/Instansi -->
+            <!-- Honeypot Anti-Spam Field -->
+            <input
+              type="text"
+              name="_honey"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+              class="hidden"
+            />
+
+            <!-- Row 1: Nama & Email Anda -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8">
               <div class="flex flex-col gap-2">
                 <label
@@ -316,6 +325,27 @@ const serviceOptions = [
                 />
               </div>
 
+              <div class="flex flex-col gap-2">
+                <label
+                  for="contact-email"
+                  class="type-eyebrow text-graphite"
+                >
+                  Email Anda <span aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  placeholder="nama@email.com"
+                  class="w-full rounded-none border-0 border-b border-ash bg-transparent py-3 text-[18px] md:text-[20px] font-normal leading-[1.4] tracking-[-0.018em] text-ink-black placeholder:text-ash focus:border-ink-black focus:outline-none transition-colors duration-200"
+                />
+              </div>
+            </div>
+
+            <!-- Row 2: Kategori Usaha/Instansi & Layanan yang Diminati -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8">
               <div class="flex flex-col gap-2">
                 <label
                   for="contact-category"
@@ -356,47 +386,46 @@ const serviceOptions = [
                   </svg>
                 </div>
               </div>
-            </div>
 
-            <!-- Row 2: Layanan yang Diminati -->
-            <div class="flex flex-col gap-2">
-              <label
-                for="contact-service"
-                class="type-eyebrow text-graphite"
-              >
-                Layanan yang Diminati <span aria-hidden="true">*</span>
-              </label>
-              <div class="relative">
-                <select
-                  id="contact-service"
-                  name="service"
-                  required
-                  class="w-full appearance-none rounded-none border-0 border-b border-ash bg-transparent py-3 pr-8 text-[18px] md:text-[20px] font-normal leading-[1.4] tracking-[-0.018em] text-ink-black focus:border-ink-black focus:outline-none transition-colors duration-200 cursor-pointer"
+              <div class="flex flex-col gap-2">
+                <label
+                  for="contact-service"
+                  class="type-eyebrow text-graphite"
                 >
-                  <option value="" disabled selected class="bg-bone-white text-graphite">
-                    Pilih layanan atau jenis kolaborasi
-                  </option>
-                  {
-                    serviceOptions.map((service) => (
-                      <option value={service} class="bg-bone-white text-ink-black">
-                        {service}
-                      </option>
-                    ))
-                  }
-                </select>
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-black"
-                >
-                  <path
-                    d="M3.5 6L8 10.5L12.5 6"
-                    stroke="currentColor"
-                    stroke-width="1"
-                    stroke-linecap="square"
-                  />
-                </svg>
+                  Layanan yang Diminati <span aria-hidden="true">*</span>
+                </label>
+                <div class="relative">
+                  <select
+                    id="contact-service"
+                    name="service"
+                    required
+                    class="w-full appearance-none rounded-none border-0 border-b border-ash bg-transparent py-3 pr-8 text-[18px] md:text-[20px] font-normal leading-[1.4] tracking-[-0.018em] text-ink-black focus:border-ink-black focus:outline-none transition-colors duration-200 cursor-pointer"
+                  >
+                    <option value="" disabled selected class="bg-bone-white text-graphite">
+                      Pilih layanan atau jenis kolaborasi
+                    </option>
+                    {
+                      serviceOptions.map((service) => (
+                        <option value={service} class="bg-bone-white text-ink-black">
+                          {service}
+                        </option>
+                      ))
+                    }
+                  </select>
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-black"
+                  >
+                    <path
+                      d="M3.5 6L8 10.5L12.5 6"
+                      stroke="currentColor"
+                      stroke-width="1"
+                      stroke-linecap="square"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
 
@@ -418,25 +447,25 @@ const serviceOptions = [
               ></textarea>
             </div>
 
-            <!-- Inline Validation Error -->
-            <p
+            <!-- Inline Validation / Network Error -->
+            <div
               id="form-error"
               role="alert"
               aria-live="assertive"
               class="hidden rounded-none border-l-2 border-magenta-bloom pl-4 py-1 text-[14px] leading-[1.43] text-magenta-bloom"
-            ></p>
+            ></div>
 
             <!-- Submit Button -->
             <div class="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
-              <PillButton type="submit" variant="primary">
-                Kirim via WhatsApp ↗
+              <PillButton id="contact-submit-btn" type="submit" variant="primary">
+                Kirim via Email ↗
               </PillButton>
               <span class="text-[12px] leading-[1.43] text-graphite">
-                Akan membuka tab baru WhatsApp ke {SITE_INFO.phoneDisplay}
+                Pesan langsung terkirim ke {SITE_INFO.email}
               </span>
             </div>
 
-            <!-- Subtle Confirmation Banner -->
+            <!-- Confirmation Banner -->
             <div
               id="form-confirmation"
               role="status"
@@ -444,21 +473,13 @@ const serviceOptions = [
               class="hidden rounded-none border-l-2 border-slate-tag bg-slate-wash/80 px-5 py-4 text-[14px] leading-[1.5] text-ink-black"
             >
               <p class="type-eyebrow text-slate-tag mb-1">
-                PESAN SIAP DIKIRIM
+                PESAN TERKIRIM
               </p>
               <p>
-                Ringkasan konsultasi Anda telah diformat dan dibuka melalui
-                WhatsApp resmi AutoDeploy ({SITE_INFO.phoneDisplay}).
+                Terima kasih! Ringkasan konsultasi Anda telah berhasil dikirim ke
+                email resmi AutoDeploy ({SITE_INFO.email}). Tim kami akan segera
+                menghubungi Anda kembali melalui email yang dicantumkan.
               </p>
-              <a
-                id="form-whatsapp-fallback"
-                href={directWhatsAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="mt-2 inline-flex items-center gap-1 text-[14px] text-ink-black underline underline-offset-4 hover:text-slate-tag"
-              >
-                Jika tab WhatsApp tidak terbuka otomatis, klik di sini ↗
-              </a>
             </div>
           </form>
         </div>
@@ -470,16 +491,20 @@ const serviceOptions = [
 <script>
   const form = document.getElementById('consultation-form') as HTMLFormElement | null;
   const nameInput = document.getElementById('contact-name') as HTMLInputElement | null;
+  const emailInput = document.getElementById('contact-email') as HTMLInputElement | null;
   const categorySelect = document.getElementById('contact-category') as HTMLSelectElement | null;
   const serviceSelect = document.getElementById('contact-service') as HTMLSelectElement | null;
   const summaryTextarea = document.getElementById('contact-summary') as HTMLTextAreaElement | null;
+  const honeyInput = form?.querySelector<HTMLInputElement>('input[name="_honey"]') ?? null;
+  const submitBtn = document.getElementById('contact-submit-btn') as HTMLButtonElement | null;
   const errorBox = document.getElementById('form-error');
   const confirmationBox = document.getElementById('form-confirmation');
-  const fallbackLink = document.getElementById('form-whatsapp-fallback') as HTMLAnchorElement | null;
 
-  const fields = [nameInput, categorySelect, serviceSelect, summaryTextarea].filter(
+  const fields = [nameInput, emailInput, categorySelect, serviceSelect, summaryTextarea].filter(
     (field): field is HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement => field !== null
   );
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   function clearFieldError(field: HTMLElement) {
     field.classList.remove('border-magenta-bloom');
@@ -503,14 +528,19 @@ const serviceOptions = [
     field.addEventListener('change', clearHandler);
   });
 
-  form?.addEventListener('submit', (event) => {
+  form?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    if (!nameInput || !categorySelect || !serviceSelect || !summaryTextarea) {
+    if (!nameInput || !emailInput || !categorySelect || !serviceSelect || !summaryTextarea) {
+      return;
+    }
+
+    if (honeyInput && honeyInput.value.trim().length > 0) {
       return;
     }
 
     const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
     const category = categorySelect.value.trim();
     const service = serviceSelect.value.trim();
     const summary = summaryTextarea.value.trim();
@@ -519,6 +549,7 @@ const serviceOptions = [
 
     const missingFields: Array<{ el: HTMLElement; label: string }> = [];
     if (!name) missingFields.push({ el: nameInput, label: 'Nama' });
+    if (!email) missingFields.push({ el: emailInput, label: 'Email Anda' });
     if (!category) missingFields.push({ el: categorySelect, label: 'Kategori Usaha / Instansi' });
     if (!service) missingFields.push({ el: serviceSelect, label: 'Layanan yang Diminati' });
     if (!summary) missingFields.push({ el: summaryTextarea, label: 'Ringkasan Kebutuhan' });
@@ -535,30 +566,101 @@ const serviceOptions = [
       return;
     }
 
+    if (!emailPattern.test(email)) {
+      markFieldError(emailInput);
+      if (errorBox) {
+        errorBox.textContent = 'Mohon masukkan alamat email yang valid (contoh: nama@email.com).';
+        errorBox.classList.remove('hidden');
+      }
+      confirmationBox?.classList.add('hidden');
+      emailInput.focus();
+      return;
+    }
+
     if (errorBox) {
       errorBox.textContent = '';
       errorBox.classList.add('hidden');
     }
 
-    const whatsappNumber = form.dataset.whatsappNumber || '6285642550886';
-    const message = [
-      'Halo AutoDeploy, saya ingin berkonsultasi mengenai kebutuhan solusi digital.',
-      '',
-      `Nama: ${name}`,
-      `Kategori Usaha / Instansi: ${category}`,
-      `Layanan yang Diminati: ${service}`,
-      `Ringkasan Kebutuhan:`,
-      summary,
-    ].join('\n');
+    const contactEmail = form.dataset.contactEmail || 'affanhanan10@gmail.com';
+    const defaultBtnLabel = submitBtn?.textContent?.trim() || 'Kirim via Email ↗';
 
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-
-    if (fallbackLink) {
-      fallbackLink.href = whatsappUrl;
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Mengirim...';
+      submitBtn.classList.add('opacity-70', 'pointer-events-none');
     }
-    confirmationBox?.classList.remove('hidden');
 
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    try {
+      const response = await fetch(
+        `https://formsubmit.co/ajax/${encodeURIComponent(contactEmail)}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            _subject: `Konsultasi AutoDeploy — ${service} (${name})`,
+            _replyto: email,
+            _template: 'table',
+            _captcha: 'false',
+            Nama: name,
+            Email: email,
+            'Kategori Usaha / Instansi': category,
+            'Layanan yang Diminati': service,
+            'Ringkasan Kebutuhan': summary,
+          }),
+        }
+      );
+
+      const result = await response.json().catch(() => null);
+      const isSuccess =
+        response.ok &&
+        (result?.success === true || result?.success === 'true' || result?.success === undefined);
+
+      if (!isSuccess) {
+        throw new Error('Pengiriman email gagal');
+      }
+
+      confirmationBox?.classList.remove('hidden');
+      form.reset();
+    } catch {
+      confirmationBox?.classList.add('hidden');
+      if (errorBox) {
+        const mailtoBody = [
+          'Halo AutoDeploy, saya ingin berkonsultasi mengenai kebutuhan solusi digital.',
+          '',
+          `Nama: ${name}`,
+          `Email: ${email}`,
+          `Kategori Usaha / Instansi: ${category}`,
+          `Layanan yang Diminati: ${service}`,
+          'Ringkasan Kebutuhan:',
+          summary,
+        ].join('\n');
+        const mailtoHref = `mailto:${contactEmail}?subject=${encodeURIComponent(
+          `Konsultasi AutoDeploy — ${service} (${name})`
+        )}&body=${encodeURIComponent(mailtoBody)}`;
+
+        errorBox.replaceChildren();
+        const textNode = document.createTextNode(
+          'Pengiriman otomatis sedang terkendala jaringan atau pemblokir skrip. Anda tetap dapat mengirim melalui '
+        );
+        const fallbackAnchor = document.createElement('a');
+        fallbackAnchor.href = mailtoHref;
+        fallbackAnchor.className = 'underline underline-offset-4 font-medium';
+        fallbackAnchor.textContent = `aplikasi email ke ${contactEmail} ↗`;
+        errorBox.appendChild(textNode);
+        errorBox.appendChild(fallbackAnchor);
+        errorBox.classList.remove('hidden');
+      }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = defaultBtnLabel;
+        submitBtn.classList.remove('opacity-70', 'pointer-events-none');
+      }
+    }
   });
 
   // One-click Copy to Clipboard comfort buttons
