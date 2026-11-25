@@ -24,7 +24,7 @@ export const SITE_INFO = {
   address: 'Jl. Elang Mas A No. 12, RT.03 / RW.11, Gonilan, Kartasura, Sukoharjo',
   phoneDisplay: '085642550886',
   whatsappNumber: '6285642550886',
-  email: 'affanhanan10@gmail.com',
+  email: 'autodeploy.project@gmail.com',
   logoPath: withBase('/assets/logo.png'),
 } as const;
 
