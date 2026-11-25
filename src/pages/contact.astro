@@ -592,32 +592,27 @@ const serviceOptions = [
     }
 
     try {
-      const response = await fetch(
-        `https://formsubmit.co/ajax/${encodeURIComponent(contactEmail)}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            _subject: `Konsultasi AutoDeploy — ${service} (${name})`,
-            _replyto: email,
-            _template: 'table',
-            _captcha: 'false',
-            Nama: name,
-            Email: email,
-            'Kategori Usaha / Instansi': category,
-            'Layanan yang Diminati': service,
-            'Ringkasan Kebutuhan': summary,
-          }),
-        }
-      );
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'cef4c961-f4d6-4240-a82b-5f1417da7501',
+          subject: `Konsultasi AutoDeploy — ${service} (${name})`,
+          from_name: 'Website AutoDeploy',
+          replyto: email,
+          name,
+          email,
+          'Kategori Usaha / Instansi': category,
+          'Layanan yang Diminati': service,
+          'Ringkasan Kebutuhan': summary,
+        }),
+      });
 
       const result = await response.json().catch(() => null);
-      const isSuccess =
-        response.ok &&
-        (result?.success === true || result?.success === 'true' || result?.success === undefined);
+      const isSuccess = response.ok && result?.success === true;
 
       if (!isSuccess) {
         throw new Error('Pengiriman email gagal');
